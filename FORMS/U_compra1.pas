@@ -70,6 +70,8 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure db_produto_idExit(Sender: TObject);
     procedure bt_okClick(Sender: TObject);
+    procedure bt_excluirClick(Sender: TObject);
+    procedure bt_deletarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -99,6 +101,61 @@ begin
     Q_padrao_item.Append;     // nova linha
     Q_padrao_itemSEQUENCIA_ID.AsInteger:=proximo;    //campo sequencia_id recebe o conteudo de proximo
     db_produto_id.SetFocus;
+
+end;
+
+procedure TFrm_compra1.bt_deletarClick(Sender: TObject);
+begin
+
+  if Messagedlg('Deseja excluir todo o registro?', mtConfirmation,[mbok,mbNo], 0)=mrOk then
+  begin
+    Q_padrao_item.First;
+    while Q_padrao_item.RecordCount > 0 do
+    begin
+      if Q_produto.Locate('PRODUTO_ID', Q_padrao_itemPRODUTO_ID.AsInteger, []) then
+        begin
+          Q_produto.Edit;
+          Q_produto.FieldByName('ESTOQUE').AsFloat:=
+          Q_produto.FieldByName('ESTOQUE').AsFloat -
+          Q_padrao_itemQTDE.AsFloat;
+          Q_produto.Refresh;
+          Q_padrao_item.Delete;
+          Q_padrao_item.Next;
+          end;
+    end;
+     inherited;
+  end
+  else
+  abort;
+
+
+
+
+end;
+
+procedure TFrm_compra1.bt_excluirClick(Sender: TObject);
+begin
+  //EXCLUI ITEM DO DETALHE COMPRA
+  if Messagedlg('Deseja excluir esse item?', mtConfirmation,[mbok,mbNo], 0)=mrOk then
+  begin
+
+     if Q_produto.Locate('PRODUTO_ID', Q_padrao_itemPRODUTO_ID.AsInteger, []) then
+     begin
+        Q_produto.Edit;
+        Q_produto.FieldByName('ESTOQUE').AsFloat:=
+        Q_produto.FieldByName('ESTOQUE').AsFloat -
+        Q_padrao_itemQTDE.AsFloat;
+        Q_produto.Refresh;
+        Q_padrao_item.Delete;
+        Messagedlg('Item excluido com sucesso!', mtconfirmation,[mbok],0);
+
+     end;
+
+
+  end
+  else
+  abort;
+
 
 end;
 

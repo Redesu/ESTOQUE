@@ -16,6 +16,9 @@ inherited Frm_compra1: TFrm_compra1
     inherited bt_ok: TBitBtn
       OnClick = bt_okClick
     end
+    inherited bt_excluir: TBitBtn
+      OnClick = bt_excluirClick
+    end
   end
   inherited Panel3: TPanel
     Top = 67

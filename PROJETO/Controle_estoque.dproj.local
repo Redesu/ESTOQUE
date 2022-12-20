@@ -44,12 +44,12 @@
     <Transaction>2022/12/17 20:05:54.000.406,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/17 20:07:12.000.295,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_pesq_produto.dfm</Transaction>
     <Transaction>2022/12/17 20:07:12.000.295,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_pesq_produto.pas</Transaction>
-    <Transaction>2022/12/20 13:13:03.026,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/20 13:13:53.274,C:\ESTOQUE\FORMS\U_movimento_padrao.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/20 13:13:53.274,C:\ESTOQUE\FORMS\U_movimento_padrao.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
-    <Transaction>2022/12/20 13:28:16.062,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/20 13:29:10.003,C:\ESTOQUE\FORMS\U_compra1.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/20 13:29:10.003,C:\ESTOQUE\FORMS\U_compra1.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
+    <Transaction>2022/12/20 13:13:03.000.026,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2022/12/20 13:13:53.000.274,C:\ESTOQUE\FORMS\U_movimento_padrao.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2022/12/20 13:13:53.000.274,C:\ESTOQUE\FORMS\U_movimento_padrao.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
+    <Transaction>2022/12/20 13:28:16.000.062,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2022/12/20 13:29:10.000.003,C:\ESTOQUE\FORMS\U_compra1.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2022/12/20 13:29:10.000.003,C:\ESTOQUE\FORMS\U_compra1.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="C:\ESTOQUE"/>

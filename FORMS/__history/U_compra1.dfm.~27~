@@ -10,6 +10,15 @@ inherited Frm_compra1: TFrm_compra1
     inherited DBNavigator1: TDBNavigator
       Hints.Strings = ()
     end
+    inherited bt_item: TBitBtn
+      OnClick = BitBtn1Click
+    end
+    inherited bt_ok: TBitBtn
+      OnClick = bt_okClick
+    end
+    inherited bt_excluir: TBitBtn
+      OnClick = bt_excluirClick
+    end
   end
   inherited Panel3: TPanel
     Top = 67
@@ -200,16 +209,24 @@ inherited Frm_compra1: TFrm_compra1
       DataSource = ds_padrao
       TabOrder = 7
     end
+    object DBEdit2: TDBEdit
+      Left = 558
+      Top = 46
+      Width = 200
+      Height = 21
+      DataField = 'SUBTOTAL'
+      DataSource = ds_padrao_item
+      TabOrder = 8
+    end
   end
   inherited Panel4: TPanel
-    ExplicitTop = 398
     object Label9: TLabel
       Left = 32
       Top = 24
       Width = 74
       Height = 13
       Caption = 'PRODUTO_ID'
-      FocusControl = DBEdit1
+      FocusControl = db_produto_id
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -223,7 +240,7 @@ inherited Frm_compra1: TFrm_compra1
       Width = 29
       Height = 13
       Caption = 'QTDE'
-      FocusControl = DBEdit2
+      FocusControl = db_qtde
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -237,7 +254,7 @@ inherited Frm_compra1: TFrm_compra1
       Width = 57
       Height = 13
       Caption = 'VL_CUSTO'
-      FocusControl = DBEdit3
+      FocusControl = db_vl_custo
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -251,7 +268,7 @@ inherited Frm_compra1: TFrm_compra1
       Width = 58
       Height = 13
       Caption = 'DESCONTO'
-      FocusControl = DBEdit4
+      FocusControl = db_desconto
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -265,7 +282,7 @@ inherited Frm_compra1: TFrm_compra1
       Width = 71
       Height = 13
       Caption = 'TOTAL_ITEM'
-      FocusControl = DBEdit5
+      FocusControl = db_total_item
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -273,7 +290,7 @@ inherited Frm_compra1: TFrm_compra1
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object DBEdit1: TDBEdit
+    object db_produto_id: TDBEdit
       Left = 32
       Top = 40
       Width = 134
@@ -281,8 +298,9 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'PRODUTO_ID'
       DataSource = ds_padrao_item
       TabOrder = 0
+      OnExit = db_produto_idExit
     end
-    object DBEdit2: TDBEdit
+    object db_qtde: TDBEdit
       Left = 181
       Top = 40
       Width = 73
@@ -291,7 +309,7 @@ inherited Frm_compra1: TFrm_compra1
       DataSource = ds_padrao_item
       TabOrder = 1
     end
-    object DBEdit3: TDBEdit
+    object db_vl_custo: TDBEdit
       Left = 264
       Top = 40
       Width = 251
@@ -300,7 +318,7 @@ inherited Frm_compra1: TFrm_compra1
       DataSource = ds_padrao_item
       TabOrder = 2
     end
-    object DBEdit4: TDBEdit
+    object db_desconto: TDBEdit
       Left = 524
       Top = 40
       Width = 100
@@ -309,7 +327,7 @@ inherited Frm_compra1: TFrm_compra1
       DataSource = ds_padrao_item
       TabOrder = 3
     end
-    object DBEdit5: TDBEdit
+    object db_total_item: TDBEdit
       Left = 632
       Top = 40
       Width = 180
@@ -341,6 +359,12 @@ inherited Frm_compra1: TFrm_compra1
       end
       item
         Expanded = False
+        FieldName = 'DESCRICAO'
+        Width = 319
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'QTDE'
         Visible = True
       end
@@ -361,6 +385,7 @@ inherited Frm_compra1: TFrm_compra1
       end>
   end
   inherited Q_padrao: TFDQuery
+    Active = True
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_ID_COMPRA'
@@ -431,7 +456,9 @@ inherited Frm_compra1: TFrm_compra1
     end
   end
   inherited Q_padrao_item: TFDQuery
+    Active = True
     IndexFieldNames = 'COMPRA_ID'
+    AggregatesActive = True
     MasterFields = 'COMPRA_ID'
     DetailFields = 'COMPRA_ID'
     Connection = DM.conexao
@@ -448,9 +475,9 @@ inherited Frm_compra1: TFrm_compra1
     ParamData = <
       item
         Name = 'COMPRA_ID'
-        DataType = ftInteger
+        DataType = ftAutoInc
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object Q_padrao_itemSEQUENCIA_ID: TIntegerField
       FieldName = 'SEQUENCIA_ID'
@@ -479,6 +506,7 @@ inherited Frm_compra1: TFrm_compra1
     object Q_padrao_itemDESCONTO: TFMTBCDField
       FieldName = 'DESCONTO'
       Origin = 'DESCONTO'
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -486,6 +514,7 @@ inherited Frm_compra1: TFrm_compra1
       FieldName = 'VL_CUSTO'
       Origin = 'VL_CUSTO'
       Required = True
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -493,11 +522,30 @@ inherited Frm_compra1: TFrm_compra1
       FieldName = 'TOTAL_ITEM'
       Origin = 'TOTAL_ITEM'
       Required = True
+      currency = True
       Precision = 18
       Size = 2
     end
+    object Q_padrao_itemDESCRICAO: TStringField
+      FieldKind = fkLookup
+      FieldName = 'DESCRICAO'
+      LookupDataSet = Q_produto
+      LookupKeyFields = 'PRODUTO_ID'
+      LookupResultField = 'PRODUTO_DESCRICAO'
+      KeyFields = 'PRODUTO_ID'
+      Size = 100
+      Lookup = True
+    end
+    object Q_padrao_itemSUBTOTAL: TAggregateField
+      FieldName = 'SUBTOTAL'
+      Active = True
+      currency = True
+      DisplayName = ''
+      Expression = 'SUM(TOTAL_ITEM)'
+    end
   end
   object Q_fornecedor: TFDQuery
+    Active = True
     Connection = DM.conexao
     SQL.Strings = (
       
@@ -519,6 +567,7 @@ inherited Frm_compra1: TFrm_compra1
     end
   end
   object Q_forma_pgto: TFDQuery
+    Active = True
     Connection = DM.conexao
     SQL.Strings = (
       
@@ -548,5 +597,18 @@ inherited Frm_compra1: TFrm_compra1
     DataSet = Q_forma_pgto
     Left = 648
     Top = 224
+  end
+  object Q_produto: TFDQuery
+    Active = True
+    Connection = DM.conexao
+    SQL.Strings = (
+      'SELECT PRODUTO_ID,'
+      'PRODUTO_DESCRICAO,'
+      'ESTOQUE,'
+      'ESTOQUE_MIN,'
+      'VL_CUSTO FROM PRODUTO'
+      'ORDER BY PRODUTO_ID')
+    Left = 640
+    Top = 296
   end
 end
