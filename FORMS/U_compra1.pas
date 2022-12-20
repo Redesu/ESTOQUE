@@ -120,6 +120,24 @@ Q_padraoVALOR.AsFloat:=
 Q_padrao_item.AggFields.FieldByName('SUBTOTAL').Value;
 Q_padrao.Post;
 
+
+//Alimentar o estoque
+
+
+Q_padrao_item.First;
+while not Q_padrao_item.eof do
+begin
+    if Q_produto.Locate('PRODUTO_ID', Q_padrao_itemPRODUTO_ID.AsInteger,[]) then
+     begin
+     Q_produto.Edit;
+     Q_produto.FieldByName('ESTOQUE').AsFloat:=
+     Q_produto.FieldByName('ESTOQUE').AsFloat +
+     Q_padrao_itemQTDE.AsFloat;
+     Q_padrao_item.Next;
+     end;
+  end;
+     Q_produto.Refresh;
+     Messagedlg('Estoque atualizado com sucesso!', mtinformation, [mbOk], 0);
 end;
 
 procedure TFrm_compra1.db_produto_idExit(Sender: TObject);
