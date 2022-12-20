@@ -1,0 +1,94 @@
+inherited Frm_Forma_pgto: TFrm_Forma_pgto
+  Caption = 'CADASTRO DE FORMA DE PGTO'
+  ClientHeight = 369
+  ExplicitHeight = 398
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 128
+    Top = 168
+    Width = 86
+    Height = 13
+    Caption = 'ID_FORMA_PGTO'
+    FocusControl = DB_id_forma_pgto
+  end
+  object Label2: TLabel [1]
+    Left = 128
+    Top = 208
+    Width = 59
+    Height = 13
+    Caption = 'DESCRICAO'
+    FocusControl = DB_descricao
+  end
+  object Label3: TLabel [2]
+    Left = 268
+    Top = 168
+    Width = 55
+    Height = 13
+    Caption = 'CADASTRO'
+    FocusControl = DB_cadastro
+  end
+  inherited Panel1: TPanel
+    TabOrder = 3
+  end
+  inherited Panel2: TPanel
+    Top = 316
+    TabOrder = 4
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  object DB_id_forma_pgto: TDBEdit [5]
+    Left = 128
+    Top = 184
+    Width = 134
+    Height = 21
+    DataField = 'ID_FORMA_PGTO'
+    DataSource = ds_padrao
+    TabOrder = 0
+  end
+  object DB_descricao: TDBEdit [6]
+    Left = 128
+    Top = 224
+    Width = 497
+    Height = 21
+    DataField = 'DESCRICAO'
+    DataSource = ds_padrao
+    TabOrder = 1
+  end
+  object DB_cadastro: TDBEdit [7]
+    Left = 268
+    Top = 184
+    Width = 134
+    Height = 21
+    DataField = 'CADASTRO'
+    DataSource = ds_padrao
+    Enabled = False
+    TabOrder = 2
+  end
+  inherited Q_padrao: TFDQuery
+    SQL.Strings = (
+      'SELECT '
+      'ID_FORMA_PGTO,'
+      'DESCRICAO,'
+      'CADASTRO FROM FORMA_PGTO'
+      'ORDER BY ID_FORMA_PGTO')
+    object Q_padraoID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_padraoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

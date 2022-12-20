@@ -1,0 +1,17 @@
+inherited Frm_pesq_produto: TFrm_pesq_produto
+  Caption = 'PESQUISA POR PRODUTO'
+  ExplicitWidth = 1042
+  ExplicitHeight = 670
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited cb_chave_pesquisa: TComboBox
+    Items.Strings = (
+      'C'#211'DIGO'
+      'DESCRI'#199#195'O'
+      'NOME'
+      'CADASTRO'
+      'PERIODO'
+      'TODOS'
+      'FORNECEDOR')
+  end
+end

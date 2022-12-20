@@ -1,0 +1,149 @@
+inherited Frm_usuarios: TFrm_usuarios
+  Caption = 'CADASTRO DE USUARIOS'
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 100
+    Top = 152
+    Width = 43
+    Height = 13
+    Caption = 'USER_ID'
+    FocusControl = DBEdit1
+  end
+  object Label2: TLabel [1]
+    Left = 100
+    Top = 192
+    Width = 28
+    Height = 13
+    Caption = 'NAME'
+    FocusControl = DB_nome
+  end
+  object Label3: TLabel [2]
+    Left = 100
+    Top = 232
+    Width = 57
+    Height = 13
+    Caption = 'PASSWORD'
+    FocusControl = DB_senha
+  end
+  object Label4: TLabel [3]
+    Left = 330
+    Top = 235
+    Width = 24
+    Height = 13
+    Caption = 'TYPE'
+  end
+  object Label5: TLabel [4]
+    Left = 566
+    Top = 232
+    Width = 35
+    Height = 13
+    Caption = 'SIGNIN'
+    FocusControl = DB_cadastro
+  end
+  inherited Panel2: TPanel
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  object DBEdit1: TDBEdit [7]
+    Left = 100
+    Top = 165
+    Width = 134
+    Height = 21
+    DataField = 'USER_ID'
+    DataSource = ds_padrao
+    TabOrder = 2
+  end
+  object DB_nome: TDBEdit [8]
+    Left = 100
+    Top = 208
+    Width = 600
+    Height = 21
+    CharCase = ecUpperCase
+    DataField = 'NAME'
+    DataSource = ds_padrao
+    TabOrder = 3
+  end
+  object DB_senha: TDBEdit [9]
+    Left = 100
+    Top = 248
+    Width = 200
+    Height = 21
+    DataField = 'PASSWORD'
+    DataSource = ds_padrao
+    PasswordChar = '*'
+    TabOrder = 4
+  end
+  object DB_cadastro: TDBEdit [10]
+    Left = 566
+    Top = 248
+    Width = 134
+    Height = 21
+    DataField = 'SIGNIN'
+    DataSource = ds_padrao
+    TabOrder = 5
+  end
+  object DB_tipo: TDBComboBox [11]
+    Left = 330
+    Top = 248
+    Width = 210
+    Height = 21
+    DataField = 'TYPE'
+    DataSource = ds_padrao
+    Items.Strings = (
+      'ADMINISTRADOR'
+      'APOIO')
+    TabOrder = 6
+  end
+  inherited Q_padrao: TFDQuery
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_ID_USUARIO'
+    UpdateOptions.AutoIncFields = 'USER_ID'
+    SQL.Strings = (
+      'select'
+      'user_id,'
+      'name,'
+      'password,'
+      'type,'
+      'signin'
+      'from usuario'
+      'order by user_id')
+    Left = 696
+    Top = 88
+    object Q_padraoUSER_ID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'USER_ID'
+      Origin = 'USER_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object Q_padraoNAME: TStringField
+      FieldName = 'NAME'
+      Origin = 'NAME'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoPASSWORD: TStringField
+      FieldName = 'PASSWORD'
+      Origin = '"PASSWORD"'
+      Required = True
+      Size = 30
+    end
+    object Q_padraoTYPE: TStringField
+      FieldName = 'TYPE'
+      Origin = '"TYPE"'
+      Required = True
+      Size = 30
+    end
+    object Q_padraoSIGNIN: TDateField
+      FieldName = 'SIGNIN'
+      Origin = 'SIGNIN'
+      Required = True
+    end
+  end
+  inherited ds_padrao: TDataSource
+    Left = 760
+    Top = 88
+  end
+end

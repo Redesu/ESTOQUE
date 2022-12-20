@@ -1,0 +1,21 @@
+inherited Frm_Cliente: TFrm_Cliente
+  Caption = 'CADASTRO DE CLIENTE'
+  ClientHeight = 593
+  ExplicitHeight = 622
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel2: TPanel
+    Top = 540
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  inherited Q_padrao: TFDQuery
+    Left = 784
+    Top = 112
+  end
+  inherited ds_padrao: TDataSource
+    Left = 784
+    Top = 160
+  end
+end

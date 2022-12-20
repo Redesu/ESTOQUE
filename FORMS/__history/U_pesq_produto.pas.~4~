@@ -1,0 +1,100 @@
+unit U_pesq_produto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Form_pesquisa_padrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TFrm_pesq_produto = class(TFrm_pesquisa_padrao)
+    Q_pesq_padraoPRODUTO_ID: TIntegerField;
+    Q_pesq_padraoPRODUTO_DESCRICAO: TStringField;
+    Q_pesq_padraoVL_VENDA: TFMTBCDField;
+    Q_pesq_padraoESTOQUE: TFMTBCDField;
+    Q_pesq_padraoESTOQUE_MIN: TFMTBCDField;
+    Q_pesq_padraoUNIDADE: TStringField;
+    Q_pesq_padraoFORNECEDOR_ID: TIntegerField;
+    Q_pesq_padraoNOME: TStringField;
+    Q_pesq_padraoCADASTRO: TDateField;
+    Q_pesq_padraoVL_CUSTO: TFMTBCDField;
+    procedure bt_PesquisaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_pesq_produto: TFrm_pesq_produto;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_pesq_produto.bt_PesquisaClick(Sender: TObject);
+begin
+  Q_pesq_padrao.Close;   //Fecha query
+  Q_pesq_padrao.sql.add('');  // limpa
+  Q_pesq_padrao.Params.clear;    //limpa parametros
+  Q_pesq_padrao.Sql.Clear;          //limpa sql
+
+
+
+  Q_pesq_padrao.sql.add('SELECT A.PRODUTO_ID, '
+  + 'A.PRODUTO_DESCRICAO, '
+  + 'A.VL_VENDA, '
+  + 'A.VL_CUSTO, '
+  + 'A.ESTOQUE, '
+  + 'A.ESTOQUE_MIN, '
+  + 'A.UNIDADE, '
+  + 'A.FORNECEDOR_ID, '
+  + 'B.NOME, '
+  + 'A.CADASTRO FROM PRODUTO A '
+  + 'INNER JOIN FORNECEDOR B ON B.FORNECEDOR_ID = A.FORNECEDOR_ID');
+
+
+  case cb_chave_pesquisa.ItemIndex of
+  0: begin
+    //pesquisa por codigo
+     Q_pesq_padrao.sql.add('WHERE PRODUTO_ID =:PPRODUTO_ID');           // criamos parametro
+     Q_pesq_padrao.paramByname('PPRODUTO_ID').AsString:=ed_nome.Text;//aponta para o campo do parametro
+  end;
+
+  1: begin
+     Q_pesq_padrao.sql.add('WHERE PRODUTO_DESCRICAO LIKE :PDESCRICAO');           // criamos parametro
+     Q_pesq_padrao.paramByname('PDESCRICAO').AsString:= '%' + ed_nome.Text + '%';//aponta para o campo do parametro
+  end;
+
+
+  2: begin
+       //pesquisa por periodo
+     Q_pesq_padrao.sql.add('WHERE CADASTRO =:PCADASTRO');
+     Q_pesq_padrao.ParamByName('PCADASTRO').AsDate:=strTodate(mk_inicio.Text);
+     end;
+
+  3: begin
+       //pesquisa por data
+     Q_pesq_padrao.sql.add('WHERE CADASTRO BETWEEN :PINICIO AND :PFIM');
+     Q_pesq_padrao.ParamByName('PINICIO').AsDate:=strTodate(mk_inicio.Text);
+     Q_pesq_padrao.ParamByName('PFIM').AsDate:=strTodate(mk_fim.Text);
+    end;
+
+  4:begin
+     //pesquisa por todos
+     Q_pesq_padrao.sql.add('ORDER BY CLIENTE_ID');
+     end;
+
+  5: begin
+
+  end;
+
+  end;
+     Q_pesq_padrao.open;
+end;
+
+end.

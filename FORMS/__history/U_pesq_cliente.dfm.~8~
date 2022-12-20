@@ -1,0 +1,164 @@
+inherited Frm_pesq_Cliente: TFrm_pesq_Cliente
+  Caption = 'PESQUISA CLIENTE '
+  ClientWidth = 1082
+  ExplicitWidth = 1098
+  ExplicitHeight = 670
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 1082
+    ExplicitWidth = 1129
+    inherited bt_Pesquisa: TBitBtn
+      OnClick = bt_PesquisaClick
+    end
+  end
+  inherited DBGrid1: TDBGrid
+    Width = 1082
+    DataSource = ds_pesq_padrao
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'CLIENTE_ID'
+        Title.Caption = 'C'#243'dico do cliente'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
+        Width = 300
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ENDERECO'
+        Width = 300
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NUMERO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BAIRRO'
+        Width = 216
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CIDADE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UF'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CEP'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CPF'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TELEFONE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CADASTRO'
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    Width = 1082
+    ExplicitWidth = 1129
+  end
+  inherited Q_pesq_padrao: TFDQuery
+    SQL.Strings = (
+      'SELECT '
+      'CLIENTE_ID,'
+      'NOME,'
+      'ENDERECO,'
+      'NUMERO,'
+      'BAIRRO,'
+      'CIDADE,'
+      'UF,'
+      'CEP,'
+      'CPF,'
+      'TELEFONE,'
+      'CADASTRO FROM CLIENTE'
+      'ORDER BY CLIENTE_ID')
+    object Q_pesq_padraoCLIENTE_ID: TIntegerField
+      FieldName = 'CLIENTE_ID'
+      Origin = 'CLIENTE_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_pesq_padraoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object Q_pesq_padraoENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Required = True
+      Size = 100
+    end
+    object Q_pesq_padraoNUMERO: TIntegerField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+      Required = True
+    end
+    object Q_pesq_padraoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Required = True
+      Size = 100
+    end
+    object Q_pesq_padraoCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Required = True
+      Size = 100
+    end
+    object Q_pesq_padraoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+    object Q_pesq_padraoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Required = True
+      Size = 16
+    end
+    object Q_pesq_padraoCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Required = True
+      Size = 16
+    end
+    object Q_pesq_padraoTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Required = True
+      Size = 16
+    end
+    object Q_pesq_padraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+  end
+end

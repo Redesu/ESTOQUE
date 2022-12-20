@@ -1,0 +1,294 @@
+inherited Frm_Cliente: TFrm_Cliente
+  Caption = 'CADASTRO DE CLIENTE'
+  ClientHeight = 427
+  ExplicitHeight = 456
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 56
+    Top = 96
+    Width = 58
+    Height = 13
+    Caption = 'CLIENTE_ID'
+    FocusControl = DBEdit1
+  end
+  object Label2: TLabel [1]
+    Left = 56
+    Top = 139
+    Width = 29
+    Height = 13
+    Caption = 'NOME'
+    FocusControl = DB_nome
+  end
+  object Label3: TLabel [2]
+    Left = 56
+    Top = 176
+    Width = 54
+    Height = 13
+    Caption = 'ENDERECO'
+    FocusControl = DBEdit3
+  end
+  object Label4: TLabel [3]
+    Left = 422
+    Top = 176
+    Width = 43
+    Height = 13
+    Caption = 'NUMERO'
+    FocusControl = DBEdit4
+  end
+  object Label5: TLabel [4]
+    Left = 56
+    Top = 224
+    Width = 39
+    Height = 13
+    Caption = 'BAIRRO'
+    FocusControl = DBEdit5
+  end
+  object Label6: TLabel [5]
+    Left = 56
+    Top = 272
+    Width = 38
+    Height = 13
+    Caption = 'CIDADE'
+    FocusControl = DBEdit6
+  end
+  object Label7: TLabel [6]
+    Left = 526
+    Top = 275
+    Width = 13
+    Height = 13
+    Caption = 'UF'
+    FocusControl = DBEdit7
+  end
+  object Label8: TLabel [7]
+    Left = 56
+    Top = 318
+    Width = 19
+    Height = 13
+    Caption = 'CEP'
+    FocusControl = DBEdit8
+  end
+  object Label9: TLabel [8]
+    Left = 212
+    Top = 320
+    Width = 50
+    Height = 13
+    Caption = 'TELEFONE'
+    FocusControl = DBEdit9
+  end
+  object Label10: TLabel [9]
+    Left = 210
+    Top = 96
+    Width = 55
+    Height = 13
+    Caption = 'CADASTRO'
+    FocusControl = DB_cadastro
+  end
+  object Label11: TLabel [10]
+    Left = 378
+    Top = 320
+    Width = 19
+    Height = 13
+    Caption = 'CPF'
+    FocusControl = DBEdit11
+  end
+  inherited Panel2: TPanel
+    Top = 374
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  object DBEdit1: TDBEdit [13]
+    Left = 56
+    Top = 112
+    Width = 134
+    Height = 21
+    DataField = 'CLIENTE_ID'
+    DataSource = ds_padrao
+    TabOrder = 2
+  end
+  object DB_nome: TDBEdit [14]
+    Left = 56
+    Top = 152
+    Width = 500
+    Height = 21
+    DataField = 'NOME'
+    DataSource = ds_padrao
+    TabOrder = 3
+  end
+  object DBEdit3: TDBEdit [15]
+    Left = 56
+    Top = 192
+    Width = 350
+    Height = 21
+    DataField = 'ENDERECO'
+    DataSource = ds_padrao
+    TabOrder = 4
+  end
+  object DBEdit4: TDBEdit [16]
+    Left = 422
+    Top = 192
+    Width = 134
+    Height = 21
+    DataField = 'NUMERO'
+    DataSource = ds_padrao
+    TabOrder = 5
+  end
+  object DBEdit5: TDBEdit [17]
+    Left = 56
+    Top = 237
+    Width = 500
+    Height = 21
+    DataField = 'BAIRRO'
+    DataSource = ds_padrao
+    TabOrder = 6
+  end
+  object DBEdit6: TDBEdit [18]
+    Left = 56
+    Top = 291
+    Width = 457
+    Height = 21
+    DataField = 'CIDADE'
+    DataSource = ds_padrao
+    TabOrder = 7
+  end
+  object DBEdit7: TDBEdit [19]
+    Left = 526
+    Top = 291
+    Width = 30
+    Height = 21
+    DataField = 'UF'
+    DataSource = ds_padrao
+    TabOrder = 8
+  end
+  object DBEdit8: TDBEdit [20]
+    Left = 56
+    Top = 336
+    Width = 150
+    Height = 21
+    DataField = 'CEP'
+    DataSource = ds_padrao
+    TabOrder = 9
+  end
+  object DBEdit9: TDBEdit [21]
+    Left = 212
+    Top = 336
+    Width = 150
+    Height = 21
+    DataField = 'TELEFONE'
+    DataSource = ds_padrao
+    TabOrder = 10
+  end
+  object DB_cadastro: TDBEdit [22]
+    Left = 210
+    Top = 112
+    Width = 134
+    Height = 21
+    DataField = 'CADASTRO'
+    DataSource = ds_padrao
+    TabOrder = 11
+  end
+  object DBEdit11: TDBEdit [23]
+    Left = 378
+    Top = 336
+    Width = 178
+    Height = 21
+    DataField = 'CPF'
+    DataSource = ds_padrao
+    TabOrder = 12
+  end
+  inherited Q_padrao: TFDQuery
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_ID_CLIENTE'
+    UpdateOptions.AutoIncFields = 'CLIENTE_ID'
+    SQL.Strings = (
+      'SELECT '
+      'CLIENTE_ID,'
+      'NOME,'
+      'ENDERECO,'
+      'NUMERO,'
+      'BAIRRO,'
+      'CIDADE,'
+      'UF,'
+      'CEP,'
+      'CPF,'
+      'TELEFONE,'
+      'CADASTRO FROM CLIENTE'
+      'ORDER BY CLIENTE_ID')
+    Left = 784
+    Top = 112
+    object Q_padraoCLIENTE_ID: TFDAutoIncField
+      FieldName = 'CLIENTE_ID'
+      Origin = 'CLIENTE_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object Q_padraoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoNUMERO: TIntegerField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+      Required = True
+    end
+    object Q_padraoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+    object Q_padraoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Required = True
+      EditMask = '00000\-999;1;_'
+      Size = 16
+    end
+    object Q_padraoTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Required = True
+      EditMask = '!\(99\)0000-0000;1;_'
+      Size = 16
+    end
+    object Q_padraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+    object Q_padraoCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Required = True
+      EditMask = '000\.000\.000\-00;0;_'
+      Size = 16
+    end
+  end
+  inherited ds_padrao: TDataSource
+    Left = 784
+    Top = 160
+  end
+end

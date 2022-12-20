@@ -1,0 +1,92 @@
+unit U_produto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_padrao, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask;
+
+type
+  TFrm_produto = class(TFrm_padrao)
+    Q_padraoPRODUTO_DESCRICAO: TStringField;
+    Q_padraoFORNECEDOR_ID: TIntegerField;
+    Q_padraoVL_CUSTO: TFMTBCDField;
+    Q_padraoVL_VENDA: TFMTBCDField;
+    Q_padraoESTOQUE: TFMTBCDField;
+    Q_padraoESTOQUE_MIN: TFMTBCDField;
+    Q_padraoUNIDADE: TStringField;
+    Q_padraoCADASTRO: TDateField;
+    Q_padraoNOME: TStringField;
+    Label2: TLabel;
+    DB_descricao: TDBEdit;
+    Label3: TLabel;
+    db_id_fornecedor: TDBEdit;
+    Label4: TLabel;
+    db_vl_custo: TDBEdit;
+    Label5: TLabel;
+    db_vl_venda: TDBEdit;
+    Label6: TLabel;
+    db_vl_estoque: TDBEdit;
+    Label7: TLabel;
+    db_estoque_min: TDBEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    DB_cadastro: TDBEdit;
+    Label10: TLabel;
+    db_nome: TDBEdit;
+    dbc_unidade: TDBComboBox;
+    Q_padraoPRODUTO_ID: TIntegerField;
+    Label1: TLabel;
+    db_id_produto: TDBEdit;
+    procedure bt_novoClick(Sender: TObject);
+    procedure bt_pesquisarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_produto: TFrm_produto;
+
+implementation
+
+{$R *.dfm}
+
+uses U_pesq_produto;
+
+procedure TFrm_produto.bt_novoClick(Sender: TObject);
+begin
+  inherited;
+
+  DB_cadastro.Text:=DateTostr(now);
+  DB_id_produto.SetFocus;
+end;
+
+procedure TFrm_produto.bt_pesquisarClick(Sender: TObject);
+begin
+ Frm_pesq_produto:=TFrm_pesq_produto.Create(self);
+ Frm_pesq_produto.ShowModal;
+ try
+
+ finally
+
+ Frm_pesq_produto.Free;
+ Frm_pesq_produto:=nil;
+
+ end;
+
+end;
+
+procedure TFrm_produto.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Q_padrao.Close;
+
+end;
+
+end.

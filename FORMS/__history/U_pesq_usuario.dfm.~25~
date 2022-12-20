@@ -1,0 +1,282 @@
+inherited Frm_pesq_usuario: TFrm_pesq_usuario
+  Caption = 'PESQUISA USUARIOS'
+  ExplicitLeft = -80
+  ExplicitWidth = 1042
+  ExplicitHeight = 670
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    TabOrder = 1
+    inherited mk_inicio: TMaskEdit
+      Width = 116
+      EditMask = '!99/99/0000;1;_'
+      Text = '  /  /    '
+      ExplicitWidth = 116
+    end
+    inherited mk_fim: TMaskEdit
+      Width = 116
+      EditMask = '!99/99/0000;1;_'
+      TabOrder = 3
+      Text = '  /  /    '
+      ExplicitWidth = 116
+    end
+    inherited bt_Pesquisa: TBitBtn
+      TabOrder = 2
+      OnClick = bt_PesquisaClick
+    end
+    inherited bt_transferir: TBitBtn
+      OnClick = bt_transferirClick
+    end
+    inherited bt_Imprimir: TBitBtn
+      OnClick = bt_ImprimirClick
+    end
+  end
+  inherited cb_chave_pesquisa: TComboBox
+    TabOrder = 0
+  end
+  inherited DBGrid1: TDBGrid
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'USER_ID'
+        Title.Caption = 'C'#243'dico do usu'#225'rio'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NAME'
+        Title.Caption = 'Nome'
+        Width = 290
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TYPE'
+        Title.Caption = 'Tipo'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SIGNIN'
+        Title.Caption = 'Data de cadastro'
+        Visible = True
+      end>
+  end
+  inherited Q_pesq_padrao: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT '
+      'USER_ID,'
+      'NAME,'
+      'TYPE,'
+      'SIGNIN'
+      ' FROM USUARIO'
+      'ORDER BY USER_ID')
+    object Q_pesq_padraoUSER_ID: TIntegerField
+      FieldName = 'USER_ID'
+      Origin = 'USER_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_pesq_padraoNAME: TStringField
+      FieldName = 'NAME'
+      Origin = 'NAME'
+      Required = True
+      Size = 100
+    end
+    object Q_pesq_padraoTYPE: TStringField
+      FieldName = 'TYPE'
+      Origin = '"TYPE"'
+      Required = True
+      Size = 30
+    end
+    object Q_pesq_padraoSIGNIN: TDateField
+      FieldName = 'SIGNIN'
+      Origin = 'SIGNIN'
+      Required = True
+    end
+  end
+  inherited frxDB_padrao: TfrxDBDataset
+    UserName = 'frxDB_padrao'
+    DataSet = nil
+    DataSource = ds_pesq_padrao
+  end
+  inherited REL_pesq_padrao: TfrxReport
+    Datasets = <
+      item
+        DataSet = Frm_pesquisa_padrao.frxDB_padrao
+        DataSetName = 'frxDBDataset1'
+      end
+      item
+        DataSet = frxDB_padrao
+        DataSetName = 'frxDB_padrao'
+      end>
+    Variables = <>
+    Style = <>
+    inherited Page1: TfrxReportPage
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 207.874150000000000000
+        Width = 642.520100000000000000
+        DataSet = frxDB_padrao
+        DataSetName = 'frxDB_padrao'
+        RowCount = 0
+        object frxDBusuarioUSER_ID: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'USER_ID'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDB_padrao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            '[frxDB_padrao."USER_ID"]')
+          ParentFont = False
+        end
+        object frxDBusuarioNAME: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 79.370130000000000000
+          Width = 264.567100000000000000
+          Height = 18.897650000000000000
+          DataField = 'NAME'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDB_padrao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            '[frxDB_padrao."NAME"]')
+          ParentFont = False
+        end
+        object frxDBusuarioTYPE: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 343.937230000000000000
+          Width = 158.740260000000000000
+          Height = 18.897650000000000000
+          DataField = 'TYPE'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDB_padrao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            '[frxDB_padrao."TYPE"]')
+          ParentFont = False
+        end
+        object frxDBusuarioSIGNIN: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 502.677490000000000000
+          Width = 139.842610000000000000
+          Height = 18.897650000000000000
+          DataField = 'SIGNIN'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDB_padrao'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Memo.UTF8W = (
+            '[frxDB_padrao."SIGNIN"]')
+          ParentFont = False
+        end
+      end
+      object PageHeader1: TfrxPageHeader
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 124.724490000000000000
+        Width = 642.520100000000000000
+        object Memo2: TfrxMemoView
+          AllowVectorExport = True
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'C'#211'DIGO:')
+          ParentFont = False
+        end
+        object Memo3: TfrxMemoView
+          AllowVectorExport = True
+          Left = 79.370130000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'NOME:')
+          ParentFont = False
+        end
+        object Memo4: TfrxMemoView
+          AllowVectorExport = True
+          Left = 343.937230000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'TIPO:')
+          ParentFont = False
+        end
+        object Memo5: TfrxMemoView
+          AllowVectorExport = True
+          Left = 502.677490000000000000
+          Width = 94.488250000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'DATA:')
+          ParentFont = False
+        end
+      end
+    end
+  end
+end

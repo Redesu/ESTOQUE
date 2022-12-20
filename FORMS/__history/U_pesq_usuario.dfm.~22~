@@ -1,0 +1,184 @@
+inherited Frm_pesq_usuario: TFrm_pesq_usuario
+  Caption = 'PESQUISA USUARIOS'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    TabOrder = 1
+    inherited mk_inicio: TMaskEdit
+      Width = 116
+      EditMask = '!99/99/0000;1;_'
+      Text = '  /  /    '
+      ExplicitWidth = 116
+    end
+    inherited mk_fim: TMaskEdit
+      Width = 116
+      EditMask = '!99/99/0000;1;_'
+      TabOrder = 3
+      Text = '  /  /    '
+      ExplicitWidth = 116
+    end
+    inherited bt_Pesquisa: TBitBtn
+      TabOrder = 2
+      OnClick = bt_PesquisaClick
+    end
+    inherited bt_transferir: TBitBtn
+      OnClick = bt_transferirClick
+    end
+  end
+  inherited cb_chave_pesquisa: TComboBox
+    TabOrder = 0
+  end
+  inherited DBGrid1: TDBGrid
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'USER_ID'
+        Title.Caption = 'C'#243'dico do usu'#225'rio'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NAME'
+        Title.Caption = 'Nome'
+        Width = 290
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TYPE'
+        Title.Caption = 'Tipo'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SIGNIN'
+        Title.Caption = 'Data de cadastro'
+        Visible = True
+      end>
+  end
+  inherited Q_pesq_padrao: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT '
+      'USER_ID,'
+      'NAME,'
+      'TYPE,'
+      'SIGNIN'
+      ' FROM USUARIO'
+      'ORDER BY USER_ID')
+    object Q_pesq_padraoUSER_ID: TIntegerField
+      FieldName = 'USER_ID'
+      Origin = 'USER_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_pesq_padraoNAME: TStringField
+      FieldName = 'NAME'
+      Origin = 'NAME'
+      Required = True
+      Size = 100
+    end
+    object Q_pesq_padraoTYPE: TStringField
+      FieldName = 'TYPE'
+      Origin = '"TYPE"'
+      Required = True
+      Size = 30
+    end
+    object Q_pesq_padraoSIGNIN: TDateField
+      FieldName = 'SIGNIN'
+      Origin = 'SIGNIN'
+      Required = True
+    end
+  end
+  inherited frxDB_padrao: TfrxDBDataset
+    DataSet = Q_pesq_padrao
+  end
+  inherited REL_pesq_padrao: TfrxReport
+    Datasets = <
+      item
+        DataSet = Frm_pesquisa_padrao.frxDB_padrao
+        DataSetName = 'frxDBDataset1'
+      end
+      item
+        DataSet = frxDB_padrao
+        DataSetName = 'frxDBDataset1'
+      end>
+    Variables = <>
+    Style = <>
+    inherited Page1: TfrxReportPage
+      object MasterData1: TfrxMasterData
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 162.519790000000000000
+        Width = 642.520100000000000000
+        DataSet = frxDB_padrao
+        DataSetName = 'frxDBDataset1'
+        RowCount = 0
+        object frxDBDataset1USER_ID: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 3.779530000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'USER_ID'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDBDataset1'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."USER_ID"]')
+        end
+        object frxDBDataset1NAME: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 79.370130000000000000
+          Top = 3.779530000000000000
+          Width = 192.756030000000000000
+          Height = 18.897650000000000000
+          DataField = 'NAME'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDBDataset1'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."NAME"]')
+        end
+        object frxDBDataset1TYPE: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 272.126160000000000000
+          Top = 3.779530000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          DataField = 'TYPE'
+          DataSet = Frm_pesquisa_padrao.frxDB_padrao
+          DataSetName = 'frxDBDataset1'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."TYPE"]')
+        end
+        object frxDBDataset1SIGNIN: TfrxMemoView
+          IndexTag = 1
+          Align = baWidth
+          AllowVectorExport = True
+          Left = 351.496290000000000000
+          Top = 3.779530000000000000
+          Width = 291.023810000000000000
+          Height = 18.897650000000000000
+          DataField = 'SIGNIN'
+          DataSet = Frm_pesquisa_padrao.frxDB_padrao
+          DataSetName = 'frxDBDataset1'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."SIGNIN"]')
+        end
+      end
+    end
+  end
+end
