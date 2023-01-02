@@ -5,6 +5,9 @@ inherited Frm_compra1: TFrm_compra1
   inherited Panel1: TPanel
     Height = 67
     ExplicitHeight = 67
+    inherited bt_pesquisar: TBitBtn
+      OnClick = bt_pesquisarClick
+    end
   end
   inherited Panel2: TPanel
     inherited DBNavigator1: TDBNavigator

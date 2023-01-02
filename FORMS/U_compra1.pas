@@ -72,6 +72,7 @@ type
     procedure bt_okClick(Sender: TObject);
     procedure bt_excluirClick(Sender: TObject);
     procedure bt_deletarClick(Sender: TObject);
+    procedure bt_pesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,7 +86,7 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM;
+uses U_DM, U_pesq_compra;
 
 procedure TFrm_compra1.BitBtn1Click(Sender: TObject);
 
@@ -195,6 +196,27 @@ begin
   end;
      Q_produto.Refresh;
      Messagedlg('Estoque atualizado com sucesso!', mtinformation, [mbOk], 0);
+end;
+
+procedure TFrm_compra1.bt_pesquisarClick(Sender: TObject);
+begin
+  inherited;
+  Frm_pesq_compra:=TFrm_pesq_compra.Create(self);
+  Frm_pesq_compra.ShowModal;
+  try
+        if Frm_pesq_compra.codico > 0 then
+     begin
+       Q_padrao.open;
+       Q_padrao.Locate('COMPRA_ID', Frm_pesq_compra.codico, []);
+     end;
+  finally
+
+  Frm_pesq_compra.Free;
+  Frm_pesq_compra:=nil;
+
+  end;
+
+
 end;
 
 procedure TFrm_compra1.db_produto_idExit(Sender: TObject);

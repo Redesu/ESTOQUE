@@ -1,0 +1,22 @@
+inherited Frm_pesq_compra: TFrm_pesq_compra
+  Caption = 'PESQUISA COMPRAS'
+  ExplicitWidth = 1042
+  ExplicitHeight = 670
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited cb_chave_pesquisa: TComboBox
+    Items.Strings = (
+      'C'#211'DIGO DA COMPRA'
+      'C'#211'DIGO DO FORNECEDOR'
+      'C'#211'DIGO DA FORMA PGTO'
+      'USU'#193'RIO'
+      'CADASTRO'
+      'PERIODO'
+      'TODOS')
+  end
+  inherited frxReport1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+end

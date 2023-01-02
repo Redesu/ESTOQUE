@@ -3,7 +3,8 @@ unit U_pesq_produto;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Form_pesquisa_padrao, Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
@@ -41,114 +42,113 @@ implementation
 
 procedure TFrm_pesq_produto.bt_ImprimirClick(Sender: TObject);
 
-     var caminho: string;
+var
+  caminho: string;
 
 begin
-   caminho:=ExtractFilePath(Application.ExeName);
+  caminho := ExtractFilePath(Application.ExeName);
 
   if Frm_pesq_produto.frxReport1.LoadFromFile(caminho + 'REL_PRODUTO.fr3') then
   begin
 
-
     frxReport1.clear; // limpa relatorio
-    frxReport1.LoadFromFile(extractfilepath(application.ExeName) + 'REL_PRODUTO.fr3');
+    frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_PRODUTO.fr3');
     frxReport1.PrepareReport(true);
     frxReport1.ShowPreparedReport;
 
-
-
   end
   else
-  Messagedlg('Relatorio não encontrado', mtError, [mbOk],0);
-
+    Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
 
 end;
 
 procedure TFrm_pesq_produto.bt_PesquisaClick(Sender: TObject);
 begin
-  Q_pesq_padrao.Close;   //Fecha query
-  Q_pesq_padrao.sql.add('');  // limpa
-  Q_pesq_padrao.Params.clear;    //limpa parametros
-  Q_pesq_padrao.Sql.Clear;          //limpa sql
+  Q_pesq_padrao.Close; // Fecha query
+  Q_pesq_padrao.sql.add(''); // limpa
+  Q_pesq_padrao.Params.clear; // limpa parametros
+  Q_pesq_padrao.sql.clear; // limpa sql
 
-
-
-  Q_pesq_padrao.sql.add('SELECT A.PRODUTO_ID, '
-  + 'A.PRODUTO_DESCRICAO, '
-  + 'A.VL_VENDA, '
-  + 'A.VL_CUSTO, '
-  + 'A.ESTOQUE, '
-  + 'A.ESTOQUE_MIN, '
-  + 'A.UNIDADE, '
-  + 'A.FORNECEDOR_ID, '
-  + 'B.NOME, '
-  + 'A.CADASTRO FROM PRODUTO A '
-  + 'INNER JOIN FORNECEDOR B ON B.FORNECEDOR_ID = A.FORNECEDOR_ID');
-
+  Q_pesq_padrao.sql.add('SELECT A.PRODUTO_ID, ' + 'A.PRODUTO_DESCRICAO, ' +
+    'A.VL_VENDA, ' + 'A.VL_CUSTO, ' + 'A.ESTOQUE, ' + 'A.ESTOQUE_MIN, ' +
+    'A.UNIDADE, ' + 'A.FORNECEDOR_ID, ' + 'B.NOME, ' +
+    'A.CADASTRO FROM PRODUTO A ' +
+    'INNER JOIN FORNECEDOR B ON B.FORNECEDOR_ID = A.FORNECEDOR_ID');
 
   case cb_chave_pesquisa.ItemIndex of
-  0: begin
-    //pesquisa por codigo
-     Q_pesq_padrao.sql.add('WHERE A.PRODUTO_ID =:PPRODUTO_ID');           // criamos parametro
-     Q_pesq_padrao.paramByname('PPRODUTO_ID').AsString:=ed_nome.Text;//aponta para o campo do parametro
+    0:
+      begin
+        // pesquisa por codigo
+        Q_pesq_padrao.sql.add('WHERE A.PRODUTO_ID =:PPRODUTO_ID');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PPRODUTO_ID').AsString := ed_nome.Text;
+        // aponta para o campo do parametro
+      end;
+
+    1:
+      begin
+        Q_pesq_padrao.sql.add('WHERE A.PRODUTO_DESCRICAO LIKE :PDESCRICAO');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PDESCRICAO').AsString := '%' + ed_nome.Text +
+          '%'; // aponta para o campo do parametro
+      end;
+
+    2:
+      begin
+        // pesquisa por periodo
+        Q_pesq_padrao.sql.add('WHERE A.CADASTRO =:PCADASTRO');
+        Q_pesq_padrao.paramByname('PCADASTRO').AsDate :=
+          strTodate(mk_inicio.Text);
+      end;
+
+    3:
+      begin
+        // pesquisa por data
+        Q_pesq_padrao.sql.add('WHERE A.CADASTRO BETWEEN :PINICIO AND :PFIM');
+        Q_pesq_padrao.paramByname('PINICIO').AsDate :=
+          strTodate(mk_inicio.Text);
+        Q_pesq_padrao.paramByname('PFIM').AsDate := strTodate(mk_fim.Text);
+      end;
+
+    4:
+      begin
+        // pesquisa por todos
+        Q_pesq_padrao.sql.add('ORDER BY A.PRODUTO_ID');
+      end;
+
+    5:
+      begin
+        Q_pesq_padrao.sql.add('WHERE A.FORNECEDOR_ID =:PFORNECEDOR_ID');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PFORNECEDOR_ID').AsString := ed_nome.Text;
+        // aponta para o campo do parametro
+
+      end;
+
   end;
+  Q_pesq_padrao.open;
 
-  1: begin
-     Q_pesq_padrao.sql.add('WHERE A.PRODUTO_DESCRICAO LIKE :PDESCRICAO');           // criamos parametro
-     Q_pesq_padrao.paramByname('PDESCRICAO').AsString:= '%' + ed_nome.Text + '%';//aponta para o campo do parametro
-  end;
-
-
-  2: begin
-       //pesquisa por periodo
-     Q_pesq_padrao.sql.add('WHERE A.CADASTRO =:PCADASTRO');
-     Q_pesq_padrao.ParamByName('PCADASTRO').AsDate:=strTodate(mk_inicio.Text);
-     end;
-
-  3: begin
-       //pesquisa por data
-     Q_pesq_padrao.sql.add('WHERE A.CADASTRO BETWEEN :PINICIO AND :PFIM');
-     Q_pesq_padrao.ParamByName('PINICIO').AsDate:=strTodate(mk_inicio.Text);
-     Q_pesq_padrao.ParamByName('PFIM').AsDate:=strTodate(mk_fim.Text);
-    end;
-
-  4:begin
-     //pesquisa por todos
-     Q_pesq_padrao.sql.add('ORDER BY A.PRODUTO_ID');
-     end;
-
-  5: begin
-     Q_pesq_padrao.sql.add('WHERE A.FORNECEDOR_ID =:PFORNECEDOR_ID');           // criamos parametro
-     Q_pesq_padrao.paramByname('PFORNECEDOR_ID').AsString:=ed_nome.Text;//aponta para o campo do parametro
-
-
-  end;
-
-  end;
-     Q_pesq_padrao.open;
-
-    //Se nada for encontrado, mostra o codico abaixo
+  // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then
   begin
-    Messagedlg('Registro não encontrado!', Mtinformation,[mbOk],0);
+    Messagedlg('Registro não encontrado!', Mtinformation, [mbOk], 0);
   end
   else
-  abort;
-
-
+    abort;
 
 end;
 
 procedure TFrm_pesq_produto.bt_transferirClick(Sender: TObject);
 begin
   inherited;
-     if Q_pesq_padrao.RecordCount > 0 then
-   begin
-     codico:=Q_pesq_padraoPRODUTO_ID.AsInteger;
+  if Q_pesq_padrao.RecordCount > 0 then
+  begin
+    codico := Q_pesq_padraoPRODUTO_ID.AsInteger;
 
-   end
-   else
-   abort;
+  end
+  else
+    abort;
 end;
 
 end.

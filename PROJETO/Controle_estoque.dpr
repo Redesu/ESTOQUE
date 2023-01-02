@@ -17,7 +17,8 @@ uses
   U_pesq_fornecedor in '..\FORMS\U_pesq_fornecedor.pas' {Frm_pesq_fornecedor},
   U_pesq_produto in '..\FORMS\U_pesq_produto.pas' {Frm_pesq_produto},
   U_movimento_padrao in '..\FORMS\U_movimento_padrao.pas' {Frm_padrao_movimento},
-  U_compra1 in '..\FORMS\U_compra1.pas' {Frm_compra1};
+  U_compra1 in '..\FORMS\U_compra1.pas' {Frm_compra1},
+  U_pesq_compra in '..\FORMS\U_pesq_compra.pas' {Frm_pesq_compra};
 
 {$R *.res}
 
@@ -26,6 +27,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrm_Principal, Frm_Principal);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFrm_compra1, Frm_compra1);
   Application.Run;
 end.
