@@ -1,6 +1,8 @@
 inherited Frm_pesq_compra: TFrm_pesq_compra
   Caption = 'PESQUISA COMPRAS'
   ExplicitLeft = -119
+  ExplicitWidth = 1042
+  ExplicitHeight = 670
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
@@ -93,7 +95,7 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
   end
   inherited frxReport1: TfrxReport
     ReportOptions.CreateDate = 44914.724794120400000000
-    ReportOptions.LastChange = 44928.499820960650000000
+    ReportOptions.LastChange = 44929.717290115740000000
     Datasets = <
       item
         DataSet = frxDB_padrao
@@ -403,6 +405,51 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
           HAlign = haCenter
           Memo.UTF8W = (
             'DATA')
+          ParentFont = False
+        end
+      end
+      object ReportSummary1: TfrxReportSummary
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 117.165430000000000000
+        Top = 287.244280000000000000
+        Width = 718.110700000000000000
+        object Memo8: TfrxMemoView
+          Align = baWidth
+          AllowVectorExport = True
+          Top = 98.267780000000000000
+          Width = 718.110700000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'TOTAL DE COMPRAS:')
+          ParentFont = False
+        end
+        object Memo9: TfrxMemoView
+          AllowVectorExport = True
+          Left = 215.433210000000000000
+          Top = 98.267780000000000000
+          Width = 166.299320000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[SUM(<frxDBDataset1."VALOR">,MasterData1,2)]')
           ParentFont = False
         end
       end
