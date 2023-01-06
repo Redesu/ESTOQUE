@@ -1,5 +1,6 @@
 inherited Frm_compra1: TFrm_compra1
   Caption = 'CADASTRO DE COMPRAS'
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
@@ -370,7 +371,6 @@ inherited Frm_compra1: TFrm_compra1
   inherited PageControl1: TPageControl
     Top = 187
     Height = 211
-    ActivePage = Item_compra
     ExplicitTop = 187
     ExplicitHeight = 211
     inherited Item_compra: TTabSheet

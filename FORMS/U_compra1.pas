@@ -112,6 +112,7 @@ type
     procedure bt_pesquisarClick(Sender: TObject);
     procedure bt_imprimirClick(Sender: TObject);
     procedure DB_id_forma_pgtoExit(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -261,7 +262,7 @@ end;
 procedure TFrm_compra1.bt_okClick(Sender: TObject);
 var
   parcela: integer;
-
+  diferenca, soma: Real;
 
 begin
   Q_padrao.Edit;
@@ -289,45 +290,79 @@ begin
   // Insere o contas a pagar
   Q_conta_pagar.Open;
   parcela := 1;
+
   if (Q_padraoID_FORMA_PGTO.Value = 1) or (Q_padraoID_FORMA_PGTO.Value = 2) then
   begin
 
     while parcela <= Q_padraoCOND_PGTO.AsInteger do
     begin
 
+      // Abre para inserção
       Q_conta_pagar.Insert;
-      Q_conta_pagarSEQUENCIA_ID.AsInteger:=parcela;
+      Q_conta_pagarSEQUENCIA_ID.AsInteger := parcela;
+      // Recebe a divisão total por Cond_pgto
       Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
         Q_padraoVALOR.AsFloat / Q_padraoCOND_PGTO.Value;
+      // Insere data de vencimento e Pgto
       Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date;
+      Q_conta_pagar.FieldByName('DT_PAGAMENTO').Value := Date;
+      // Zera juros e atraso
       Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
       Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
       Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
+      // Total a pagar recebe o valor da parcela
       Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
-      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
+        Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
+      Q_conta_pagar.FieldByName('STATUS').AsString := 'RECEBIDO';
+      // Grava na tabela
       Q_conta_pagar.Post;
+      // Auto incrementa a parcela
       inc(parcela);
 
     end;
 
   end
   else
-    while parcela <= Q_padraoCOND_PGTO.AsInteger do
-    begin
-      Q_conta_pagar.Insert;
-      Q_conta_pagarSEQUENCIA_ID.AsInteger:=parcela;
-      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
-        Q_padraoVALOR.AsFloat / Q_padraoCOND_PGTO.Value;
-      Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date + (parcela * 30);
-      Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
-      Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
-      Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
-      Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
+    Q_conta_pagar.First;
+  while parcela <= Q_padraoCOND_PGTO.AsInteger do
+  begin
+    // Abre para inserção
+    Q_conta_pagar.Insert;
+    Q_conta_pagarSEQUENCIA_ID.AsInteger := parcela;
+    // Recebe a divisão total por Cond_pgto
+    Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat := Q_padraoVALOR.AsFloat
+      / Q_padraoCOND_PGTO.Value;
+    // Insere data de vencimento
+    Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date + (parcela * 30);
+    // Zera juros e atraso
+    Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
+    Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
+    Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
+    // Total a pagar recebe o valor da parcela
+    Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
       Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
-      Q_conta_pagar.Post;
-      inc(parcela);
+    Q_conta_pagar.FieldByName('STATUS').AsString := 'EM ABERTO';
+    // Grava na tabela
+    Q_conta_pagar.Post;
+    // Auto incrementa a parcela
+    inc(parcela);
+    Q_conta_pagar.Next;
 
-    end;
+  end;
+  // CRIA O PROCEDIMENTO PARA TRATAR DIFERENÇA DE PARCELAS
+
+  soma := soma + Q_padraoCOND_PGTO.Value * Q_conta_pagar.FieldByName
+    ('VALOR_PARCELA').AsFloat;
+
+  if soma > Q_padraoVALOR.AsFloat then
+  begin
+    diferenca := soma - Q_padraoVALOR.AsFloat;
+    Q_conta_pagar.Last;
+    Q_conta_pagar.Edit;
+    Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
+      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat - diferenca;
+    Q_conta_pagar.Refresh;
+  end;
 
   Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
 
@@ -393,6 +428,17 @@ begin
       Messagedlg('Produto não encontrado!', mtError, [mbok], 0);
   Q_padrao_item.Cancel;
   bt_item.SetFocus;
+
+end;
+
+procedure TFrm_compra1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  Q_fornecedor.Close;
+  Q_forma_pgto.Close;
+  Q_conta_pagar.Close;
+  Q_padrao.Close;
+  Q_padrao_item.Close;
 
 end;
 

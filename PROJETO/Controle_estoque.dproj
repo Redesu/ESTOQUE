@@ -171,6 +171,10 @@
             <Form>Frm_pesq_compra</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\U_ABOUT.pas">
+            <Form>Frm_AboutBox</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

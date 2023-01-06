@@ -5396,27 +5396,36 @@ object Frm_Principal: TFrm_Principal
     end
     object Vendas2: TMenuItem
       Caption = 'Relatorios'
-      object ListaUsurios1: TMenuItem
+      object ListaUsurios: TMenuItem
         Caption = 'Lista Usu'#225'rios'
+        OnClick = ListaUsuriosClick
       end
-      object ListaFornecedores1: TMenuItem
+      object ListaFornecedores: TMenuItem
         Caption = 'Lista Fornecedores'
+        OnClick = ListaFornecedoresClick
       end
-      object ListaClientes1: TMenuItem
+      object ListaClientes: TMenuItem
         Caption = 'Lista Clientes'
+        OnClick = ListaClientesClick
       end
-      object ListaProdutos1: TMenuItem
+      object ListaProdutos: TMenuItem
         Caption = 'Lista Produtos'
+        OnClick = ListaProdutosClick
       end
-      object ListaCompras1: TMenuItem
+      object ListaCompras: TMenuItem
         Caption = 'Lista Compras'
+        OnClick = ListaComprasClick
       end
-      object ListaCompras2: TMenuItem
+      object ListaVendas: TMenuItem
         Caption = 'Lista Vendas'
       end
     end
     object Sobreosistema1: TMenuItem
       Caption = 'Sobre o sistema'
+      object Sobre: TMenuItem
+        Caption = 'Informa'#231#245'es'
+        OnClick = SobreClick
+      end
     end
   end
 end
