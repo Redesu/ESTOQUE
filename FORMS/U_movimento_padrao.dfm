@@ -439,18 +439,48 @@ inherited Frm_padrao_movimento: TFrm_padrao_movimento
     ParentBackground = False
     TabOrder = 3
   end
-  object DBGrid1: TDBGrid [4]
+  object PageControl1: TPageControl [4]
     Left = 0
     Top = 183
     Width = 844
     Height = 215
+    ActivePage = Contas_Pagar
     Align = alClient
     TabOrder = 4
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
+    object Item_compra: TTabSheet
+      Caption = 'Item_Compra'
+      object DBGrid1: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 836
+        Height = 187
+        Align = alClient
+        DataSource = ds_padrao_item
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+    end
+    object Contas_Pagar: TTabSheet
+      Caption = 'Contas_Pagar'
+      ImageIndex = 1
+      object DBGrid2: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 836
+        Height = 187
+        Align = alClient
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+    end
   end
   object Q_padrao_item: TFDQuery
     MasterSource = ds_padrao

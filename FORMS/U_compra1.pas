@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Mask, frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF;
+  Vcl.Mask, frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF, Vcl.ComCtrls;
 
 type
   TFrm_compra1 = class(TFrm_padrao_movimento)
@@ -88,6 +88,21 @@ type
     Q_padraoUSUARIO: TStringField;
     Q_padraoVALOR: TFMTBCDField;
     Q_padraoCADASTRO: TDateField;
+    Q_padraoCOND_PGTO: TIntegerField;
+    Label14: TLabel;
+    DB_cond_pgto: TDBEdit;
+    Q_conta_pagar: TFDQuery;
+    ds_conta_pagar: TDataSource;
+    Q_conta_pagarSEQUENCIA_ID: TIntegerField;
+    Q_conta_pagarCOMPRA_ID: TIntegerField;
+    Q_conta_pagarVALOR_PARCELA: TFMTBCDField;
+    Q_conta_pagarDT_VENCIMENTO: TDateField;
+    Q_conta_pagarDT_PAGAMENTO: TDateField;
+    Q_conta_pagarATRASO: TIntegerField;
+    Q_conta_pagarJUROS: TFMTBCDField;
+    Q_conta_pagarVL_JUROS: TFMTBCDField;
+    Q_conta_pagarTOTAL_PAGAR: TFMTBCDField;
+    Q_conta_pagarSTATUS: TStringField;
     procedure bt_novoClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure db_produto_idExit(Sender: TObject);
@@ -96,6 +111,7 @@ type
     procedure bt_deletarClick(Sender: TObject);
     procedure bt_pesquisarClick(Sender: TObject);
     procedure bt_imprimirClick(Sender: TObject);
+    procedure DB_id_forma_pgtoExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -195,7 +211,7 @@ begin
   compra := Q_padrao_itemCOMPRA_ID.AsInteger;
 
   Q_padrao.Close;
-  Q_padrao_item.close;
+  Q_padrao_item.Close;
   Q_padrao.sql.add(''); // limpa
   Q_padrao.Params.clear; // limpa parametros
   Q_padrao.sql.clear; // limpa sql
@@ -203,16 +219,15 @@ begin
   Q_padrao.sql.add('SELECT A.COMPRA_ID, ' + 'A.FORNECEDOR_ID, ' + 'B.NOME, ' +
     'A.ID_FORMA_PGTO, ' + 'C.DESCRICAO, ' + 'A.USUARIO, ' + 'A.VALOR, ' +
     'A.CADASTRO ' + 'FROM COMPRA A, FORNECEDOR B, FORMA_PGTO C ' +
-    'WHERE A.FORNECEDOR_ID=B.FORNECEDOR_ID ' +
+    'A.COND_PGTO, ' + 'WHERE A.FORNECEDOR_ID=B.FORNECEDOR_ID ' +
     'AND C.ID_FORMA_PGTO=A.ID_FORMA_PGTO ');
-    Q_padrao.sql.add('AND A.COMPRA_ID=:COMPRA_ID');
+  Q_padrao.sql.add('AND A.COMPRA_ID=:COMPRA_ID');
 
-    Q_padrao.Params.ParamByName('COMPRA_ID').AsInteger:=compra;
+  Q_padrao.Params.ParamByName('COMPRA_ID').AsInteger := compra;
 
-
-    Q_padrao.Open;
-    Q_padrao_item.Open;
-    Frm_compra1.Close;
+  Q_padrao.Open;
+  Q_padrao_item.Open;
+  Frm_compra1.Close;
 
   caminho := ExtractFilePath(Application.ExeName);
 
@@ -244,6 +259,10 @@ begin
 end;
 
 procedure TFrm_compra1.bt_okClick(Sender: TObject);
+var
+  parcela: integer;
+
+
 begin
   Q_padrao.Edit;
   Q_padraoVALOR.AsFloat := Q_padrao_item.AggFields.FieldByName
@@ -267,6 +286,51 @@ begin
   end;
   Q_produto.Refresh;
   Messagedlg('Estoque atualizado com sucesso!', mtinformation, [mbok], 0);
+  // Insere o contas a pagar
+  Q_conta_pagar.Open;
+  parcela := 1;
+  if (Q_padraoID_FORMA_PGTO.Value = 1) or (Q_padraoID_FORMA_PGTO.Value = 2) then
+  begin
+
+    while parcela <= Q_padraoCOND_PGTO.AsInteger do
+    begin
+
+      Q_conta_pagar.Insert;
+      Q_conta_pagarSEQUENCIA_ID.AsInteger:=parcela;
+      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
+        Q_padraoVALOR.AsFloat / Q_padraoCOND_PGTO.Value;
+      Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date;
+      Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
+      Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
+      Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
+      Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
+      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
+      Q_conta_pagar.Post;
+      inc(parcela);
+
+    end;
+
+  end
+  else
+    while parcela <= Q_padraoCOND_PGTO.AsInteger do
+    begin
+      Q_conta_pagar.Insert;
+      Q_conta_pagarSEQUENCIA_ID.AsInteger:=parcela;
+      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
+        Q_padraoVALOR.AsFloat / Q_padraoCOND_PGTO.Value;
+      Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date + (parcela * 30);
+      Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
+      Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
+      Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
+      Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
+      Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
+      Q_conta_pagar.Post;
+      inc(parcela);
+
+    end;
+
+  Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
+
 end;
 
 procedure TFrm_compra1.bt_pesquisarClick(Sender: TObject);
@@ -286,6 +350,21 @@ begin
     Frm_pesq_compra := nil;
 
   end;
+
+end;
+
+procedure TFrm_compra1.DB_id_forma_pgtoExit(Sender: TObject);
+begin
+  // Insere dados na condição de pgto
+
+  // Se for a vista ou cartão de credito
+  if (DB_id_forma_pgto.Text = Inttostr(1)) or
+    (DB_id_forma_pgto.Text = Inttostr(2)) then
+  begin
+    DB_cond_pgto.Text := Inttostr(1);
+  end
+  else
+    DB_cond_pgto.SetFocus;
 
 end;
 

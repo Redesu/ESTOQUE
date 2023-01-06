@@ -141,6 +141,20 @@ inherited Frm_compra1: TFrm_compra1
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label14: TLabel
+      Left = 448
+      Top = 81
+      Width = 67
+      Height = 13
+      Caption = 'COND_PGTO'
+      FocusControl = DB_cond_pgto
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object DB_id_compra: TDBEdit
       Left = 8
       Top = 22
@@ -167,6 +181,7 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'ID_FORMA_PGTO'
       DataSource = ds_padrao
       TabOrder = 5
+      OnExit = DB_id_forma_pgtoExit
     end
     object DB_cadastro: TDBEdit
       Left = 162
@@ -209,7 +224,7 @@ inherited Frm_compra1: TFrm_compra1
     object DB_descricao: TDBLookupComboBox
       Left = 162
       Top = 97
-      Width = 213
+      Width = 280
       Height = 21
       DataField = 'DESCRICAO'
       DataSource = ds_padrao
@@ -223,6 +238,15 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'SUBTOTAL'
       DataSource = ds_padrao_item
       TabOrder = 8
+    end
+    object DB_cond_pgto: TDBEdit
+      Left = 448
+      Top = 97
+      Width = 134
+      Height = 21
+      DataField = 'COND_PGTO'
+      DataSource = ds_padrao
+      TabOrder = 9
     end
   end
   inherited Panel4: TPanel
@@ -343,55 +367,129 @@ inherited Frm_compra1: TFrm_compra1
       TabOrder = 4
     end
   end
-  inherited DBGrid1: TDBGrid
+  inherited PageControl1: TPageControl
     Top = 187
     Height = 211
-    DataSource = ds_padrao_item
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'SEQUENCIA_ID'
-        Visible = True
+    ActivePage = Item_compra
+    ExplicitTop = 187
+    ExplicitHeight = 211
+    inherited Item_compra: TTabSheet
+      ExplicitHeight = 183
+      inherited DBGrid1: TDBGrid
+        Height = 183
+        Columns = <
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'SEQUENCIA_ID'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'COMPRA_ID'
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'PRODUTO_ID'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCRICAO'
+            Width = 240
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'QTDE'
+            Width = 45
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DESCONTO'
+            Width = 100
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'VL_CUSTO'
+            Width = 100
+            Visible = True
+          end
+          item
+            Alignment = taLeftJustify
+            Expanded = False
+            FieldName = 'TOTAL_ITEM'
+            Width = 115
+            Visible = True
+          end>
       end
-      item
-        Expanded = False
-        FieldName = 'COMPRA_ID'
-        Visible = True
+    end
+    inherited Contas_Pagar: TTabSheet
+      ExplicitHeight = 183
+      inherited DBGrid2: TDBGrid
+        Height = 183
+        DataSource = ds_conta_pagar
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'SEQUENCIA_ID'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'COMPRA_ID'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'VALOR_PARCELA'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DT_VENCIMENTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DT_PAGAMENTO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ATRASO'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'JUROS'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'VL_JUROS'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'TOTAL_PAGAR'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'STATUS'
+            Visible = True
+          end>
       end
-      item
-        Expanded = False
-        FieldName = 'PRODUTO_ID'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'DESCRICAO'
-        Width = 319
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'QTDE'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'DESCONTO'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'VL_CUSTO'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'TOTAL_ITEM'
-        Visible = True
-      end>
+    end
   end
   inherited Q_padrao: TFDQuery
-    Active = True
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_ID_COMPRA'
@@ -402,6 +500,7 @@ inherited Frm_compra1: TFrm_compra1
       'A.FORNECEDOR_ID,'
       'B.NOME,'
       'A.ID_FORMA_PGTO,'
+      'A.COND_PGTO, '
       'C.DESCRICAO,'
       'A.USUARIO,'
       'A.VALOR,'
@@ -458,6 +557,10 @@ inherited Frm_compra1: TFrm_compra1
       FieldName = 'CADASTRO'
       Origin = 'CADASTRO'
       Required = True
+    end
+    object Q_padraoCOND_PGTO: TIntegerField
+      FieldName = 'COND_PGTO'
+      Origin = 'COND_PGTO'
     end
   end
   inherited Q_padrao_item: TFDQuery
@@ -631,8 +734,8 @@ inherited Frm_compra1: TFrm_compra1
       'begin'
       ''
       'end.')
-    Left = 176
-    Top = 264
+    Left = 16
+    Top = 256
     Datasets = <
       item
         DataSet = frxDB_EMPRESA
@@ -1505,8 +1608,8 @@ inherited Frm_compra1: TFrm_compra1
     DataSet = Q_padrao
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 264
-    Top = 318
+    Left = 16
+    Top = 350
   end
   object FD_empresa: TFDQuery
     Active = True
@@ -1528,8 +1631,8 @@ inherited Frm_compra1: TFrm_compra1
       'LOGO'
       'FROM EMPRESA'
       'ORDER BY EMPRESA_ID')
-    Left = 408
-    Top = 278
+    Left = 576
+    Top = 286
     object FD_empresaEMPRESA_ID: TIntegerField
       FieldName = 'EMPRESA_ID'
       Origin = 'EMPRESA_ID'
@@ -1613,8 +1716,8 @@ inherited Frm_compra1: TFrm_compra1
   end
   object Ds_empresa: TDataSource
     DataSet = FD_empresa
-    Left = 472
-    Top = 286
+    Left = 576
+    Top = 342
   end
   object frxDB_EMPRESA: TfrxDBDataset
     UserName = 'frxDB_EMPRESA'
@@ -1622,8 +1725,8 @@ inherited Frm_compra1: TFrm_compra1
     DataSet = FD_empresa
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 344
-    Top = 280
+    Left = 80
+    Top = 256
   end
   object frxDB_padrao_item: TfrxDBDataset
     UserName = 'frxDB_padrao_item'
@@ -1631,8 +1734,8 @@ inherited Frm_compra1: TFrm_compra1
     DataSet = Q_padrao_item
     BCDToCurrency = False
     DataSetOptions = []
-    Left = 104
-    Top = 304
+    Left = 16
+    Top = 296
   end
   object frxPDFExport1: TfrxPDFExport
     UseFileCache = True
@@ -1662,5 +1765,95 @@ inherited Frm_compra1: TFrm_compra1
     PDFVersion = pv17
     Left = 744
     Top = 320
+  end
+  object Q_conta_pagar: TFDQuery
+    Active = True
+    IndexFieldNames = 'COMPRA_ID'
+    MasterSource = ds_padrao
+    MasterFields = 'COMPRA_ID'
+    DetailFields = 'COMPRA_ID'
+    Connection = DM.conexao
+    SQL.Strings = (
+      'SELECT '
+      'SEQUENCIA_ID,'
+      'COMPRA_ID,'
+      'VALOR_PARCELA,'
+      'DT_VENCIMENTO,'
+      'DT_PAGAMENTO,'
+      'ATRASO,'
+      'JUROS,'
+      'VL_JUROS,'
+      'TOTAL_PAGAR,'
+      'STATUS FROM CONTAS_PAGAR'
+      'WHERE COMPRA_ID =:COMPRA_ID')
+    Left = 500
+    Top = 251
+    ParamData = <
+      item
+        Name = 'COMPRA_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object Q_conta_pagarSEQUENCIA_ID: TIntegerField
+      FieldName = 'SEQUENCIA_ID'
+      Origin = 'SEQUENCIA_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_conta_pagarCOMPRA_ID: TIntegerField
+      FieldName = 'COMPRA_ID'
+      Origin = 'COMPRA_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_conta_pagarVALOR_PARCELA: TFMTBCDField
+      FieldName = 'VALOR_PARCELA'
+      Origin = 'VALOR_PARCELA'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object Q_conta_pagarDT_VENCIMENTO: TDateField
+      FieldName = 'DT_VENCIMENTO'
+      Origin = 'DT_VENCIMENTO'
+      Required = True
+    end
+    object Q_conta_pagarDT_PAGAMENTO: TDateField
+      FieldName = 'DT_PAGAMENTO'
+      Origin = 'DT_PAGAMENTO'
+    end
+    object Q_conta_pagarATRASO: TIntegerField
+      FieldName = 'ATRASO'
+      Origin = 'ATRASO'
+    end
+    object Q_conta_pagarJUROS: TFMTBCDField
+      FieldName = 'JUROS'
+      Origin = 'JUROS'
+      Precision = 18
+      Size = 2
+    end
+    object Q_conta_pagarVL_JUROS: TFMTBCDField
+      FieldName = 'VL_JUROS'
+      Origin = 'VL_JUROS'
+      Precision = 18
+      Size = 2
+    end
+    object Q_conta_pagarTOTAL_PAGAR: TFMTBCDField
+      FieldName = 'TOTAL_PAGAR'
+      Origin = 'TOTAL_PAGAR'
+      Precision = 18
+      Size = 2
+    end
+    object Q_conta_pagarSTATUS: TStringField
+      FieldName = 'STATUS'
+      Origin = 'STATUS'
+      Size = 30
+    end
+  end
+  object ds_conta_pagar: TDataSource
+    DataSet = Q_conta_pagar
+    Left = 500
+    Top = 307
   end
 end

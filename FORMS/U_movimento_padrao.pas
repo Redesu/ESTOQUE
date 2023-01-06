@@ -8,19 +8,23 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
 
 type
   TFrm_padrao_movimento = class(TFrm_padrao)
     Panel3: TPanel;
     Panel4: TPanel;
-    DBGrid1: TDBGrid;
     bt_item: TBitBtn;
     bt_ok: TBitBtn;
     bt_excluir: TBitBtn;
     bt_imprimir: TBitBtn;
     Q_padrao_item: TFDQuery;
     ds_padrao_item: TDataSource;
+    PageControl1: TPageControl;
+    Item_compra: TTabSheet;
+    Contas_Pagar: TTabSheet;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
   private
     { Private declarations }
   public
