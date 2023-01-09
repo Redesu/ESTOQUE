@@ -1,10 +1,10 @@
 object Frm_Principal: TFrm_Principal
   Left = 0
   Top = 0
-  Caption = #39#39
+  Caption = 'ESTOQUE'
   ClientHeight = 499
   ClientWidth = 1604
-  Color = clBtnFace
+  Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -13,6 +13,8 @@ object Frm_Principal: TFrm_Principal
   Menu = MainMenu1
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -555,7 +557,7 @@ object Frm_Principal: TFrm_Principal
       ParentFont = False
       OnClick = bt_usuarioClick
     end
-    object SpeedButton2: TSpeedButton
+    object bt_empresa: TSpeedButton
       Left = 129
       Top = 0
       Width = 100
@@ -1084,9 +1086,9 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton2Click
+      OnClick = bt_empresaClick
     end
-    object SpeedButton3: TSpeedButton
+    object bt_clientes: TSpeedButton
       Left = 235
       Top = 0
       Width = 100
@@ -1615,9 +1617,9 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton3Click
+      OnClick = bt_clientesClick
     end
-    object SpeedButton4: TSpeedButton
+    object bt_fornecedores: TSpeedButton
       Left = 341
       Top = 0
       Width = 100
@@ -2146,9 +2148,9 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton4Click
+      OnClick = bt_fornecedoresClick
     end
-    object SpeedButton5: TSpeedButton
+    object bt_produtos: TSpeedButton
       Left = 447
       Top = 0
       Width = 100
@@ -2677,9 +2679,9 @@ object Frm_Principal: TFrm_Principal
         000000000000000000000000000000000015000000B900000081}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton5Click
+      OnClick = bt_produtosClick
     end
-    object SpeedButton6: TSpeedButton
+    object bt_forma_pgto: TSpeedButton
       Left = 553
       Top = 0
       Width = 100
@@ -3208,9 +3210,9 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton6Click
+      OnClick = bt_forma_pgtoClick
     end
-    object SpeedButton7: TSpeedButton
+    object bt_compras: TSpeedButton
       Left = 659
       Top = 0
       Width = 100
@@ -3739,9 +3741,9 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton7Click
+      OnClick = bt_comprasClick
     end
-    object SpeedButton8: TSpeedButton
+    object bt_vendas: TSpeedButton
       Left = 765
       Top = 0
       Width = 100
@@ -4271,7 +4273,7 @@ object Frm_Principal: TFrm_Principal
       Layout = blGlyphTop
       ParentFont = False
     end
-    object SpeedButton9: TSpeedButton
+    object bt_troca_usuario: TSpeedButton
       Left = 871
       Top = 0
       Width = 100
@@ -4800,8 +4802,9 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
+      OnClick = bt_troca_usuarioClick
     end
-    object SpeedButton10: TSpeedButton
+    object bt_fechar: TSpeedButton
       Left = 977
       Top = 0
       Width = 100
@@ -5330,7 +5333,7 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = SpeedButton10Click
+      OnClick = bt_fecharClick
     end
   end
   object StatusBar1: TStatusBar
@@ -5344,6 +5347,9 @@ object Frm_Principal: TFrm_Principal
       end
       item
         Width = 150
+      end
+      item
+        Width = 250
       end
       item
         Width = 150

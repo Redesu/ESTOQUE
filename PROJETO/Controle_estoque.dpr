@@ -19,15 +19,16 @@ uses
   U_movimento_padrao in '..\FORMS\U_movimento_padrao.pas' {Frm_padrao_movimento},
   U_compra1 in '..\FORMS\U_compra1.pas' {Frm_compra1},
   U_pesq_compra in '..\FORMS\U_pesq_compra.pas' {Frm_pesq_compra},
-  U_ABOUT in '..\FORMS\U_ABOUT.pas' {Frm_AboutBox};
+  U_ABOUT in '..\FORMS\U_ABOUT.pas' {Frm_AboutBox},
+  U_login in '..\FORMS\U_login.pas' {Frm_login},
+  U_troca_senha in '..\FORMS\U_troca_senha.pas' {Frm_troca_senha};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TFrm_Principal, Frm_Principal);
+  Application.CreateForm(TFrm_login, Frm_login);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFrm_AboutBox, Frm_AboutBox);
   Application.Run;
 end.

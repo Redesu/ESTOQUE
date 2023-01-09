@@ -43,8 +43,8 @@ Compiling should leave a Controle_estoque.exe inside
 
 ## Roadmap
 
-- [ ] Add switch user.
-- [ ] Add login system.
+- [X] Add switch user.
+- [X] Add login system.
 - [ ] Add search for Compras and Vendas
 
 

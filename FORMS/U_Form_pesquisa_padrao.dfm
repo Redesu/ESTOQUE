@@ -4,7 +4,7 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   Caption = 'Formul'#225'rio de pesquisa padrao'
   ClientHeight = 631
   ClientWidth = 1026
-  Color = clBtnFace
+  Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

@@ -26,4 +26,46 @@ object DM: TDM
     Left = 280
     Top = 88
   end
+  object Q_login: TFDQuery
+    Active = True
+    Connection = conexao
+    SQL.Strings = (
+      'SELECT '
+      'USER_ID,'
+      'NAME,'
+      'PASSWORD,'
+      'TYPE FROM USUARIO'
+      'ORDER BY USER_ID')
+    Left = 120
+    Top = 152
+    object Q_loginUSER_ID: TIntegerField
+      FieldName = 'USER_ID'
+      Origin = 'USER_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_loginNAME: TStringField
+      FieldName = 'NAME'
+      Origin = 'NAME'
+      Required = True
+      Size = 100
+    end
+    object Q_loginPASSWORD: TStringField
+      FieldName = 'PASSWORD'
+      Origin = '"PASSWORD"'
+      Required = True
+      Size = 30
+    end
+    object Q_loginTYPE: TStringField
+      FieldName = 'TYPE'
+      Origin = '"TYPE"'
+      Required = True
+      Size = 30
+    end
+  end
+  object ds_login: TDataSource
+    DataSet = Q_login
+    Left = 120
+    Top = 216
+  end
 end

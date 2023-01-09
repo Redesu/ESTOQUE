@@ -1,0 +1,36 @@
+unit U_troca_senha;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TFrm_troca_senha = class(TForm)
+    Bevel1: TBevel;
+    bt_cancelar: TBitBtn;
+    bt_troca_senha: TBitBtn;
+    Label2: TLabel;
+    ed_senha: TEdit;
+    ed_usuario: TEdit;
+    Label1: TLabel;
+    ed_nova_senha: TEdit;
+    Label3: TLabel;
+    ed_confirmar_senha: TEdit;
+    Label4: TLabel;
+    Image1: TImage;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_troca_senha: TFrm_troca_senha;
+
+implementation
+
+{$R *.dfm}
+
+end.

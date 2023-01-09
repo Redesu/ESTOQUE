@@ -1,0 +1,373 @@
+inherited Frm_Cliente: TFrm_Cliente
+  Caption = 'CADASTRO DE CLIENTE'
+  ClientHeight = 427
+  ExplicitHeight = 456
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 160
+    Top = 96
+    Width = 64
+    Height = 13
+    Caption = 'CLIENTE_ID'
+    FocusControl = DBEdit1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel [1]
+    Left = 160
+    Top = 139
+    Width = 31
+    Height = 13
+    Caption = 'NOME'
+    FocusControl = DB_nome
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel [2]
+    Left = 160
+    Top = 176
+    Width = 56
+    Height = 13
+    Caption = 'ENDERECO'
+    FocusControl = DBEdit3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel [3]
+    Left = 526
+    Top = 176
+    Width = 47
+    Height = 13
+    Caption = 'NUMERO'
+    FocusControl = DBEdit4
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel [4]
+    Left = 160
+    Top = 224
+    Width = 44
+    Height = 13
+    Caption = 'BAIRRO'
+    FocusControl = DBEdit5
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel [5]
+    Left = 160
+    Top = 272
+    Width = 42
+    Height = 13
+    Caption = 'CIDADE'
+    FocusControl = DBEdit6
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label7: TLabel [6]
+    Left = 630
+    Top = 275
+    Width = 14
+    Height = 13
+    Caption = 'UF'
+    FocusControl = DBEdit7
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label8: TLabel [7]
+    Left = 160
+    Top = 318
+    Width = 20
+    Height = 13
+    Caption = 'CEP'
+    FocusControl = DBEdit8
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label9: TLabel [8]
+    Left = 316
+    Top = 320
+    Width = 52
+    Height = 13
+    Caption = 'TELEFONE'
+    FocusControl = DBEdit9
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label10: TLabel [9]
+    Left = 314
+    Top = 96
+    Width = 61
+    Height = 13
+    Caption = 'CADASTRO'
+    FocusControl = DB_cadastro
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label11: TLabel [10]
+    Left = 482
+    Top = 320
+    Width = 20
+    Height = 13
+    Caption = 'CPF'
+    FocusControl = DBEdit11
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  inherited Panel1: TPanel
+    TabOrder = 11
+    inherited bt_pesquisar: TBitBtn
+      OnClick = bt_pesquisarClick
+    end
+  end
+  inherited Panel2: TPanel
+    Top = 374
+    TabOrder = 12
+    ExplicitTop = 374
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  object DBEdit1: TDBEdit [13]
+    Left = 160
+    Top = 112
+    Width = 134
+    Height = 21
+    DataField = 'CLIENTE_ID'
+    DataSource = ds_padrao
+    TabOrder = 0
+  end
+  object DB_nome: TDBEdit [14]
+    Left = 160
+    Top = 152
+    Width = 500
+    Height = 21
+    CharCase = ecUpperCase
+    DataField = 'NOME'
+    DataSource = ds_padrao
+    TabOrder = 2
+  end
+  object DBEdit3: TDBEdit [15]
+    Left = 160
+    Top = 192
+    Width = 350
+    Height = 21
+    CharCase = ecUpperCase
+    DataField = 'ENDERECO'
+    DataSource = ds_padrao
+    TabOrder = 3
+  end
+  object DBEdit4: TDBEdit [16]
+    Left = 526
+    Top = 192
+    Width = 134
+    Height = 21
+    DataField = 'NUMERO'
+    DataSource = ds_padrao
+    TabOrder = 4
+  end
+  object DBEdit5: TDBEdit [17]
+    Left = 160
+    Top = 237
+    Width = 500
+    Height = 21
+    CharCase = ecUpperCase
+    DataField = 'BAIRRO'
+    DataSource = ds_padrao
+    TabOrder = 5
+  end
+  object DBEdit6: TDBEdit [18]
+    Left = 160
+    Top = 291
+    Width = 457
+    Height = 21
+    CharCase = ecUpperCase
+    DataField = 'CIDADE'
+    DataSource = ds_padrao
+    TabOrder = 6
+  end
+  object DBEdit7: TDBEdit [19]
+    Left = 630
+    Top = 291
+    Width = 30
+    Height = 21
+    DataField = 'UF'
+    DataSource = ds_padrao
+    TabOrder = 7
+  end
+  object DBEdit8: TDBEdit [20]
+    Left = 160
+    Top = 336
+    Width = 150
+    Height = 21
+    DataField = 'CEP'
+    DataSource = ds_padrao
+    TabOrder = 8
+  end
+  object DBEdit9: TDBEdit [21]
+    Left = 316
+    Top = 336
+    Width = 150
+    Height = 21
+    DataField = 'TELEFONE'
+    DataSource = ds_padrao
+    TabOrder = 9
+  end
+  object DB_cadastro: TDBEdit [22]
+    Left = 314
+    Top = 112
+    Width = 134
+    Height = 21
+    DataField = 'CADASTRO'
+    DataSource = ds_padrao
+    Enabled = False
+    TabOrder = 1
+  end
+  object DBEdit11: TDBEdit [23]
+    Left = 482
+    Top = 336
+    Width = 178
+    Height = 21
+    DataField = 'CPF'
+    DataSource = ds_padrao
+    TabOrder = 10
+  end
+  inherited Q_padrao: TFDQuery
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_ID_CLIENTE'
+    UpdateOptions.AutoIncFields = 'CLIENTE_ID'
+    SQL.Strings = (
+      'SELECT '
+      'CLIENTE_ID,'
+      'NOME,'
+      'ENDERECO,'
+      'NUMERO,'
+      'BAIRRO,'
+      'CIDADE,'
+      'UF,'
+      'CEP,'
+      'CPF,'
+      'TELEFONE,'
+      'CADASTRO FROM CLIENTE'
+      'ORDER BY CLIENTE_ID')
+    Left = 784
+    Top = 112
+    object Q_padraoCLIENTE_ID: TFDAutoIncField
+      FieldName = 'CLIENTE_ID'
+      Origin = 'CLIENTE_ID'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object Q_padraoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoNUMERO: TIntegerField
+      FieldName = 'NUMERO'
+      Origin = 'NUMERO'
+      Required = True
+    end
+    object Q_padraoBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Required = True
+      Size = 100
+    end
+    object Q_padraoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+    object Q_padraoCEP: TStringField
+      FieldName = 'CEP'
+      Origin = 'CEP'
+      Required = True
+      EditMask = '00000\-999;1;_'
+      Size = 16
+    end
+    object Q_padraoTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Required = True
+      EditMask = '!\(99\)0000-0000;1;_'
+      Size = 16
+    end
+    object Q_padraoCADASTRO: TDateField
+      FieldName = 'CADASTRO'
+      Origin = 'CADASTRO'
+      Required = True
+    end
+    object Q_padraoCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Required = True
+      EditMask = '000\.000\.000\-00;0;_'
+      Size = 16
+    end
+  end
+  inherited ds_padrao: TDataSource
+    Left = 784
+    Top = 160
+  end
+end

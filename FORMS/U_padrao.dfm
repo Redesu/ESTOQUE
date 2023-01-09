@@ -5,7 +5,7 @@ object Frm_padrao: TFrm_padrao
   Caption = 'Formul'#225'rio padr'#227'o'
   ClientHeight = 453
   ClientWidth = 844
-  Color = clBtnFace
+  Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

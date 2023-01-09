@@ -12,15 +12,15 @@ type
   TFrm_Principal = class(TForm)
     Panel1: TPanel;
     bt_usuario: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
-    SpeedButton7: TSpeedButton;
-    SpeedButton8: TSpeedButton;
-    SpeedButton9: TSpeedButton;
-    SpeedButton10: TSpeedButton;
+    bt_empresa: TSpeedButton;
+    bt_clientes: TSpeedButton;
+    bt_fornecedores: TSpeedButton;
+    bt_produtos: TSpeedButton;
+    bt_forma_pgto: TSpeedButton;
+    bt_compras: TSpeedButton;
+    bt_vendas: TSpeedButton;
+    bt_troca_usuario: TSpeedButton;
+    bt_fechar: TSpeedButton;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
     MainMenu1: TMainMenu;
@@ -44,7 +44,7 @@ type
     Sobreosistema1: TMenuItem;
     Sobre: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
-    procedure SpeedButton10Click(Sender: TObject);
+    procedure bt_fecharClick(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
     procedure Abre_Tela_usuario();
     procedure Abre_Tela_empresa();
@@ -53,18 +53,18 @@ type
     procedure Abre_Tela_Produto();
     procedure Abre_Tela_Forma_pgto();
     procedure Abre_Tela_Compra();
-    procedure SpeedButton2Click(Sender: TObject);
+    procedure bt_empresaClick(Sender: TObject);
     procedure menu_EmpresaClick(Sender: TObject);
     procedure menu_UsuariosClick(Sender: TObject);
-    procedure SpeedButton3Click(Sender: TObject);
+    procedure bt_clientesClick(Sender: TObject);
     procedure menu_ClientesClick(Sender: TObject);
-    procedure SpeedButton4Click(Sender: TObject);
+    procedure bt_fornecedoresClick(Sender: TObject);
     procedure menu_FornecedoresClick(Sender: TObject);
-    procedure SpeedButton5Click(Sender: TObject);
+    procedure bt_produtosClick(Sender: TObject);
     procedure menu_ProdutosClick(Sender: TObject);
-    procedure SpeedButton6Click(Sender: TObject);
+    procedure bt_forma_pgtoClick(Sender: TObject);
     procedure menu_Formas_pgtoClick(Sender: TObject);
-    procedure SpeedButton7Click(Sender: TObject);
+    procedure bt_comprasClick(Sender: TObject);
     procedure Compras1Click(Sender: TObject);
     procedure ListaUsuriosClick(Sender: TObject);
     procedure ListaFornecedoresClick(Sender: TObject);
@@ -72,6 +72,9 @@ type
     procedure ListaProdutosClick(Sender: TObject);
     procedure ListaComprasClick(Sender: TObject);
     procedure SobreClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure bt_troca_usuarioClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
   private
     { Private declarations }
@@ -88,7 +91,7 @@ implementation
 
 uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_compra1, U_pesq_usuario, U_pesq_fornecedor, U_pesq_cliente, U_pesq_produto,
-  U_pesq_compra, U_ABOUT;
+  U_pesq_compra, U_ABOUT, U_DM, U_login;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -103,7 +106,7 @@ begin
   end;
 end;
 
-procedure TFrm_Principal.SpeedButton10Click(Sender: TObject);
+procedure TFrm_Principal.bt_fecharClick(Sender: TObject);
 begin
 
   if messagedlg('Deseja sair do sistema?', mtConfirmation, [mbOk, mbNo], 0) = mrOk
@@ -117,34 +120,41 @@ begin
   close;
 end;
 
-procedure TFrm_Principal.SpeedButton2Click(Sender: TObject);
+procedure TFrm_Principal.bt_empresaClick(Sender: TObject);
 begin
   Abre_Tela_empresa;
 end;
 
-procedure TFrm_Principal.SpeedButton3Click(Sender: TObject);
+procedure TFrm_Principal.bt_clientesClick(Sender: TObject);
 begin
   Abre_Tela_Cliente;
 end;
 
-procedure TFrm_Principal.SpeedButton4Click(Sender: TObject);
+procedure TFrm_Principal.bt_fornecedoresClick(Sender: TObject);
 begin
   Abre_Tela_Fornecedor;
 end;
 
-procedure TFrm_Principal.SpeedButton5Click(Sender: TObject);
+procedure TFrm_Principal.bt_produtosClick(Sender: TObject);
 begin
   Abre_Tela_Produto;
 end;
 
-procedure TFrm_Principal.SpeedButton6Click(Sender: TObject);
+procedure TFrm_Principal.bt_forma_pgtoClick(Sender: TObject);
 begin
   Abre_Tela_Forma_pgto;
 end;
 
-procedure TFrm_Principal.SpeedButton7Click(Sender: TObject);
+procedure TFrm_Principal.bt_comprasClick(Sender: TObject);
 begin
   Abre_Tela_Compra;
+end;
+
+procedure TFrm_Principal.bt_troca_usuarioClick(Sender: TObject);
+begin
+    Frm_principal.Hide;
+    Frm_login.ed_usuario.Clear;
+    Frm_login.ed_senha.Clear;
 end;
 
 procedure TFrm_Principal.Abre_Tela_Cliente;
@@ -251,6 +261,23 @@ begin
   Abre_Tela_Compra;
 end;
 
+procedure TFrm_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Application.Terminate;
+end;
+
+procedure TFrm_Principal.FormShow(Sender: TObject);
+begin
+     if dm.tipo_usuario='APOIO' then
+     begin
+       bt_empresa.Enabled:=false;
+       bt_usuario.Enabled:=false;
+       menu_usuarios.enabled:=false;
+       menu_empresa.Enabled:=false;
+       ListaUsurios.Enabled:=false;
+     end;
+end;
+
 procedure TFrm_Principal.ListaClientesClick(Sender: TObject);
 begin
   Frm_pesq_Cliente := TFrm_pesq_Cliente.create(self);
@@ -347,7 +374,8 @@ begin
 
   StatusBar1.Panels[0].Text := DateTostr(now);
   StatusBar1.Panels[1].Text := TimeTostr(now);
-  StatusBar1.Panels[2].Text := 'SEJA BEM VINDO AO SISTEMA';
+  StatusBar1.Panels[2].Text := 'SEJA BEM VINDO AO SISTEMA ' + dm.usuario + '!';
+  StatusBar1.Panels[3].Text := 'Tipo de usuário: ' + dm.tipo_usuario;
 end;
 
 procedure TFrm_Principal.menu_UsuariosClick(Sender: TObject);

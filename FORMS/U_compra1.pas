@@ -253,7 +253,7 @@ begin
   inherited;
 
   Q_padraoCADASTRO.AsDateTime := Date;
-  Q_padraoUSUARIO.AsString := 'EDIVALDO';
+  Q_padraoUSUARIO.AsString := dm.usuario;
   Q_padraoVALOR.AsCurrency := 0;
   DB_fornecedor_id.SetFocus;
 
