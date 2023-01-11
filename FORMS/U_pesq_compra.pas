@@ -100,7 +100,7 @@ begin
 
     3:
       begin
-        // pesquisa por periodo
+        // pesquisa por forma de pagamento
         Q_pesq_padrao.sql.add('WHERE A.ID_FORMA_PGTO =:PID_FORMA_PGTO');
         Q_pesq_padrao.paramByname('PID_FORMA_PGTO').AsString := ed_nome.Text
       end;
@@ -197,7 +197,7 @@ begin
         lb_nome.Visible := true;
         lb_inicio.Visible := false;
         lb_fim.Visible := false;
-        lb_nome.Caption := 'Digite o código';
+        lb_nome.Caption := 'Digite o código do fornecedor';
         ed_nome.clear;
         mk_inicio.clear;
         mk_fim.clear;
@@ -211,7 +211,7 @@ begin
         lb_nome.Visible := true;
         lb_inicio.Visible := false;
         lb_fim.Visible := false;
-        lb_nome.Caption := 'Digite o código';
+        lb_nome.Caption := 'Digite o código da forma pgto';
         ed_nome.clear;
         mk_inicio.clear;
         mk_fim.clear;

@@ -154,6 +154,16 @@ begin
   if Messagedlg('Deseja excluir todo o registro?', mtConfirmation, [mbok, mbNo],
     0) = mrOk then
   begin
+
+    // Exclui as parcelas
+    Q_conta_pagar.First;
+    while not Q_conta_pagar.eof do
+    begin
+      Q_conta_pagar.Delete;
+      Q_conta_pagar.Next;
+    end;
+
+    // EXCLUI OS ITENS DE VENDA
     Q_padrao_item.First;
     while Q_padrao_item.RecordCount > 0 do
     begin
@@ -268,7 +278,7 @@ begin
   Q_padrao.Edit;
   Q_padraoVALOR.AsFloat := Q_padrao_item.AggFields.FieldByName
     ('SUBTOTAL').Value;
-  Q_padrao.Post;
+  Q_padrao.Refresh;
 
 
   // Alimentar o estoque
@@ -291,7 +301,7 @@ begin
   Q_conta_pagar.Open;
   parcela := 1;
 
-  if (Q_padraoID_FORMA_PGTO.Value = 1) or (Q_padraoID_FORMA_PGTO.Value = 2) then
+  if (Q_padraoID_FORMA_PGTO.Value = 1) or (Q_padraoID_FORMA_PGTO.Value = 3) then
   begin
 
     while parcela <= Q_padraoCOND_PGTO.AsInteger do
@@ -299,10 +309,10 @@ begin
 
       // Abre para inserção
       Q_conta_pagar.Insert;
-      Q_conta_pagarSEQUENCIA_ID.AsInteger := parcela;
+      Q_conta_pagarSEQUENCIA_ID.AsInteger := 1;
       // Recebe a divisão total por Cond_pgto
       Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
-        Q_padraoVALOR.AsFloat / Q_padraoCOND_PGTO.Value;
+        Q_padraoVALOR.AsFloat;
       // Insere data de vencimento e Pgto
       Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date;
       Q_conta_pagar.FieldByName('DT_PAGAMENTO').Value := Date;
@@ -316,8 +326,7 @@ begin
       Q_conta_pagar.FieldByName('STATUS').AsString := 'RECEBIDO';
       // Grava na tabela
       Q_conta_pagar.Post;
-      // Auto incrementa a parcela
-      inc(parcela);
+      abort;
 
     end;
 
@@ -405,6 +414,13 @@ end;
 
 procedure TFrm_compra1.db_produto_idExit(Sender: TObject);
 begin
+
+  if Q_padrao_itemSEQUENCIA_ID.AsInteger = 0 then
+  begin
+    Q_padrao_itemSEQUENCIA_ID.AsInteger :=
+      Q_padrao_itemSEQUENCIA_ID.AsInteger + 1;
+  end;
+
   if Q_padrao_itemPRODUTO_ID.AsInteger > 0 then
     if Q_produto.Locate('PRODUTO_ID', Q_padrao_item.FieldByName('PRODUTO_ID')
       .AsInteger, []) then

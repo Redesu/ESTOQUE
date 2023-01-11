@@ -53,6 +53,7 @@ type
     procedure Abre_Tela_Produto();
     procedure Abre_Tela_Forma_pgto();
     procedure Abre_Tela_Compra();
+    procedure Abre_Tela_Venda();
     procedure bt_empresaClick(Sender: TObject);
     procedure menu_EmpresaClick(Sender: TObject);
     procedure menu_UsuariosClick(Sender: TObject);
@@ -75,6 +76,9 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bt_troca_usuarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure bt_vendasClick(Sender: TObject);
+    procedure Vendas1Click(Sender: TObject);
+    procedure ListaVendasClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -91,7 +95,7 @@ implementation
 
 uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_compra1, U_pesq_usuario, U_pesq_fornecedor, U_pesq_cliente, U_pesq_produto,
-  U_pesq_compra, U_ABOUT, U_DM, U_login;
+  U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -155,6 +159,7 @@ begin
     Frm_principal.Hide;
     Frm_login.ed_usuario.Clear;
     Frm_login.ed_senha.Clear;
+    Frm_login.Show;
 end;
 
 procedure TFrm_Principal.Abre_Tela_Cliente;
@@ -251,9 +256,27 @@ begin
   end;
 end;
 
+procedure TFrm_Principal.Abre_Tela_Venda;
+begin
+ Frm_venda:=TFrm_venda.Create(self);
+ Frm_venda.ShowModal;
+ try
+
+ finally
+ Frm_venda.Free;
+ Frm_venda:=nil;
+
+ end;
+end;
+
 procedure TFrm_Principal.bt_UsuarioClick(Sender: TObject);
 begin
   Abre_Tela_usuario;
+end;
+
+procedure TFrm_Principal.bt_vendasClick(Sender: TObject);
+begin
+Abre_Tela_Venda;
 end;
 
 procedure TFrm_Principal.Compras1Click(Sender: TObject);
@@ -343,6 +366,19 @@ begin
   end;
 end;
 
+procedure TFrm_Principal.ListaVendasClick(Sender: TObject);
+begin
+Frm_pesq_venda:=TFrm_pesq_venda.Create(self);
+Frm_pesq_venda.ShowModal;
+try
+
+finally
+Frm_pesq_venda.Free;
+Frm_pesq_usuario :=nil;
+
+end;
+end;
+
 procedure TFrm_Principal.menu_ClientesClick(Sender: TObject);
 begin
   Abre_Tela_Cliente;
@@ -376,6 +412,11 @@ begin
   StatusBar1.Panels[1].Text := TimeTostr(now);
   StatusBar1.Panels[2].Text := 'SEJA BEM VINDO AO SISTEMA ' + dm.usuario + '!';
   StatusBar1.Panels[3].Text := 'Tipo de usuário: ' + dm.tipo_usuario;
+end;
+
+procedure TFrm_Principal.Vendas1Click(Sender: TObject);
+begin
+       Abre_Tela_Venda;
 end;
 
 procedure TFrm_Principal.menu_UsuariosClick(Sender: TObject);

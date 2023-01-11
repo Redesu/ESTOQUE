@@ -10,6 +10,7 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poDesigned
   WindowState = wsMaximized

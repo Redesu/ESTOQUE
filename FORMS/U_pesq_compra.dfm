@@ -95,7 +95,7 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
   end
   inherited frxReport1: TfrxReport
     ReportOptions.CreateDate = 44914.724794120400000000
-    ReportOptions.LastChange = 44929.717290115740000000
+    ReportOptions.LastChange = 44929.717290115700000000
     Datasets = <
       item
         DataSet = frxDB_padrao
@@ -415,30 +415,33 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 117.165430000000000000
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Height = 18.897650000000000000
+        ParentFont = False
         Top = 287.244280000000000000
         Width = 718.110700000000000000
         object Memo8: TfrxMemoView
-          Align = baWidth
           AllowVectorExport = True
-          Top = 98.267780000000000000
-          Width = 718.110700000000000000
+          Width = 162.519790000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
-          Font.Style = [fsBold]
-          Frame.Typ = []
+          Font.Style = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
             'TOTAL DE COMPRAS:')
           ParentFont = False
         end
         object Memo9: TfrxMemoView
           AllowVectorExport = True
-          Left = 215.433210000000000000
-          Top = 98.267780000000000000
-          Width = 166.299320000000000000
+          Left = 162.519790000000000000
+          Width = 555.590910000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2m'
           DisplayFormat.Kind = fkNumeric
@@ -447,7 +450,7 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
-          Frame.Typ = []
+          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           Memo.UTF8W = (
             '[SUM(<frxDBDataset1."VALOR">,MasterData1,2)]')
           ParentFont = False

@@ -3,7 +3,7 @@ object Frm_Principal: TFrm_Principal
   Top = 0
   Caption = 'ESTOQUE'
   ClientHeight = 499
-  ClientWidth = 1604
+  ClientWidth = 1083
   Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -2686,7 +2686,7 @@ object Frm_Principal: TFrm_Principal
       Top = 0
       Width = 100
       Height = 90
-      Caption = '&Forma Pgto'
+      Caption = 'Fo&rma Pgto'
       Flat = True
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -4272,6 +4272,7 @@ object Frm_Principal: TFrm_Principal
         0000000000000000000000000000000000000000000000000000}
       Layout = blGlyphTop
       ParentFont = False
+      OnClick = bt_vendasClick
     end
     object bt_troca_usuario: TSpeedButton
       Left = 871
@@ -5339,7 +5340,7 @@ object Frm_Principal: TFrm_Principal
   object StatusBar1: TStatusBar
     Left = 0
     Top = 480
-    Width = 1604
+    Width = 1083
     Height = 19
     Panels = <
       item
@@ -5398,6 +5399,7 @@ object Frm_Principal: TFrm_Principal
       end
       object Vendas1: TMenuItem
         Caption = '&Vendas'
+        OnClick = Vendas1Click
       end
     end
     object Vendas2: TMenuItem
@@ -5424,12 +5426,13 @@ object Frm_Principal: TFrm_Principal
       end
       object ListaVendas: TMenuItem
         Caption = 'Lista Vendas'
+        OnClick = ListaVendasClick
       end
     end
     object Sobreosistema1: TMenuItem
       Caption = 'Sobre o sistema'
       object Sobre: TMenuItem
-        Caption = 'Informa'#231#245'es'
+        Caption = '&Informa'#231#245'es'
         OnClick = SobreClick
       end
     end

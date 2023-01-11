@@ -21,7 +21,9 @@ uses
   U_pesq_compra in '..\FORMS\U_pesq_compra.pas' {Frm_pesq_compra},
   U_ABOUT in '..\FORMS\U_ABOUT.pas' {Frm_AboutBox},
   U_login in '..\FORMS\U_login.pas' {Frm_login},
-  U_troca_senha in '..\FORMS\U_troca_senha.pas' {Frm_troca_senha};
+  U_troca_senha in '..\FORMS\U_troca_senha.pas' {Frm_troca_senha},
+  U_venda in '..\FORMS\U_venda.pas' {Frm_venda},
+  U_pesq_venda in '..\FORMS\U_pesq_venda.pas' {Frm_pesq_venda};
 
 {$R *.res}
 
