@@ -43,6 +43,7 @@ type
     ListaVendas: TMenuItem;
     Sobreosistema1: TMenuItem;
     Sobre: TMenuItem;
+    Fechar1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure bt_fecharClick(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
@@ -79,6 +80,7 @@ type
     procedure bt_vendasClick(Sender: TObject);
     procedure Vendas1Click(Sender: TObject);
     procedure ListaVendasClick(Sender: TObject);
+    procedure Fechar1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -282,6 +284,11 @@ end;
 procedure TFrm_Principal.Compras1Click(Sender: TObject);
 begin
   Abre_Tela_Compra;
+end;
+
+procedure TFrm_Principal.Fechar1Click(Sender: TObject);
+begin
+bt_fechar.Click;
 end;
 
 procedure TFrm_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
