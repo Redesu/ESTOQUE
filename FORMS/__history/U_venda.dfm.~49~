@@ -1,8 +1,14 @@
 inherited Frm_venda: TFrm_venda
   Caption = 'CADASTRO DE VENDAS'
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  inherited Panel1: TPanel
+    inherited bt_pesquisar: TBitBtn
+      OnClick = bt_pesquisarClick
+    end
+  end
   inherited Panel2: TPanel
     inherited DBNavigator1: TDBNavigator
       Hints.Strings = ()
@@ -330,6 +336,7 @@ inherited Frm_venda: TFrm_venda
       DataField = 'QTDE'
       DataSource = ds_padrao_item
       TabOrder = 1
+      OnClick = db_qtdeClick
     end
     object db_vl_venda: TDBEdit
       Left = 264
@@ -348,6 +355,8 @@ inherited Frm_venda: TFrm_venda
       DataField = 'DESCONTO'
       DataSource = ds_padrao_item
       TabOrder = 3
+      OnClick = db_descontoClick
+      OnExit = db_descontoExit
     end
     object db_total_item: TDBEdit
       Left = 632
@@ -362,7 +371,6 @@ inherited Frm_venda: TFrm_venda
   inherited PageControl1: TPageControl
     Top = 209
     Height = 189
-    ActivePage = Contas_Pagar
     ExplicitTop = 209
     ExplicitHeight = 189
     inherited Item_compra: TTabSheet
@@ -605,6 +613,7 @@ inherited Frm_venda: TFrm_venda
     end
   end
   object Q_cliente: TFDQuery
+    Active = True
     Connection = DM.conexao
     SQL.Strings = (
       'SELECT CLIENTE_ID,'
@@ -626,6 +635,7 @@ inherited Frm_venda: TFrm_venda
     end
   end
   object Q_forma_pgto: TFDQuery
+    Active = True
     Connection = DM.conexao
     SQL.Strings = (
       'SELECT '
@@ -741,6 +751,7 @@ inherited Frm_venda: TFrm_venda
       FieldName = 'VALOR_PARCELA'
       Origin = 'VALOR_PARCELA'
       Required = True
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -762,12 +773,14 @@ inherited Frm_venda: TFrm_venda
     object Q_conta_receberTOTAL_PAGAR: TFMTBCDField
       FieldName = 'TOTAL_PAGAR'
       Origin = 'TOTAL_PAGAR'
+      currency = True
       Precision = 18
       Size = 2
     end
     object Q_conta_receberVL_JUROS: TFMTBCDField
       FieldName = 'VL_JUROS'
       Origin = 'VL_JUROS'
+      currency = True
       Precision = 18
       Size = 2
     end

@@ -202,6 +202,7 @@ inherited Frm_compra1: TFrm_compra1
       CharCase = ecUpperCase
       DataField = 'USUARIO'
       DataSource = ds_padrao
+      Enabled = False
       TabOrder = 2
     end
     object DB_valor: TDBEdit
@@ -339,6 +340,8 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'QTDE'
       DataSource = ds_padrao_item
       TabOrder = 1
+      OnClick = db_qtdeClick
+      OnExit = db_qtdeExit
     end
     object db_vl_custo: TDBEdit
       Left = 264
@@ -357,6 +360,8 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'DESCONTO'
       DataSource = ds_padrao_item
       TabOrder = 3
+      OnClick = db_descontoClick
+      OnExit = db_descontoExit
     end
     object db_total_item: TDBEdit
       Left = 632

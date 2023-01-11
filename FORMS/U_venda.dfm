@@ -336,6 +336,8 @@ inherited Frm_venda: TFrm_venda
       DataField = 'QTDE'
       DataSource = ds_padrao_item
       TabOrder = 1
+      OnClick = db_qtdeClick
+      OnExit = db_qtdeExit
     end
     object db_vl_venda: TDBEdit
       Left = 264
@@ -354,6 +356,8 @@ inherited Frm_venda: TFrm_venda
       DataField = 'DESCONTO'
       DataSource = ds_padrao_item
       TabOrder = 3
+      OnClick = db_descontoClick
+      OnExit = db_descontoExit
     end
     object db_total_item: TDBEdit
       Left = 632
@@ -575,6 +579,7 @@ inherited Frm_venda: TFrm_venda
       FieldName = 'QTDE'
       Origin = 'QTDE'
       Required = True
+      OnValidate = Q_padrao_itemQTDEValidate
       Precision = 18
       Size = 2
     end

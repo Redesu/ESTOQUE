@@ -98,6 +98,11 @@ type
     procedure FormShow(Sender: TObject);
     procedure bt_deletarClick(Sender: TObject);
     procedure bt_pesquisarClick(Sender: TObject);
+    procedure db_descontoClick(Sender: TObject);
+    procedure db_descontoExit(Sender: TObject);
+    procedure db_qtdeClick(Sender: TObject);
+    procedure db_qtdeExit(Sender: TObject);
+    procedure Q_padrao_itemQTDEValidate(Sender: TField);
   private
     { Private declarations }
   public
@@ -319,7 +324,7 @@ end;
 
 procedure TFrm_venda.bt_pesquisarClick(Sender: TObject);
 begin
-  Frm_pesq_venda:=TFrm_pesq_venda.Create(self);
+  Frm_pesq_venda := TFrm_pesq_venda.Create(self);
   Frm_pesq_venda.ShowModal;
   try
     if Frm_pesq_venda.codico > 0 then
@@ -328,8 +333,8 @@ begin
       Q_padrao.Locate('VENDA_ID', Frm_pesq_venda.codico, []);
     end;
   finally
-  Frm_pesq_venda.Free;
-  Frm_pesq_venda:=nil;
+    Frm_pesq_venda.Free;
+    Frm_pesq_venda := nil;
 
   end;
 
@@ -348,6 +353,21 @@ begin
     abort;
   end;
 
+end;
+
+procedure TFrm_venda.db_descontoClick(Sender: TObject);
+begin
+  inherited;
+  Q_padrao_item.Edit;
+end;
+
+procedure TFrm_venda.db_descontoExit(Sender: TObject);
+begin
+  inherited;
+  Q_padrao_itemTOTAL_ITEM.AsFloat :=
+    (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_VENDA.AsFloat) -
+    (Q_padrao_itemDESCONTO.AsFloat);
+  Q_padrao_item.Refresh;
 end;
 
 procedure TFrm_venda.db_forma_pgtoExit(Sender: TObject);
@@ -410,6 +430,35 @@ begin
 
 end;
 
+procedure TFrm_venda.db_qtdeClick(Sender: TObject);
+begin
+  inherited;
+  Q_padrao_item.Edit;
+end;
+
+procedure TFrm_venda.db_qtdeExit(Sender: TObject);
+begin
+  inherited;
+
+  if Q_padrao_itemQTDE.AsFloat > Q_produtoESTOQUE.AsFloat then
+  begin
+    ShowMessage
+      ('O valor digitado é maior que o estoque! Quantidade no estoque: ' +
+      Q_produtoESTOQUE.AsString + '');
+
+    db_qtde.SetFocus;
+    abort;
+
+  end
+  else
+
+    Q_padrao_itemTOTAL_ITEM.AsFloat :=
+      (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_VENDA.AsFloat) -
+      (Q_padrao_itemDESCONTO.AsFloat);
+  Q_padrao_item.Refresh;
+
+end;
+
 procedure TFrm_venda.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -422,6 +471,26 @@ procedure TFrm_venda.FormShow(Sender: TObject);
 begin
   inherited;
   Q_produto.Open;
+end;
+
+procedure TFrm_venda.Q_padrao_itemQTDEValidate(Sender: TField);
+begin
+
+    if Q_produtoESTOQUE.AsFloat = 0 then
+    begin
+      Messagedlg('Produto em falta!', mterror, [mbOk],0);
+      bt_item.SetFocus;
+      Q_padrao_item.Delete;
+      Abort;
+    end
+    else
+    if Q_produtoESTOQUE.AsFloat < Q_produtoESTOQUE_MIN.AsFloat then
+    begin
+      showMessage('Produto abaixo do estoque minimo!! Quantidade no estoque: ' +
+      Q_produtoESTOQUE.AsString + '');
+      bt_item.SetFocus;
+    end;
+
 end;
 
 end.

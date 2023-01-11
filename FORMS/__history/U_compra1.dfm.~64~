@@ -1,5 +1,6 @@
 inherited Frm_compra1: TFrm_compra1
   Caption = 'CADASTRO DE COMPRAS'
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
@@ -201,6 +202,7 @@ inherited Frm_compra1: TFrm_compra1
       CharCase = ecUpperCase
       DataField = 'USUARIO'
       DataSource = ds_padrao
+      Enabled = False
       TabOrder = 2
     end
     object DB_valor: TDBEdit
@@ -356,6 +358,8 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'DESCONTO'
       DataSource = ds_padrao_item
       TabOrder = 3
+      OnClick = db_descontoClick
+      OnExit = db_descontoExit
     end
     object db_total_item: TDBEdit
       Left = 632

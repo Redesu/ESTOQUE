@@ -113,6 +113,10 @@ type
     procedure bt_imprimirClick(Sender: TObject);
     procedure DB_id_forma_pgtoExit(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure db_descontoClick(Sender: TObject);
+    procedure db_descontoExit(Sender: TObject);
+    procedure db_qtdeClick(Sender: TObject);
+    procedure db_qtdeExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -397,6 +401,21 @@ begin
 
 end;
 
+procedure TFrm_compra1.db_descontoClick(Sender: TObject);
+begin
+  inherited;
+  Q_padrao_item.Edit;
+end;
+
+procedure TFrm_compra1.db_descontoExit(Sender: TObject);
+begin
+  Q_padrao_itemTOTAL_ITEM.AsFloat :=
+    (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
+    (Q_padrao_itemDESCONTO.AsFloat);
+  Q_padrao_item.Refresh;
+
+end;
+
 procedure TFrm_compra1.DB_id_forma_pgtoExit(Sender: TObject);
 begin
   // Insere dados na condição de pgto
@@ -444,6 +463,27 @@ begin
       Messagedlg('Produto não encontrado!', mtError, [mbok], 0);
   Q_padrao_item.Cancel;
   bt_item.SetFocus;
+
+end;
+
+procedure TFrm_compra1.db_qtdeClick(Sender: TObject);
+begin
+  inherited;
+   Q_padrao_item.Edit;
+end;
+
+procedure TFrm_compra1.db_qtdeExit(Sender: TObject);
+begin
+  inherited;
+
+
+    Q_padrao_itemTOTAL_ITEM.AsFloat :=
+      (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
+      (Q_padrao_itemDESCONTO.AsFloat);
+  Q_padrao_item.Refresh;
+
+
+
 
 end;
 
