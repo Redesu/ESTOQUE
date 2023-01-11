@@ -22,6 +22,7 @@ type
     Label3: TLabel;
     DB_cadastro: TDBEdit;
     procedure bt_novoClick(Sender: TObject);
+    procedure bt_pesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,11 +36,30 @@ implementation
 
 {$R *.dfm}
 
+uses U_pesq_forma_pgto;
+
 procedure TFrm_Forma_pgto.bt_novoClick(Sender: TObject);
 begin
   inherited;
    DB_cadastro.Text:=datetostr(now);
    DB_descricao.SetFocus;
+end;
+
+procedure TFrm_Forma_pgto.bt_pesquisarClick(Sender: TObject);
+begin
+ Frm_pesq_forma_pgto:=TFrm_pesq_forma_pgto.Create(self);
+ Frm_pesq_forma_pgto.ShowModal;
+ try
+        if Frm_pesq_forma_pgto.codico > 0 then
+    begin
+      Q_padrao.Open;
+      Q_padrao.Locate('ID_FORMA_PGTO', Frm_pesq_forma_pgto.codico, []);
+    end;
+ finally
+ Frm_pesq_forma_pgto.Free;
+ Frm_pesq_forma_pgto:=nil;
+ end;
+
 end;
 
 end.

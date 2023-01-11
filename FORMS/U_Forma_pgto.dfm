@@ -48,6 +48,9 @@ inherited Frm_Forma_pgto: TFrm_Forma_pgto
   end
   inherited Panel1: TPanel
     TabOrder = 3
+    inherited bt_pesquisar: TBitBtn
+      OnClick = bt_pesquisarClick
+    end
   end
   inherited Panel2: TPanel
     Top = 316

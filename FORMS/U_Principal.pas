@@ -44,6 +44,7 @@ type
     Sobreosistema1: TMenuItem;
     Sobre: TMenuItem;
     Fechar1: TMenuItem;
+    ListaFormadepgto1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure bt_fecharClick(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
@@ -81,6 +82,7 @@ type
     procedure Vendas1Click(Sender: TObject);
     procedure ListaVendasClick(Sender: TObject);
     procedure Fechar1Click(Sender: TObject);
+    procedure ListaFormadepgto1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -97,17 +99,18 @@ implementation
 
 uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_compra1, U_pesq_usuario, U_pesq_fornecedor, U_pesq_cliente, U_pesq_produto,
-  U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda;
+  U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda,
+  U_pesq_forma_pgto;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
-  Frm_AboutBox:=TFrm_AboutBox.Create(self);
+  Frm_AboutBox := TFrm_AboutBox.Create(self);
   Frm_AboutBox.ShowModal;
   try
 
   finally
-  Frm_AboutBox.Free;
-  Frm_AboutBox:=nil;
+    Frm_AboutBox.Free;
+    Frm_AboutBox := nil;
 
   end;
 end;
@@ -158,16 +161,16 @@ end;
 
 procedure TFrm_Principal.bt_troca_usuarioClick(Sender: TObject);
 begin
-    Frm_principal.Hide;
-    Frm_login.ed_usuario.Clear;
-    Frm_login.ed_senha.Clear;
-    Frm_login.Show;
+  Frm_Principal.Hide;
+  Frm_login.ed_usuario.Clear;
+  Frm_login.ed_senha.Clear;
+  Frm_login.Show;
 end;
 
 procedure TFrm_Principal.Abre_Tela_Cliente;
 begin
-  Frm_cliente := Tfrm_cliente.create(self);
-  Frm_cliente.showmodal;
+  Frm_cliente := Tfrm_cliente.Create(self);
+  Frm_cliente.ShowModal;
   try
 
   finally
@@ -179,8 +182,8 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_Compra;
 begin
-  Frm_compra1 := TFrm_compra1.create(self);
-  Frm_compra1.showmodal;
+  Frm_compra1 := TFrm_compra1.Create(self);
+  Frm_compra1.ShowModal;
   try
 
   finally
@@ -192,8 +195,8 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_empresa;
 begin
-  Frm_empresa := TFrm_empresa.create(self);
-  Frm_empresa.showmodal;
+  Frm_empresa := TFrm_empresa.Create(self);
+  Frm_empresa.ShowModal;
   try
 
   finally
@@ -205,8 +208,8 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_Forma_pgto;
 begin
-  Frm_Forma_pgto := TFrm_Forma_pgto.create(self);
-  Frm_Forma_pgto.showmodal;
+  Frm_Forma_pgto := TFrm_Forma_pgto.Create(self);
+  Frm_Forma_pgto.ShowModal;
   try
 
   finally
@@ -218,8 +221,8 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_Fornecedor;
 begin
-  Frm_fornecedor := TFrm_fornecedor.create(self);
-  Frm_fornecedor.showmodal;
+  Frm_fornecedor := TFrm_fornecedor.Create(self);
+  Frm_fornecedor.ShowModal;
   try
 
   finally
@@ -231,8 +234,8 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_Produto;
 begin
-  Frm_produto := TFrm_produto.create(self);
-  Frm_produto.showmodal;
+  Frm_produto := TFrm_produto.Create(self);
+  Frm_produto.ShowModal;
   try
 
   finally
@@ -244,9 +247,9 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_usuario;
 begin
-  frm_usuarios := TFrm_usuarios.create(self);
+  frm_usuarios := TFrm_usuarios.Create(self);
 
-  frm_usuarios.showmodal;
+  frm_usuarios.ShowModal;
 
   Try
   finally
@@ -260,15 +263,15 @@ end;
 
 procedure TFrm_Principal.Abre_Tela_Venda;
 begin
- Frm_venda:=TFrm_venda.Create(self);
- Frm_venda.ShowModal;
- try
+  Frm_venda := TFrm_venda.Create(self);
+  Frm_venda.ShowModal;
+  try
 
- finally
- Frm_venda.Free;
- Frm_venda:=nil;
+  finally
+    Frm_venda.Free;
+    Frm_venda := nil;
 
- end;
+  end;
 end;
 
 procedure TFrm_Principal.bt_UsuarioClick(Sender: TObject);
@@ -278,7 +281,7 @@ end;
 
 procedure TFrm_Principal.bt_vendasClick(Sender: TObject);
 begin
-Abre_Tela_Venda;
+  Abre_Tela_Venda;
 end;
 
 procedure TFrm_Principal.Compras1Click(Sender: TObject);
@@ -288,30 +291,30 @@ end;
 
 procedure TFrm_Principal.Fechar1Click(Sender: TObject);
 begin
-bt_fechar.Click;
+  bt_fechar.Click;
 end;
 
 procedure TFrm_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-Application.Terminate;
+  application.Terminate;
 end;
 
 procedure TFrm_Principal.FormShow(Sender: TObject);
 begin
-     if dm.tipo_usuario='APOIO' then
-     begin
-       bt_empresa.Enabled:=false;
-       bt_usuario.Enabled:=false;
-       menu_usuarios.enabled:=false;
-       menu_empresa.Enabled:=false;
-       ListaUsurios.Enabled:=false;
-     end;
+  if dm.tipo_usuario = 'APOIO' then
+  begin
+    bt_empresa.Enabled := false;
+    bt_usuario.Enabled := false;
+    menu_Usuarios.Enabled := false;
+    menu_Empresa.Enabled := false;
+    ListaUsurios.Enabled := false;
+  end;
 end;
 
 procedure TFrm_Principal.ListaClientesClick(Sender: TObject);
 begin
-  Frm_pesq_Cliente := TFrm_pesq_Cliente.create(self);
-  Frm_pesq_Cliente.showmodal;
+  Frm_pesq_Cliente := TFrm_pesq_Cliente.Create(self);
+  Frm_pesq_Cliente.ShowModal;
   try
 
   finally
@@ -323,8 +326,8 @@ end;
 
 procedure TFrm_Principal.ListaComprasClick(Sender: TObject);
 begin
-  Frm_pesq_compra := TFrm_pesq_compra.create(self);
-  Frm_pesq_compra.showmodal;
+  Frm_pesq_compra := TFrm_pesq_compra.Create(self);
+  Frm_pesq_compra.ShowModal;
   try
 
   finally
@@ -334,10 +337,23 @@ begin
   end;
 end;
 
+procedure TFrm_Principal.ListaFormadepgto1Click(Sender: TObject);
+begin
+  Frm_pesq_forma_pgto := TFrm_pesq_forma_pgto.Create(self);
+  Frm_pesq_forma_pgto.ShowModal;
+  try
+
+  finally
+    Frm_pesq_forma_pgto.Free;
+    Frm_pesq_forma_pgto := nil;
+
+  end;
+end;
+
 procedure TFrm_Principal.ListaFornecedoresClick(Sender: TObject);
 begin
-  Frm_pesq_fornecedor := TFrm_pesq_fornecedor.create(self);
-  Frm_pesq_fornecedor.showmodal;
+  Frm_pesq_fornecedor := TFrm_pesq_fornecedor.Create(self);
+  Frm_pesq_fornecedor.ShowModal;
   try
 
   finally
@@ -349,8 +365,8 @@ end;
 
 procedure TFrm_Principal.ListaProdutosClick(Sender: TObject);
 begin
-  Frm_pesq_produto := TFrm_pesq_produto.create(self);
-  Frm_pesq_produto.showmodal;
+  Frm_pesq_produto := TFrm_pesq_produto.Create(self);
+  Frm_pesq_produto.ShowModal;
   try
 
   finally
@@ -362,8 +378,8 @@ end;
 
 procedure TFrm_Principal.ListaUsuriosClick(Sender: TObject);
 begin
-  Frm_pesq_usuario := TFrm_pesq_usuario.create(self);
-  Frm_pesq_usuario.showmodal;
+  Frm_pesq_usuario := TFrm_pesq_usuario.Create(self);
+  Frm_pesq_usuario.ShowModal;
   try
 
   finally
@@ -375,15 +391,15 @@ end;
 
 procedure TFrm_Principal.ListaVendasClick(Sender: TObject);
 begin
-Frm_pesq_venda:=TFrm_pesq_venda.Create(self);
-Frm_pesq_venda.ShowModal;
-try
+  Frm_pesq_venda := TFrm_pesq_venda.Create(self);
+  Frm_pesq_venda.ShowModal;
+  try
 
-finally
-Frm_pesq_venda.Free;
-Frm_pesq_usuario :=nil;
+  finally
+    Frm_pesq_venda.Free;
+    Frm_pesq_usuario := nil;
 
-end;
+  end;
 end;
 
 procedure TFrm_Principal.menu_ClientesClick(Sender: TObject);
@@ -423,7 +439,7 @@ end;
 
 procedure TFrm_Principal.Vendas1Click(Sender: TObject);
 begin
-       Abre_Tela_Venda;
+  Abre_Tela_Venda;
 end;
 
 procedure TFrm_Principal.menu_UsuariosClick(Sender: TObject);

@@ -23,7 +23,8 @@ uses
   U_login in '..\FORMS\U_login.pas' {Frm_login},
   U_troca_senha in '..\FORMS\U_troca_senha.pas' {Frm_troca_senha},
   U_venda in '..\FORMS\U_venda.pas' {Frm_venda},
-  U_pesq_venda in '..\FORMS\U_pesq_venda.pas' {Frm_pesq_venda};
+  U_pesq_venda in '..\FORMS\U_pesq_venda.pas' {Frm_pesq_venda},
+  U_pesq_forma_pgto in '..\FORMS\U_pesq_forma_pgto.pas' {Frm_pesq_forma_pgto};
 
 {$R *.res}
 

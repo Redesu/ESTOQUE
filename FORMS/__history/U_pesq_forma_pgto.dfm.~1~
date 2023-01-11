@@ -1,0 +1,18 @@
+inherited Frm_pesq_forma_pgto: TFrm_pesq_forma_pgto
+  Caption = 'PESQUISA FORMA DE PAGAMENTO'
+  ExplicitWidth = 1042
+  ExplicitHeight = 670
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited cb_chave_pesquisa: TComboBox
+    Items.Strings = (
+      'C'#211'DIGO'
+      'DESCRI'#199#195'O'
+      'TODOS')
+  end
+  inherited frxReport1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+end

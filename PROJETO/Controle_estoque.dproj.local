@@ -2,8 +2,8 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/12/13 15:35:12.000.055,=C:\Users\Redesu\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/12/13 15:37:17.000.917,C:\Users\Redesu\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\ESTOQUE\FORMS\U_Principal.dfm</Transaction>
     <Transaction>2022/12/13 15:37:17.000.917,C:\Users\Redesu\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\ESTOQUE\FORMS\U_Principal.pas</Transaction>
+    <Transaction>2022/12/13 15:37:17.000.917,C:\Users\Redesu\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\ESTOQUE\FORMS\U_Principal.dfm</Transaction>
     <Transaction>2022/12/13 15:37:45.000.218,C:\Users\Redesu\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\ESTOQUE\PROJETO\Controle_estoque.dproj</Transaction>
     <Transaction>2022/12/13 21:54:42.000.487,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/13 21:55:25.000.886,C:\ESTOQUE\FORMS\U_DM.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
@@ -12,8 +12,8 @@
     <Transaction>2022/12/13 22:00:26.000.752,C:\ESTOQUE\FORMS\U_padrao.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
     <Transaction>2022/12/13 22:00:26.000.752,C:\ESTOQUE\FORMS\U_padrao.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/14 16:46:53.000.091,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/14 16:48:55.000.941,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_usuario.dfm</Transaction>
     <Transaction>2022/12/14 16:48:55.000.941,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_usuario.pas</Transaction>
+    <Transaction>2022/12/14 16:48:55.000.941,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_usuario.dfm</Transaction>
     <Transaction>2022/12/15 14:16:48.000.370,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/15 14:32:54.000.296,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_EMPRESA.pas</Transaction>
     <Transaction>2022/12/15 14:32:54.000.296,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_EMPRESA.dfm</Transaction>
@@ -24,17 +24,17 @@
     <Transaction>2022/12/15 18:13:15.000.066,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_fornecedor.dfm</Transaction>
     <Transaction>2022/12/15 18:13:15.000.066,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_fornecedor.pas</Transaction>
     <Transaction>2022/12/15 18:55:21.000.551,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/15 18:56:25.000.045,C:\ESTOQUE\FORMS\U_produto.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
     <Transaction>2022/12/15 18:56:25.000.045,C:\ESTOQUE\FORMS\U_produto.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2022/12/15 18:56:25.000.045,C:\ESTOQUE\FORMS\U_produto.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
     <Transaction>2022/12/15 19:42:59.000.903,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/15 19:43:49.000.961,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_Forma_pgto.dfm</Transaction>
     <Transaction>2022/12/15 19:43:49.000.961,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_Forma_pgto.pas</Transaction>
+    <Transaction>2022/12/15 19:43:49.000.961,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_Forma_pgto.dfm</Transaction>
     <Transaction>2022/12/16 13:06:35.000.836,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/16 13:07:03.000.896,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_Form_pesquisa_padrao.dfm</Transaction>
     <Transaction>2022/12/16 13:07:03.000.896,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_Form_pesquisa_padrao.pas</Transaction>
     <Transaction>2022/12/16 13:32:52.000.677,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2022/12/16 13:33:28.000.371,C:\ESTOQUE\FORMS\U_pesq_usuario.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/16 13:33:28.000.371,C:\ESTOQUE\FORMS\U_pesq_usuario.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
+    <Transaction>2022/12/16 13:33:28.000.371,C:\ESTOQUE\FORMS\U_pesq_usuario.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/16 15:56:03.000.754,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2022/12/16 15:56:15.000.002,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_pesq_cliente.dfm</Transaction>
     <Transaction>2022/12/16 15:56:15.000.002,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_pesq_cliente.pas</Transaction>
@@ -65,9 +65,12 @@
     <Transaction>2023/01/10 13:49:54.000.077,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2023/01/10 13:50:15.000.004,C:\ESTOQUE\FORMS\U_venda.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
     <Transaction>2023/01/10 13:50:15.000.004,C:\ESTOQUE\FORMS\U_venda.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2023/01/11 13:40:41.511,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2023/01/11 13:42:14.524,C:\ESTOQUE\FORMS\U_pesq_venda.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
-    <Transaction>2023/01/11 13:42:14.524,C:\ESTOQUE\FORMS\U_pesq_venda.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2023/01/11 13:40:41.000.511,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2023/01/11 13:42:14.000.524,C:\ESTOQUE\FORMS\U_pesq_venda.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
+    <Transaction>2023/01/11 13:42:14.000.524,C:\ESTOQUE\FORMS\U_pesq_venda.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2023/01/11 16:10:43.000.997,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2023/01/11 16:12:33.000.760,C:\ESTOQUE\PROJETO\Unit1.pas=C:\ESTOQUE\FORMS\U_pesq_forma_pgto.pas</Transaction>
+    <Transaction>2023/01/11 16:12:33.000.760,C:\ESTOQUE\PROJETO\Unit1.dfm=C:\ESTOQUE\FORMS\U_pesq_forma_pgto.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="C:\ESTOQUE"/>
@@ -116,5 +119,7 @@
     <File Path="..\FORMS\U_venda.dfm"/>
     <File Path="..\FORMS\U_pesq_venda.pas"/>
     <File Path="..\FORMS\U_pesq_venda.dfm"/>
+    <File Path="..\FORMS\U_pesq_forma_pgto.pas"/>
+    <File Path="..\FORMS\U_pesq_forma_pgto.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>
