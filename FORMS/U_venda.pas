@@ -87,6 +87,8 @@ type
     Q_conta_receberVL_JUROS: TFMTBCDField;
     Q_conta_receberSTATUS: TStringField;
     Q_conta_receberATRASO: TIntegerField;
+    bt_busca_cliente: TBitBtn;
+    bt_busca_forma_pgto: TBitBtn;
     procedure bt_novoClick(Sender: TObject);
     procedure db_cliente_idExit(Sender: TObject);
     procedure db_forma_pgtoExit(Sender: TObject);
@@ -103,6 +105,8 @@ type
     procedure db_qtdeClick(Sender: TObject);
     procedure db_qtdeExit(Sender: TObject);
     procedure Q_padrao_itemQTDEValidate(Sender: TField);
+    procedure bt_busca_clienteClick(Sender: TObject);
+    procedure bt_busca_forma_pgtoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -116,7 +120,48 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM, U_pesq_venda;
+uses U_DM, U_pesq_venda, U_pesq_cliente, U_pesq_forma_pgto;
+
+procedure TFrm_venda.bt_busca_clienteClick(Sender: TObject);
+begin
+
+  if Q_padrao.State in [dsedit,dsinsert] then
+  begin
+    Frm_pesq_cliente := TFrm_pesq_cliente.Create(self);
+    Frm_pesq_cliente.ShowModal;
+    try
+      if Frm_pesq_cliente.codico > 0 then
+      begin
+        Q_padraoCLIENTE_ID.AsInteger:=Frm_pesq_cliente.codico;
+      end;
+    finally
+      Frm_pesq_cliente.Free;
+      Frm_pesq_cliente := nil;
+
+    end;
+  end;
+
+end;
+
+procedure TFrm_venda.bt_busca_forma_pgtoClick(Sender: TObject);
+begin
+  if Q_padrao.State in [dsedit,dsinsert] then
+  begin
+      Frm_pesq_forma_pgto := Tfrm_pesq_forma_pgto.Create(self);
+      Frm_pesq_forma_pgto.ShowModal;
+      try
+        if Frm_pesq_forma_pgto.codico > 0 then
+        begin
+           Q_padraoID_FORMA_PGTO.AsInteger:=Frm_pesq_forma_pgto.codico;
+        end;
+      finally
+      Frm_pesq_forma_pgto.Free;
+      Frm_pesq_forma_pgto:=nil;
+
+      end;
+  end;
+
+end;
 
 procedure TFrm_venda.bt_deletarClick(Sender: TObject);
 begin
@@ -344,7 +389,7 @@ procedure TFrm_venda.db_cliente_idExit(Sender: TObject);
 begin
 
   // Validar o cliente
-
+{
   if not Q_cliente.Locate('cliente_id', Q_padrao.FieldByName('cliente_id')
     .AsInteger, []) then
   begin
@@ -352,7 +397,7 @@ begin
     db_cliente_id.SetFocus;
     abort;
   end;
-
+}
 end;
 
 procedure TFrm_venda.db_descontoClick(Sender: TObject);
@@ -372,8 +417,7 @@ end;
 
 procedure TFrm_venda.db_forma_pgtoExit(Sender: TObject);
 begin
-  // valida a forma de pagamento
-  inherited;
+{  // valida a forma de pagamento
   if not Q_forma_pgto.Locate('id_forma_pgto',
     Q_padrao.FieldByName('id_forma_pgto').AsInteger, []) then
   begin
@@ -381,7 +425,7 @@ begin
     db_forma_pgto.SetFocus;
     abort;
   end;
-
+  }
   // valida a quantidade de parcelas
 
   // a vista                              //debito
@@ -476,20 +520,19 @@ end;
 procedure TFrm_venda.Q_padrao_itemQTDEValidate(Sender: TField);
 begin
 
-    if Q_produtoESTOQUE.AsFloat = 0 then
-    begin
-      Messagedlg('Produto em falta!', mterror, [mbOk],0);
-      bt_item.SetFocus;
-      Q_padrao_item.Delete;
-      Abort;
-    end
-    else
-    if Q_produtoESTOQUE.AsFloat < Q_produtoESTOQUE_MIN.AsFloat then
-    begin
-      showMessage('Produto abaixo do estoque minimo!! Quantidade no estoque: ' +
+  if Q_produtoESTOQUE.AsFloat = 0 then
+  begin
+    Messagedlg('Produto em falta!', mtError, [mbok], 0);
+    bt_item.SetFocus;
+    Q_padrao_item.Delete;
+    abort;
+  end
+  else if Q_produtoESTOQUE.AsFloat < Q_produtoESTOQUE_MIN.AsFloat then
+  begin
+    ShowMessage('Produto abaixo do estoque minimo!! Quantidade no estoque: ' +
       Q_produtoESTOQUE.AsString + '');
-      bt_item.SetFocus;
-    end;
+    bt_item.SetFocus;
+  end;
 
 end;
 

@@ -36,7 +36,6 @@ type
     Q_forma_pgtoDESCRICAO: TStringField;
     Label7: TLabel;
     Label8: TLabel;
-    DB_nome: TDBLookupComboBox;
     DB_descricao: TDBLookupComboBox;
     Q_padrao_itemSEQUENCIA_ID: TIntegerField;
     Q_padrao_itemCOMPRA_ID: TIntegerField;
@@ -103,6 +102,9 @@ type
     Q_conta_pagarVL_JUROS: TFMTBCDField;
     Q_conta_pagarTOTAL_PAGAR: TFMTBCDField;
     Q_conta_pagarSTATUS: TStringField;
+    db_nome: TDBEdit;
+    bt_check_fornecedor: TBitBtn;
+    bt_busca_forma_pgto: TBitBtn;
     procedure bt_novoClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure db_produto_idExit(Sender: TObject);
@@ -117,6 +119,8 @@ type
     procedure db_descontoExit(Sender: TObject);
     procedure db_qtdeClick(Sender: TObject);
     procedure db_qtdeExit(Sender: TObject);
+    procedure bt_check_fornecedorClick(Sender: TObject);
+    procedure bt_busca_forma_pgtoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -130,7 +134,7 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM, U_pesq_compra;
+uses U_DM, U_pesq_compra, U_pesq_fornecedor, U_pesq_forma_pgto;
 
 procedure TFrm_compra1.BitBtn1Click(Sender: TObject);
 
@@ -149,6 +153,46 @@ begin
   Q_padrao_itemSEQUENCIA_ID.AsInteger := proximo;
   // campo sequencia_id recebe o conteudo de proximo
   db_produto_id.SetFocus;
+
+end;
+
+procedure TFrm_compra1.bt_busca_forma_pgtoClick(Sender: TObject);
+begin
+  if Q_padrao.State in [dsedit, dsinsert] then
+  begin
+    Frm_pesq_forma_pgto := Tfrm_pesq_forma_pgto.Create(self);
+    Frm_pesq_forma_pgto.ShowModal;
+    try
+      if Frm_pesq_forma_pgto.codico > 0 then
+      begin
+        Q_padraoID_FORMA_PGTO.AsInteger := Frm_pesq_forma_pgto.codico;
+      end;
+    finally
+      Frm_pesq_forma_pgto.Free;
+      Frm_pesq_forma_pgto := nil;
+
+    end;
+  end;
+
+end;
+
+procedure TFrm_compra1.bt_check_fornecedorClick(Sender: TObject);
+begin
+  if Q_padrao.State in [dsedit, dsinsert] then
+  begin
+    Frm_pesq_fornecedor := TFrm_pesq_fornecedor.Create(self);
+    Frm_pesq_fornecedor.ShowModal;
+    try
+      if Frm_pesq_fornecedor.codico > 0 then
+      begin
+        Q_padraoFORNECEDOR_ID.AsInteger := Frm_pesq_fornecedor.codico;
+      end;
+    finally
+      Frm_pesq_fornecedor.Free;
+      Frm_pesq_fornecedor := nil;
+
+    end;
+  end;
 
 end;
 
@@ -421,14 +465,15 @@ begin
   // Insere dados na condição de pgto
 
   // Se for a vista ou cartão de credito
-  if (DB_id_forma_pgto.Text = Inttostr(1)) or
+  {
+    if (DB_id_forma_pgto.Text = Inttostr(1)) or
     (DB_id_forma_pgto.Text = Inttostr(2)) then
-  begin
+    begin
     DB_cond_pgto.Text := Inttostr(1);
-  end
-  else
+    end
+    else
     DB_cond_pgto.SetFocus;
-
+  }
 end;
 
 procedure TFrm_compra1.db_produto_idExit(Sender: TObject);
@@ -469,21 +514,17 @@ end;
 procedure TFrm_compra1.db_qtdeClick(Sender: TObject);
 begin
   inherited;
-   Q_padrao_item.Edit;
+  Q_padrao_item.Edit;
 end;
 
 procedure TFrm_compra1.db_qtdeExit(Sender: TObject);
 begin
   inherited;
 
-
-    Q_padrao_itemTOTAL_ITEM.AsFloat :=
-      (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
-      (Q_padrao_itemDESCONTO.AsFloat);
+  Q_padrao_itemTOTAL_ITEM.AsFloat :=
+    (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
+    (Q_padrao_itemDESCONTO.AsFloat);
   Q_padrao_item.Refresh;
-
-
-
 
 end;
 

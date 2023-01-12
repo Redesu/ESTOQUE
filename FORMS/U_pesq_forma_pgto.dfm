@@ -1,8 +1,22 @@
 inherited Frm_pesq_forma_pgto: TFrm_pesq_forma_pgto
   Caption = 'PESQUISA FORMA DE PAGAMENTO'
+  ExplicitWidth = 1042
+  ExplicitHeight = 670
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
+    inherited lb_inicio: TLabel
+      Visible = False
+    end
+    inherited lb_fim: TLabel
+      Visible = False
+    end
+    inherited mk_inicio: TMaskEdit
+      Visible = False
+    end
+    inherited mk_fim: TMaskEdit
+      Visible = False
+    end
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
