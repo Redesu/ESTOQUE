@@ -24,7 +24,8 @@ uses
   U_troca_senha in '..\FORMS\U_troca_senha.pas' {Frm_troca_senha},
   U_venda in '..\FORMS\U_venda.pas' {Frm_venda},
   U_pesq_venda in '..\FORMS\U_pesq_venda.pas' {Frm_pesq_venda},
-  U_pesq_forma_pgto in '..\FORMS\U_pesq_forma_pgto.pas' {Frm_pesq_forma_pgto};
+  U_pesq_forma_pgto in '..\FORMS\U_pesq_forma_pgto.pas' {Frm_pesq_forma_pgto},
+  U_recebimento_venda in '..\U_recebimento_venda.pas' {Frm_recebimento_venda};
 
 {$R *.res}
 

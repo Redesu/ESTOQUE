@@ -16,7 +16,6 @@ type
   TFrm_venda = class(TFrm_padrao_movimento)
     Q_padraoVENDA_ID: TIntegerField;
     Q_padraoCLIENTE_ID: TIntegerField;
-    Q_padraoID_FORMA_PGTO: TIntegerField;
     Q_padraoUSUARIO: TStringField;
     Q_padraoVALOR: TFMTBCDField;
     Q_padraoCADASTRO: TDateField;
@@ -24,8 +23,6 @@ type
     db_venda_id: TDBEdit;
     Label2: TLabel;
     db_cliente_id: TDBEdit;
-    Label3: TLabel;
-    db_forma_pgto: TDBEdit;
     Label4: TLabel;
     db_cadastro: TDBEdit;
     Label5: TLabel;
@@ -42,13 +39,9 @@ type
     Label7: TLabel;
     db_cliente: TDBEdit;
     Q_padraoDESCRICAO: TStringField;
-    Label8: TLabel;
-    db_descricao: TDBEdit;
     Q_padraoPARCELA: TIntegerField;
     Q_padraoDINHEIRO: TFMTBCDField;
     Q_padraoTROCO: TFMTBCDField;
-    Label9: TLabel;
-    db_parcela: TDBEdit;
     Label10: TLabel;
     db_produto_id: TDBEdit;
     Label11: TLabel;
@@ -88,7 +81,7 @@ type
     Q_conta_receberSTATUS: TStringField;
     Q_conta_receberATRASO: TIntegerField;
     bt_busca_cliente: TBitBtn;
-    bt_busca_forma_pgto: TBitBtn;
+    Q_padraoID_FORMA_PGTO: TIntegerField;
     procedure bt_novoClick(Sender: TObject);
     procedure db_cliente_idExit(Sender: TObject);
     procedure db_forma_pgtoExit(Sender: TObject);
@@ -107,6 +100,7 @@ type
     procedure Q_padrao_itemQTDEValidate(Sender: TField);
     procedure bt_busca_clienteClick(Sender: TObject);
     procedure bt_busca_forma_pgtoClick(Sender: TObject);
+    procedure bt_gravarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -120,19 +114,19 @@ implementation
 
 {$R *.dfm}
 
-uses U_DM, U_pesq_venda, U_pesq_cliente, U_pesq_forma_pgto;
+uses U_DM, U_pesq_venda, U_pesq_cliente, U_pesq_forma_pgto, U_recebimento_venda;
 
 procedure TFrm_venda.bt_busca_clienteClick(Sender: TObject);
 begin
 
-  if Q_padrao.State in [dsedit,dsinsert] then
+  if Q_padrao.State in [dsedit, dsinsert] then
   begin
     Frm_pesq_cliente := TFrm_pesq_cliente.Create(self);
     Frm_pesq_cliente.ShowModal;
     try
       if Frm_pesq_cliente.codico > 0 then
       begin
-        Q_padraoCLIENTE_ID.AsInteger:=Frm_pesq_cliente.codico;
+        Q_padraoCLIENTE_ID.AsInteger := Frm_pesq_cliente.codico;
       end;
     finally
       Frm_pesq_cliente.Free;
@@ -145,20 +139,20 @@ end;
 
 procedure TFrm_venda.bt_busca_forma_pgtoClick(Sender: TObject);
 begin
-  if Q_padrao.State in [dsedit,dsinsert] then
+  if Q_padrao.State in [dsedit, dsinsert] then
   begin
-      Frm_pesq_forma_pgto := Tfrm_pesq_forma_pgto.Create(self);
-      Frm_pesq_forma_pgto.ShowModal;
-      try
-        if Frm_pesq_forma_pgto.codico > 0 then
-        begin
-           Q_padraoID_FORMA_PGTO.AsInteger:=Frm_pesq_forma_pgto.codico;
-        end;
-      finally
-      Frm_pesq_forma_pgto.Free;
-      Frm_pesq_forma_pgto:=nil;
-
+    Frm_pesq_forma_pgto := Tfrm_pesq_forma_pgto.Create(self);
+    Frm_pesq_forma_pgto.ShowModal;
+    try
+      if Frm_pesq_forma_pgto.codico > 0 then
+      begin
+        Q_padraoID_FORMA_PGTO.AsInteger := Frm_pesq_forma_pgto.codico;
       end;
+    finally
+      Frm_pesq_forma_pgto.Free;
+      Frm_pesq_forma_pgto := nil;
+
+    end;
   end;
 
 end;
@@ -225,6 +219,13 @@ begin
 
 end;
 
+procedure TFrm_venda.bt_gravarClick(Sender: TObject);
+begin
+  inherited;
+  bt_item.Click;
+
+end;
+
 procedure TFrm_venda.bt_itemClick(Sender: TObject);
 
 var
@@ -254,14 +255,12 @@ begin
   db_cadastro.Text := DateTostr(now);
   db_usuario.Text := dm.usuario;
   db_valor.Text := IntToStr(0);
-  db_parcela.Text := IntToStr(0);
+  // db_parcela.Text := IntToStr(0);
 
 end;
 
 procedure TFrm_venda.bt_okClick(Sender: TObject);
-var
-  parcela: integer;
-  diferenca, soma: Real;
+
 
 begin
   Q_padrao.Edit;
@@ -287,83 +286,17 @@ begin
   Q_produto.Refresh;
   Messagedlg('Dado baixa no estoque com sucesso!', mtinformation, [mbok], 0);
 
-  // Insere o contas a receber
-  Q_conta_receber.Open;
-  parcela := 1;
+   // ABRE A TELA DE RECEBIMENTO
 
-  if (Q_padraoID_FORMA_PGTO.Value = 1) or (Q_padraoID_FORMA_PGTO.Value = 3) then
-  begin
+  Frm_recebimento_venda := Tfrm_recebimento_venda.Create(self);
+  Frm_recebimento_venda.ShowModal;
+  try
 
-    while parcela <= Q_padraoPARCELA.AsInteger do
-    begin
-
-      // Abre para inserção
-      Q_conta_receber.Insert;
-      Q_conta_receberSEQUENCIA_ID.AsInteger := 1;
-      // Recebe a divisão total por Cond_pgto
-      Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat :=
-        Q_padraoVALOR.AsFloat;
-      // Insere data de vencimento e Pgto
-      Q_conta_receber.FieldByName('DT_VENCIMENTO').Value := Date;
-      Q_conta_receber.FieldByName('DT_PAGAMENTO').Value := Date;
-      // Zera juros e atraso
-      Q_conta_receber.FieldByName('ATRASO').AsFloat := 0;
-      Q_conta_receber.FieldByName('JUROS').AsFloat := 0;
-      Q_conta_receber.FieldByName('VL_JUROS').AsFloat := 0;
-      // Total a pagar recebe o valor da parcela
-      Q_conta_receber.FieldByName('TOTAL_PAGAR').AsFloat :=
-        Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat;
-      Q_conta_receber.FieldByName('STATUS').AsString := 'RECEBIDO';
-      // Grava na tabela
-      Q_conta_receber.Post;
-      abort;
-
-    end;
-
-  end
-  else
-    Q_conta_receber.First;
-  while parcela <= Q_padraoPARCELA.AsInteger do
-  begin
-    // Abre para inserção
-    Q_conta_receber.Insert;
-    Q_conta_receberSEQUENCIA_ID.AsInteger := parcela;
-    // Recebe a divisão total por Cond_pgto
-    Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat :=
-      Q_padraoVALOR.AsFloat / Q_padraoPARCELA.Value;
-    // Insere data de vencimento
-    Q_conta_receber.FieldByName('DT_VENCIMENTO').Value := Date + (parcela * 30);
-    // Zera juros e atraso
-    Q_conta_receber.FieldByName('ATRASO').AsFloat := 0;
-    Q_conta_receber.FieldByName('JUROS').AsFloat := 0;
-    Q_conta_receber.FieldByName('VL_JUROS').AsFloat := 0;
-    // Total a pagar recebe o valor da parcela
-    Q_conta_receber.FieldByName('TOTAL_PAGAR').AsFloat :=
-      Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat;
-    Q_conta_receber.FieldByName('STATUS').AsString := 'EM ABERTO';
-    // Grava na tabela
-    Q_conta_receber.Post;
-    // Auto incrementa a parcela
-    inc(parcela);
-    Q_conta_receber.Next;
+  finally
+    Frm_recebimento_venda.Free;
+    Frm_recebimento_venda := nil;
 
   end;
-  // CRIA O PROCEDIMENTO PARA TRATAR DIFERENÇA DE PARCELAS
-
-  soma := soma + Q_padraoPARCELA.Value * Q_conta_receber.FieldByName
-    ('VALOR_PARCELA').AsFloat;
-
-  if soma > Q_padraoVALOR.AsFloat then
-  begin
-    diferenca := soma - Q_padraoVALOR.AsFloat;
-    Q_conta_receber.Last;
-    Q_conta_receber.Edit;
-    Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat :=
-      Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat - diferenca;
-    Q_conta_receber.Refresh;
-  end;
-
-  Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
 
 end;
 
@@ -389,15 +322,23 @@ procedure TFrm_venda.db_cliente_idExit(Sender: TObject);
 begin
 
   // Validar o cliente
-{
-  if not Q_cliente.Locate('cliente_id', Q_padrao.FieldByName('cliente_id')
-    .AsInteger, []) then
+  if Q_padrao.State in [dsedit, dsinsert] then
   begin
-    Messagedlg('Cliente não encontrado!', mtinformation, [mbok], 0);
-    db_cliente_id.SetFocus;
+    if not Q_cliente.Locate('cliente_id', Q_padrao.FieldByName('cliente_id')
+      .AsInteger, []) then
+    begin
+      Messagedlg('Cliente não encontrado!', mtinformation, [mbok], 0);
+      db_cliente_id.SetFocus;
+      abort;
+    end
+    else
+      bt_gravar.Click;
+
+  end
+  else
+
     abort;
-  end;
-}
+
 end;
 
 procedure TFrm_venda.db_descontoClick(Sender: TObject);
@@ -417,26 +358,26 @@ end;
 
 procedure TFrm_venda.db_forma_pgtoExit(Sender: TObject);
 begin
-{  // valida a forma de pagamento
-  if not Q_forma_pgto.Locate('id_forma_pgto',
+  { // valida a forma de pagamento
+    if not Q_forma_pgto.Locate('id_forma_pgto',
     Q_padrao.FieldByName('id_forma_pgto').AsInteger, []) then
-  begin
+    begin
     Messagedlg('Forma de pagamento não encontrada!', mtinformation, [mbok], 0);
     db_forma_pgto.SetFocus;
     abort;
-  end;
-  }
-  // valida a quantidade de parcelas
+    end;
 
-  // a vista                              //debito
-  if (db_forma_pgto.Text = IntToStr(1)) or (db_forma_pgto.Text = IntToStr(3))
-  then
-  begin
+    // valida a quantidade de parcelas
+
+    // a vista                              //debito
+    if (db_forma_pgto.Text = IntToStr(1)) or (db_forma_pgto.Text = IntToStr(3))
+    then
+    begin
     db_parcela.Text := IntToStr(1);
-  end
-  else
+    end
+    else
     db_parcela.SetFocus;
-
+  }
 end;
 
 procedure TFrm_venda.db_produto_idExit(Sender: TObject);
@@ -514,6 +455,7 @@ end;
 procedure TFrm_venda.FormShow(Sender: TObject);
 begin
   inherited;
+  Q_padrao.Open;
   Q_produto.Open;
 end;
 

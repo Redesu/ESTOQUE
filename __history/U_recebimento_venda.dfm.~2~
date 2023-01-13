@@ -1,0 +1,25 @@
+object Frm_recebimento_venda: TFrm_recebimento_venda
+  Left = 0
+  Top = 0
+  Caption = 'RECEBIMENTO DE VENDA'
+  ClientHeight = 440
+  ClientWidth = 656
+  Color = clInactiveBorder
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 376
+    Width = 656
+    Height = 64
+    Align = alBottom
+    TabOrder = 0
+  end
+end
