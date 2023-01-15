@@ -71,9 +71,9 @@
     <Transaction>2023/01/11 16:10:43.000.997,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2023/01/11 16:12:33.000.760,C:\ESTOQUE\FORMS\U_pesq_forma_pgto.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
     <Transaction>2023/01/11 16:12:33.000.760,C:\ESTOQUE\FORMS\U_pesq_forma_pgto.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
-    <Transaction>2023/01/12 14:31:27.803,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
-    <Transaction>2023/01/12 14:45:51.428,C:\ESTOQUE\U_recebimento_venda.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
-    <Transaction>2023/01/12 14:45:51.428,C:\ESTOQUE\U_recebimento_venda.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2023/01/12 14:31:27.000.803,=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
+    <Transaction>2023/01/12 14:45:51.000.428,C:\ESTOQUE\U_recebimento_venda.dfm=C:\ESTOQUE\PROJETO\Unit1.dfm</Transaction>
+    <Transaction>2023/01/12 14:45:51.000.428,C:\ESTOQUE\U_recebimento_venda.pas=C:\ESTOQUE\PROJETO\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="C:\ESTOQUE"/>

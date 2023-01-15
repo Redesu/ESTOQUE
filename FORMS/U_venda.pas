@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.ExtCtrls, Vcl.Mask;
+  Vcl.ExtCtrls, Vcl.Mask, frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF;
 
 type
   TFrm_venda = class(TFrm_padrao_movimento)
@@ -82,6 +82,27 @@ type
     Q_conta_receberATRASO: TIntegerField;
     bt_busca_cliente: TBitBtn;
     Q_padraoID_FORMA_PGTO: TIntegerField;
+    Q_empresa: TFDQuery;
+    ds_empresa: TDataSource;
+    Q_empresaEMPRESA_ID: TIntegerField;
+    Q_empresaRAZAO_SOCIAL: TStringField;
+    Q_empresaN_FANTASIA: TStringField;
+    Q_empresaENDERECO: TStringField;
+    Q_empresaNUMERO: TIntegerField;
+    Q_empresaBAIRRO: TStringField;
+    Q_empresaCIDADE: TStringField;
+    Q_empresaUF: TStringField;
+    Q_empresaCEP: TStringField;
+    Q_empresaTELEFONE: TStringField;
+    Q_empresaCNPJ: TStringField;
+    Q_empresaEMAIL: TStringField;
+    Q_empresaCADASTRO: TDateField;
+    Q_empresaLOGO: TBlobField;
+    frxDB_EMPRESA: TfrxDBDataset;
+    Rel_Recibo_Venda: TfrxReport;
+    frxDB_padrao_item: TfrxDBDataset;
+    frxDB_Q_padrao: TfrxDBDataset;
+    Q_padrao_itemDESCRICAO: TStringField;
     procedure bt_novoClick(Sender: TObject);
     procedure db_cliente_idExit(Sender: TObject);
     procedure db_forma_pgtoExit(Sender: TObject);
@@ -101,6 +122,7 @@ type
     procedure bt_busca_clienteClick(Sender: TObject);
     procedure bt_busca_forma_pgtoClick(Sender: TObject);
     procedure bt_gravarClick(Sender: TObject);
+    procedure bt_imprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -204,10 +226,6 @@ begin
     if Q_produto.Locate('PRODUTO_ID', Q_padrao_itemPRODUTO_ID.AsInteger, [])
     then
     begin
-      Q_produto.Edit;
-      Q_produto.FieldByName('ESTOQUE').AsFloat :=
-        Q_produto.FieldByName('ESTOQUE').AsFloat + Q_padrao_itemQTDE.AsFloat;
-      Q_produto.Refresh;
       Q_padrao_item.Delete;
       Messagedlg('Item excluido com sucesso!', mtConfirmation, [mbok], 0);
 
@@ -223,6 +241,31 @@ procedure TFrm_venda.bt_gravarClick(Sender: TObject);
 begin
   inherited;
   bt_item.Click;
+
+end;
+
+procedure TFrm_venda.bt_imprimirClick(Sender: TObject);
+
+var
+  caminho: string;
+
+begin
+
+  caminho := ExtractFilePath(Application.ExeName);
+
+  if Frm_venda.Rel_Recibo_Venda.LoadFromFile(caminho + 'REL_RECIBO_VENDA.fr3')
+  then
+  begin
+
+    Rel_Recibo_Venda.clear; // limpa relatorio
+    Rel_Recibo_Venda.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_RECIBO_VENDA.fr3');
+    Rel_Recibo_Venda.PrepareReport(true);
+    Rel_Recibo_Venda.ShowPreparedReport;
+
+  end
+  else
+    Messagedlg('Relatorio não encontrado', mtError, [mbok], 0);
 
 end;
 
@@ -261,7 +304,6 @@ end;
 
 procedure TFrm_venda.bt_okClick(Sender: TObject);
 
-
 begin
   Q_padrao.Edit;
   Q_padraoVALOR.AsFloat := Q_padrao_item.AggFields.FieldByName
@@ -286,7 +328,7 @@ begin
   Q_produto.Refresh;
   Messagedlg('Dado baixa no estoque com sucesso!', mtinformation, [mbok], 0);
 
-   // ABRE A TELA DE RECEBIMENTO
+  // ABRE A TELA DE RECEBIMENTO
 
   Frm_recebimento_venda := Tfrm_recebimento_venda.Create(self);
   Frm_recebimento_venda.ShowModal;
@@ -447,9 +489,9 @@ end;
 procedure TFrm_venda.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  Q_cliente.close;
-  Q_forma_pgto.close;
-  Q_produto.close;
+  Q_cliente.Close;
+  Q_forma_pgto.Close;
+  Q_produto.Close;
 end;
 
 procedure TFrm_venda.FormShow(Sender: TObject);

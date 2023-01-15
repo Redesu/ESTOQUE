@@ -24,10 +24,10 @@ type
     Label1: TLabel;
     Label2: TLabel;
     bt_ok: TBitBtn;
-    bt_imprimir: TBitBtn;
     procedure RG_forma_pgtoClick(Sender: TObject);
     procedure db_valor_pagoExit(Sender: TObject);
     procedure bt_okClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -81,6 +81,8 @@ begin
       // Grava na tabela
       Frm_venda.Q_conta_receber.Post;
       Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
+      Frm_venda.bt_imprimir.Click;
+      Frm_recebimento_venda.Close;
       abort;
 
     end;
@@ -117,6 +119,10 @@ begin
       Frm_venda.Q_conta_receber.Next;
 
     end;
+    Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok],0);
+    Frm_venda.bt_imprimir.Click;
+    Frm_recebimento_venda.Close;
+    abort;
   end
   else
 
@@ -164,7 +170,9 @@ begin
   end;
 
   Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
-
+   Frm_venda.bt_imprimir.Click;
+   Frm_recebimento_venda.Close;
+   abort;
 end;
 
 procedure TFrm_recebimento_venda.db_valor_pagoExit(Sender: TObject);
@@ -172,6 +180,19 @@ begin
   // volta troco
   Frm_venda.Q_padraoTROCO.AsFloat := Frm_venda.Q_padraoDINHEIRO.AsFloat -
     Frm_venda.Q_padraoVALOR.AsFloat;
+
+end;
+
+procedure TFrm_recebimento_venda.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  //Faz a função do tab
+
+     if KEY=#13 then
+     begin
+       KEY:=#0;
+       Perform(wm_nextDlgCtl,0,0);
+     end;
+
 
 end;
 

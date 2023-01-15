@@ -76,7 +76,7 @@ inherited Frm_compra1: TFrm_compra1
     end
     object Label4: TLabel
       Left = 162
-      Top = -2
+      Top = 0
       Width = 61
       Height = 13
       Caption = 'CADASTRO'
@@ -90,7 +90,7 @@ inherited Frm_compra1: TFrm_compra1
     end
     object Label5: TLabel
       Left = 302
-      Top = 6
+      Top = 0
       Width = 52
       Height = 13
       Caption = 'USUARIO'

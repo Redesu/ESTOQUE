@@ -121,6 +121,7 @@ type
     procedure db_qtdeExit(Sender: TObject);
     procedure bt_check_fornecedorClick(Sender: TObject);
     procedure bt_busca_forma_pgtoClick(Sender: TObject);
+    procedure bt_gravarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -258,6 +259,13 @@ begin
 
 end;
 
+procedure TFrm_compra1.bt_gravarClick(Sender: TObject);
+begin
+  inherited;
+  Q_padrao.Refresh;
+  bt_item.Click;
+end;
+
 procedure TFrm_compra1.bt_imprimirClick(Sender: TObject);
 
 var
@@ -371,7 +379,7 @@ begin
       // Total a pagar recebe o valor da parcela
       Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
         Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
-      Q_conta_pagar.FieldByName('STATUS').AsString := 'RECEBIDO';
+      Q_conta_pagar.FieldByName('STATUS').AsString := 'PAGO';
       // Grava na tabela
       Q_conta_pagar.Post;
       abort;
@@ -465,15 +473,15 @@ begin
   // Insere dados na condição de pgto
 
   // Se for a vista ou cartão de credito
-  {
+
     if (DB_id_forma_pgto.Text = Inttostr(1)) or
-    (DB_id_forma_pgto.Text = Inttostr(2)) then
+    (DB_id_forma_pgto.Text = Inttostr(3)) then
     begin
     DB_cond_pgto.Text := Inttostr(1);
     end
     else
     DB_cond_pgto.SetFocus;
-  }
+
 end;
 
 procedure TFrm_compra1.db_produto_idExit(Sender: TObject);
