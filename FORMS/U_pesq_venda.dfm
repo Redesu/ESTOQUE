@@ -1,12 +1,10 @@
 inherited Frm_pesq_venda: TFrm_pesq_venda
   Caption = 'PESQUISA DE VENDAS'
   KeyPreview = False
-  ExplicitLeft = -119
-  ExplicitWidth = 1042
-  ExplicitHeight = 670
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
+    ExplicitWidth = 1036
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
@@ -72,6 +70,13 @@ inherited Frm_pesq_venda: TFrm_pesq_venda
         FieldName = 'VALOR'
         Visible = True
       end>
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 568
+    ExplicitWidth = 1036
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
     Active = True

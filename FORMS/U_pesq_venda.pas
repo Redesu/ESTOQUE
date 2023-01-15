@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
   frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls;
 
 type
   TFrm_pesq_venda = class(TFrm_pesquisa_padrao)
@@ -41,10 +41,10 @@ implementation
 
 procedure TFrm_pesq_venda.bt_ImprimirClick(Sender: TObject);
 var
-caminho: string;
+  caminho: string;
 
 begin
-    if Frm_pesq_venda.frxReport1.LoadFromFile(caminho + 'REL_VENDA.fr3') then
+  if Frm_pesq_venda.frxReport1.LoadFromFile(caminho + 'REL_VENDA.fr3') then
   begin
 
     frxReport1.clear; // limpa relatorio
@@ -131,6 +131,9 @@ begin
   end;
 
   Q_pesq_padrao.open;
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
 
   // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then
@@ -145,7 +148,7 @@ end;
 procedure TFrm_pesq_venda.bt_transferirClick(Sender: TObject);
 begin
   inherited;
-    if Q_pesq_padrao.RecordCount > 0 then
+  if Q_pesq_padrao.RecordCount > 0 then
   begin
     codico := Q_pesq_padraoVENDA_ID.AsInteger;
 

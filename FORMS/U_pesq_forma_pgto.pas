@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
   frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls;
 
 type
   TFrm_pesq_forma_pgto = class(TFrm_pesquisa_padrao)
@@ -72,6 +72,11 @@ begin
   end;
 
   Q_pesq_padrao.open; // abre a query
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
+
+
   // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then
   begin
@@ -85,7 +90,7 @@ end;
 procedure TFrm_pesq_forma_pgto.bt_transferirClick(Sender: TObject);
 begin
   inherited;
-     if Q_pesq_padrao.RecordCount > 0 then
+  if Q_pesq_padrao.RecordCount > 0 then
   begin
     codico := Q_pesq_padraoID_FORMA_PGTO.AsInteger;
   end

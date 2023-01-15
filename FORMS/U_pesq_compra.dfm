@@ -1,11 +1,9 @@
 inherited Frm_pesq_compra: TFrm_pesq_compra
   Caption = 'PESQUISA COMPRAS'
-  ExplicitLeft = -119
-  ExplicitWidth = 1042
-  ExplicitHeight = 670
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
+    ExplicitWidth = 1036
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
@@ -25,6 +23,59 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
       'CADASTRO'
       'PERIODO'
       'TODOS')
+  end
+  inherited DBGrid1: TDBGrid
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'COMPRA_ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FORNECEDOR_ID'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
+        Width = 400
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_FORMA_PGTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRICAO'
+        Width = 150
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'USUARIO'
+        Width = 250
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CADASTRO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR'
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 568
+    ExplicitWidth = 1036
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
     Active = True

@@ -1,0 +1,145 @@
+unit U_pesq_forma_pgto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Form_pesquisa_padrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
+  frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls;
+
+type
+  TFrm_pesq_forma_pgto = class(TFrm_pesquisa_padrao)
+    Q_pesq_padraoID_FORMA_PGTO: TIntegerField;
+    Q_pesq_padraoDESCRICAO: TStringField;
+    Q_pesq_padraoCADASTRO: TDateField;
+    procedure bt_PesquisaClick(Sender: TObject);
+    procedure cb_chave_pesquisaChange(Sender: TObject);
+    procedure bt_transferirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_pesq_forma_pgto: TFrm_pesq_forma_pgto;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_pesq_forma_pgto.bt_PesquisaClick(Sender: TObject);
+begin
+  Q_pesq_padrao.Close;
+  Q_pesq_padrao.sql.add(''); // limpa
+  Q_pesq_padrao.Params.clear; // limpa parametros
+  Q_pesq_padrao.sql.clear; // limpa sql
+
+  Q_pesq_padrao.sql.add('SELECT ID_FORMA_PGTO, ' + 'DESCRICAO, ' +
+    'CADASTRO FROM FORMA_PGTO');
+
+  case cb_chave_pesquisa.ItemIndex of
+    0:
+      begin
+        // pesquisa por codigo
+        Q_pesq_padrao.sql.add('WHERE ID_FORMA_PGTO =:PID_FORMA_PGTO');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PID_FORMA_PGTO').AsString := ed_nome.Text;
+        // aponta para o campo do parametro
+      end;
+
+    1:
+      begin
+        // pesquisa pela descrição
+        Q_pesq_padrao.sql.add('WHERE DESCRICAO LIKE :PDESCRICAO');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PDESCRICAO').AsString :=
+          '%' + ed_nome.Text + '%';
+        // aponta para o campo do parametro
+      end;
+
+    2:
+      begin
+        // pesquisa por todos
+        Q_pesq_padrao.sql.add('ORDER BY ID_FORMA_PGTO');
+      end;
+
+  end;
+
+  Q_pesq_padrao.open; // abre a query
+
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
+  // Se nada for encontrado, mostra o codico abaixo
+  if Q_pesq_padrao.IsEmpty then
+  begin
+    Messagedlg('Registro não encontrado!', Mtinformation, [mbOk], 0);
+  end
+  else
+    abort;
+
+end;
+
+procedure TFrm_pesq_forma_pgto.bt_transferirClick(Sender: TObject);
+begin
+  inherited;
+  if Q_pesq_padrao.RecordCount > 0 then
+  begin
+    codico := Q_pesq_padraoID_FORMA_PGTO.AsInteger;
+  end
+  else
+    abort;
+end;
+
+procedure TFrm_pesq_forma_pgto.cb_chave_pesquisaChange(Sender: TObject);
+begin
+  case cb_chave_pesquisa.ItemIndex of
+    0:
+      begin // pesquisa pelo código
+        ed_nome.Visible := true;
+        ed_nome.SetFocus;
+        mk_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_nome.Visible := true;
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false;
+        lb_nome.Caption := 'Digite o código';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+
+    1:
+      begin // pesquisa pela descrição
+        ed_nome.Visible := true;
+        ed_nome.SetFocus;
+        mk_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_nome.Visible := true;
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false;
+        lb_nome.Caption := 'Digite a forma de pgto';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+
+    2:
+      begin // pesquisa por todos
+        ed_nome.Visible := false;
+        lb_nome.Visible := false;
+        mk_inicio.Visible := false;
+        lb_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_fim.Visible := false;
+      end;
+  end;
+
+end;
+
+end.

@@ -1,8 +1,7 @@
 inherited Frm_pesq_Cliente: TFrm_pesq_Cliente
   Caption = 'PESQUISA CLIENTE '
   ClientWidth = 1082
-  ExplicitWidth = 1098
-  ExplicitHeight = 670
+  ExplicitWidth = 1088
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
@@ -83,7 +82,11 @@ inherited Frm_pesq_Cliente: TFrm_pesq_Cliente
   end
   inherited Panel2: TPanel
     Width = 1082
+    ExplicitTop = 568
     ExplicitWidth = 1082
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
     Active = True

@@ -1,10 +1,9 @@
 inherited Frm_pesq_forma_pgto: TFrm_pesq_forma_pgto
   Caption = 'PESQUISA FORMA DE PAGAMENTO'
-  ExplicitWidth = 1042
-  ExplicitHeight = 670
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
+    ExplicitWidth = 1036
     inherited lb_inicio: TLabel
       Visible = False
     end
@@ -50,6 +49,13 @@ inherited Frm_pesq_forma_pgto: TFrm_pesq_forma_pgto
         FieldName = 'CADASTRO'
         Visible = True
       end>
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 568
+    ExplicitWidth = 1036
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
     SQL.Strings = (

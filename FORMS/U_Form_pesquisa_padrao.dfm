@@ -1,9 +1,10 @@
 object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = 'Formul'#225'rio de pesquisa padrao'
-  ClientHeight = 631
-  ClientWidth = 1026
+  ClientHeight = 641
+  ClientWidth = 1036
   Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,8 +13,7 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesigned
-  WindowState = wsMaximized
+  Position = poScreenCenter
   OnClose = FormClose
   OnKeyPress = FormKeyPress
   OnShow = FormShow
@@ -22,12 +22,13 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1026
+    Width = 1036
     Height = 73
     Align = alTop
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1026
     object Label1: TLabel
       Left = 8
       Top = 10
@@ -447,8 +448,8 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   object DBGrid1: TDBGrid
     Left = 0
     Top = 73
-    Width = 1026
-    Height = 485
+    Width = 1036
+    Height = 495
     Align = alClient
     DataSource = ds_pesq_padrao
     TabOrder = 2
@@ -461,13 +462,38 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   end
   object Panel2: TPanel
     Left = 0
-    Top = 558
-    Width = 1026
+    Top = 568
+    Width = 1036
     Height = 73
     Align = alBottom
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 3
+    ExplicitTop = 558
+    ExplicitWidth = 1026
+    object lb_resultado: TLabel
+      Left = 0
+      Top = 32
+      Width = 251
+      Height = 19
+      Caption = 'Total de registros localizados: '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 738
+    Top = 584
+    Width = 280
+    Height = 39
+    DataSource = ds_pesq_padrao
+    VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+    TabOrder = 4
   end
   object Q_pesq_padrao: TFDQuery
     ChangeAlertName = ' '

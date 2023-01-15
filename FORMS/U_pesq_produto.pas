@@ -10,7 +10,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
-  frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet, frxBarcode;
+  frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet, frxBarcode,
+  Vcl.DBCtrls;
 
 type
   TFrm_pesq_produto = class(TFrm_pesquisa_padrao)
@@ -48,7 +49,7 @@ procedure TFrm_pesq_produto.bt_etiquetaClick(Sender: TObject);
 var
   caminho: string;
 begin
-   caminho := ExtractFilePath(Application.ExeName);
+  caminho := ExtractFilePath(Application.ExeName);
 
   if Frm_pesq_produto.frxReport1.LoadFromFile(caminho + 'REL_ETIQUETA.fr3') then
   begin
@@ -62,7 +63,6 @@ begin
   end
   else
     Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
-
 
 end;
 
@@ -154,6 +154,9 @@ begin
 
   end;
   Q_pesq_padrao.open;
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
 
   // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then

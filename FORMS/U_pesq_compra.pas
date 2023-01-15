@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
   frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls;
 
 type
   TFrm_pesq_compra = class(TFrm_pesquisa_padrao)
@@ -43,7 +43,7 @@ procedure TFrm_pesq_compra.bt_ImprimirClick(Sender: TObject);
 var
   caminho: string;
 begin
-    caminho := ExtractFilePath(Application.ExeName);
+  caminho := ExtractFilePath(Application.ExeName);
 
   if Frm_pesq_compra.frxReport1.LoadFromFile(caminho + 'REL_COMPRA.fr3') then
   begin
@@ -131,6 +131,9 @@ begin
   end;
 
   Q_pesq_padrao.open;
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
 
   // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then

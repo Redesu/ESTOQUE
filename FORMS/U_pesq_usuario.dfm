@@ -4,6 +4,7 @@ inherited Frm_pesq_usuario: TFrm_pesq_usuario
   TextHeight = 13
   inherited Panel1: TPanel
     TabOrder = 1
+    ExplicitWidth = 1036
     inherited mk_inicio: TMaskEdit
       Width = 116
       EditMask = '!99/99/0000;1;_'
@@ -58,6 +59,13 @@ inherited Frm_pesq_usuario: TFrm_pesq_usuario
         Title.Caption = 'Data de cadastro'
         Visible = True
       end>
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 568
+    ExplicitWidth = 1036
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
     Active = True

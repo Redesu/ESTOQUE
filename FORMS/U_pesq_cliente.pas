@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
-  frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF;
+  frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF, Vcl.DBCtrls;
 
 type
   TFrm_pesq_Cliente = class(TFrm_pesquisa_padrao)
@@ -120,6 +120,9 @@ begin
   end;
 
   Q_pesq_padrao.open; // abre a query
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
 
   // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then

@@ -1,13 +1,16 @@
 inherited Frm_pesq_produto: TFrm_pesq_produto
   Caption = 'PESQUISA PRODUTO'
-  ClientWidth = 1132
-  ExplicitLeft = -213
+  ClientWidth = 1142
+  ExplicitLeft = -1
   ExplicitWidth = 1148
-  ExplicitHeight = 670
+  DesignSize = (
+    1142
+    641)
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
-    Width = 1132
+    Width = 1142
+    ExplicitWidth = 1142
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
@@ -136,7 +139,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       'FORNECEDOR')
   end
   inherited DBGrid1: TDBGrid
-    Width = 1132
+    Width = 1142
     Columns = <
       item
         Expanded = False
@@ -146,6 +149,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       item
         Expanded = False
         FieldName = 'PRODUTO_DESCRICAO'
+        Width = 400
         Visible = True
       end
       item
@@ -190,7 +194,13 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       end>
   end
   inherited Panel2: TPanel
-    Width = 1132
+    Width = 1142
+    ExplicitTop = 568
+    ExplicitWidth = 1142
+  end
+  inherited DBNavigator1: TDBNavigator
+    Anchors = [akLeft, akTop, akRight]
+    Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
     Active = True
@@ -222,6 +232,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       FieldName = 'VL_CUSTO'
       Origin = 'VL_CUSTO'
       Required = True
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -229,6 +240,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       FieldName = 'VL_VENDA'
       Origin = 'VL_VENDA'
       Required = True
+      currency = True
       Precision = 18
       Size = 2
     end
