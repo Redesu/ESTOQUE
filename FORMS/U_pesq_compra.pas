@@ -22,10 +22,12 @@ type
     Q_pesq_padraoUSUARIO: TStringField;
     Q_pesq_padraoCADASTRO: TDateField;
     Q_pesq_padraoVALOR: TFMTBCDField;
+    lb_valor_compra: TLabel;
     procedure bt_PesquisaClick(Sender: TObject);
     procedure cb_chave_pesquisaChange(Sender: TObject);
     procedure bt_transferirClick(Sender: TObject);
     procedure bt_ImprimirClick(Sender: TObject);
+    procedure Soma_Compra();
   private
     { Private declarations }
   public
@@ -60,6 +62,7 @@ begin
 end;
 
 procedure TFrm_pesq_compra.bt_PesquisaClick(Sender: TObject);
+
 begin
   Q_pesq_padrao.Close; // Fecha query
   Q_pesq_padrao.sql.add(''); // limpa
@@ -131,6 +134,11 @@ begin
   end;
 
   Q_pesq_padrao.open;
+
+  // Soma os valores de valor
+  Soma_Compra;
+
+  // Mostra a quantidade de registros
   lb_resultado.Visible := true;
   lb_resultado.Caption := 'Total de registros localizados: ' +
     IntToStr(Q_pesq_padrao.RecordCount);
@@ -258,6 +266,29 @@ begin
         lb_fim.Visible := false;
       end;
   end;
+
+end;
+
+procedure TFrm_pesq_compra.Soma_Compra;
+
+var
+  soma: Currency;
+
+begin
+
+  soma := 0;
+
+  // soma a quantidade de compras
+  Q_pesq_padrao.First;
+
+  while not Q_pesq_padrao.Eof do
+  begin
+    soma := soma + Q_pesq_padraoVALOR.AsCurrency;
+    Q_pesq_padrao.Next;
+  end;
+  lb_valor_compra.Visible := true;
+  lb_valor_compra.Caption := 'Valores em compras: ' +
+    FormatFloat('R$ ##,##0.00', (soma));
 
 end;
 

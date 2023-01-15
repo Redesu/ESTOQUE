@@ -1,0 +1,290 @@
+unit U_pesq_compra;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Form_pesquisa_padrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
+  frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.DBCtrls;
+
+type
+  TFrm_pesq_compra = class(TFrm_pesquisa_padrao)
+    Q_pesq_padraoCOMPRA_ID: TIntegerField;
+    Q_pesq_padraoFORNECEDOR_ID: TIntegerField;
+    Q_pesq_padraoNOME: TStringField;
+    Q_pesq_padraoID_FORMA_PGTO: TIntegerField;
+    Q_pesq_padraoDESCRICAO: TStringField;
+    Q_pesq_padraoUSUARIO: TStringField;
+    Q_pesq_padraoCADASTRO: TDateField;
+    Q_pesq_padraoVALOR: TFMTBCDField;
+    lb_valor_compra: TLabel;
+    procedure bt_PesquisaClick(Sender: TObject);
+    procedure cb_chave_pesquisaChange(Sender: TObject);
+    procedure bt_transferirClick(Sender: TObject);
+    procedure bt_ImprimirClick(Sender: TObject);
+    procedure Soma_Compra();
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_pesq_compra: TFrm_pesq_compra;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_pesq_compra.bt_ImprimirClick(Sender: TObject);
+var
+  caminho: string;
+begin
+  caminho := ExtractFilePath(Application.ExeName);
+
+  if Frm_pesq_compra.frxReport1.LoadFromFile(caminho + 'REL_COMPRA.fr3') then
+  begin
+
+    frxReport1.clear; // limpa relatorio
+    frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_COMPRA.fr3');
+    frxReport1.PrepareReport(true);
+    frxReport1.ShowPreparedReport;
+
+  end
+  else
+    Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
+end;
+
+procedure TFrm_pesq_compra.bt_PesquisaClick(Sender: TObject);
+
+begin
+  Q_pesq_padrao.Close; // Fecha query
+  Q_pesq_padrao.sql.add(''); // limpa
+  Q_pesq_padrao.Params.clear; // limpa parametros
+  Q_pesq_padrao.sql.clear; // limpa sql
+
+  Q_pesq_padrao.sql.add('SELECT A.COMPRA_ID, ' + 'A.FORNECEDOR_ID, ' +
+    'B.NOME, ' + 'A.ID_FORMA_PGTO, ' + 'C.DESCRICAO, ' + 'A.USUARIO, ' +
+    'A.CADASTRO, ' + 'A.VALOR ' + 'FROM COMPRA A ' +
+    'INNER JOIN FORNECEDOR B ON B.FORNECEDOR_ID = A.FORNECEDOR_ID ' +
+    'INNER JOIN FORMA_PGTO C ON C.ID_FORMA_PGTO = A.ID_FORMA_PGTO ');
+
+  case cb_chave_pesquisa.ItemIndex of
+    0:
+      begin
+        // pesquisa por codigo
+        Q_pesq_padrao.sql.add('WHERE A.COMPRA_ID =:PCOMPRA_ID');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PCOMPRA_ID').AsString := ed_nome.Text;
+        // aponta para o campo do parametro
+      end;
+
+    1:
+      begin
+        Q_pesq_padrao.sql.add('WHERE A.USUARIO LIKE :PUSUARIO');
+        // criamos parametro
+        Q_pesq_padrao.paramByname('PUSUARIO').AsString := '%' + ed_nome.Text +
+          '%'; // aponta para o campo do parametro
+      end;
+
+    2:
+      begin
+        // pesquisa por periodo
+        Q_pesq_padrao.sql.add('WHERE A.FORNECEDOR_ID =:PFORNECEDOR_ID');
+        Q_pesq_padrao.paramByname('PFORNECEDOR_ID').AsDate :=
+          strTodate(mk_inicio.Text);
+      end;
+
+    3:
+      begin
+        // pesquisa por forma de pagamento
+        Q_pesq_padrao.sql.add('WHERE A.ID_FORMA_PGTO =:PID_FORMA_PGTO');
+        Q_pesq_padrao.paramByname('PID_FORMA_PGTO').AsString := ed_nome.Text
+      end;
+
+    4:
+      begin
+        // pesquisa por data
+        Q_pesq_padrao.sql.add('WHERE A.CADASTRO BETWEEN :PINICIO AND :PFIM');
+        Q_pesq_padrao.paramByname('PINICIO').AsDate :=
+          strTodate(mk_inicio.Text);
+        Q_pesq_padrao.paramByname('PFIM').AsDate := strTodate(mk_fim.Text);
+      end;
+
+    5:
+      begin
+        // pesquisa por periodo
+        Q_pesq_padrao.sql.add('WHERE A.CADASTRO =:PCADASTRO');
+        Q_pesq_padrao.paramByname('PCADASTRO').AsDate :=
+          strTodate(mk_inicio.Text);
+      end;
+
+    6:
+      begin
+        // pesquisa por todos
+        Q_pesq_padrao.sql.add('ORDER BY A.COMPRA_ID');
+      end;
+
+  end;
+
+  Q_pesq_padrao.open;
+
+      Soma_Compra;
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
+
+
+  // Se nada for encontrado, mostra o codico abaixo
+  if Q_pesq_padrao.IsEmpty then
+  begin
+    Messagedlg('Registro não encontrado!', Mtinformation, [mbOk], 0);
+  end
+  else
+    abort;
+
+end;
+
+procedure TFrm_pesq_compra.bt_transferirClick(Sender: TObject);
+begin
+  inherited;
+  if Q_pesq_padrao.RecordCount > 0 then
+  begin
+    codico := Q_pesq_padraoCOMPRA_ID.AsInteger;
+
+  end
+  else
+    abort;
+end;
+
+procedure TFrm_pesq_compra.cb_chave_pesquisaChange(Sender: TObject);
+begin
+
+  case cb_chave_pesquisa.ItemIndex of
+
+    0:
+      begin // pesquisa pelo código
+        ed_nome.Visible := true;
+        ed_nome.SetFocus;
+        mk_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_nome.Visible := true;
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false;
+        lb_nome.Caption := 'Digite o código da compra';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+
+    1:
+      begin // pesquisa pelo nome
+        ed_nome.Visible := true;
+        ed_nome.SetFocus;
+        mk_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_nome.Visible := true;
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false;
+        lb_nome.Caption := 'Digite o usuario';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+    2:
+      begin // pesquisa pelo código
+        ed_nome.Visible := true;
+        ed_nome.SetFocus;
+        mk_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_nome.Visible := true;
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false;
+        lb_nome.Caption := 'Digite o código do fornecedor';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+    3:
+      begin // pesquisa pelo código
+        ed_nome.Visible := true;
+        ed_nome.SetFocus;
+        mk_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_nome.Visible := true;
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false;
+        lb_nome.Caption := 'Digite o código da forma pgto';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+
+    4:
+      begin // pesquisa por data
+        ed_nome.Visible := false;
+        mk_inicio.Visible := true;
+        mk_inicio.SetFocus;
+        mk_fim.Visible := false;
+        lb_nome.Visible := false;
+        lb_inicio.Visible := true;
+        lb_fim.Visible := false;
+        lb_inicio.Caption := 'Digite a data';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+    5:
+      begin // pesquisa por periodo
+        ed_nome.Visible := false;
+        mk_inicio.Visible := true;
+        mk_fim.Visible := true;
+        mk_inicio.SetFocus;
+        lb_nome.Visible := false;
+        lb_inicio.Visible := true;
+        lb_fim.Visible := false;
+        lb_inicio.Caption := 'Digite o periodo';
+        ed_nome.clear;
+        mk_inicio.clear;
+        mk_fim.clear;
+      end;
+    6:
+      begin // pesquisa por todos
+        ed_nome.Visible := false;
+        lb_nome.Visible := false;
+        mk_inicio.Visible := false;
+        lb_inicio.Visible := false;
+        mk_fim.Visible := false;
+        lb_fim.Visible := false;
+      end;
+  end;
+
+end;
+
+procedure TFrm_pesq_compra.Soma_Compra;
+
+var
+  soma: Currency;
+
+begin
+     //soma a quantidade de compras
+     Q_pesq_padrao.First;
+
+     while not Q_pesq_padrao.Eof do
+     begin
+       soma := soma + Q_pesq_padraoValor.AsCurrency;
+       Q_pesq_padrao.Next;
+     end;
+     lb_valor_compra.Visible;
+     lb_valor_compra.Caption:='Total: ' + FloatToStr(soma);
+
+
+end;
+
+end.

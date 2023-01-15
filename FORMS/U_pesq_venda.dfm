@@ -74,6 +74,20 @@ inherited Frm_pesq_venda: TFrm_pesq_venda
   inherited Panel2: TPanel
     ExplicitTop = 568
     ExplicitWidth = 1036
+    object lb_valor_venda: TLabel
+      Left = 288
+      Top = 32
+      Width = 43
+      Height = 19
+      Caption = 'Total'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
   end
   inherited DBNavigator1: TDBNavigator
     Hints.Strings = ()

@@ -75,7 +75,8 @@ begin
 
   end
   else
-    MessageDlg('Usuário ou senha incorretos!', mtinformation, [mbok], 0);
+    //MessageDlg('Usuário ou senha incorretos! Tentativas 3 de ', mtinformation, [mbok], 0);
+    Application.MessageBox(PChar('Usuário ou senha incorretos! Tentativa ' + IntToStr(contagem) + ' de 3'), 'ESTOQUE', MB_ICONINFORMATION);
   ed_usuario.SetFocus;
 
   if contagem >= 3 then
