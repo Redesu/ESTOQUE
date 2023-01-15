@@ -1,10 +1,13 @@
 inherited Frm_pesq_produto: TFrm_pesq_produto
   Caption = 'PESQUISA PRODUTO'
-  ExplicitWidth = 1042
+  ClientWidth = 1132
+  ExplicitLeft = -213
+  ExplicitWidth = 1148
   ExplicitHeight = 670
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
+    Width = 1132
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
@@ -13,6 +16,114 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
     end
     inherited bt_Imprimir: TBitBtn
       OnClick = bt_ImprimirClick
+    end
+    object bt_etiqueta: TBitBtn
+      Left = 1014
+      Top = 15
+      Width = 92
+      Height = 45
+      Caption = '&Barras'
+      Glyph.Data = {
+        360C0000424D360C000000000000360000002800000020000000200000000100
+        180000000000000C0000610F0000610F00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFD3D3D37979796464649F9F9FF1F1F1FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFC6C6C62E2E2E1A1A1A3030300C0C0C787878FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFC6C6C62A2A2A2E2E2ECBCBCBEFEFEF4F4F4F0A0A0AFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFC6C6C62A2A2A2E2E2ECECECEFFFFFFFBFBFB5A5A5A0A0A0AFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC6
+        C6C62A2A2A2E2E2ECECECEFFFFFFFBFBFB9090901010106D6D6DFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFAFAFAE9E9E9E2E2E2F2F2F2FFFFFFC6C6C62A
+        2A2A2E2E2ECECECEFFFFFFFBFBFB9090900F0F0F6C6C6CF0F0F0FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFE6E6E69797974E4E4E2626261B1B1B3737376B6B6B2C2C2C31
+        3131CFCFCFFFFFFFFBFBFB9090900F0F0F6B6B6BF2F2F2FFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFC1C1C13838380B0B0B4040406666666767675A5A5A20202000000067
+        6767F4F4F4FCFCFC9090900F0F0F6B6B6BF2F2F2FFFFFFFFFFFFF6F6F6FBFBFB
+        FFFFFFFDFDFDF6F6F6FCFCFCFFFFFFFBFBFBF6F6F6FDFDFDFFFFFFFAFAFAF9F9
+        F9C9C9C92626262A2A2AAEAEAEF5F5F5FFFFFFFFFFFFFDFDFDDCDCDC6D6D6D0E
+        0E0E7373738C8C8C0F0F0F6B6B6BF2F2F2FFFFFFFFFFFFFFFFFF3E3E3EAFAFAF
+        FFFFFFCFCFCF464646B4B4B4FFFFFFB0B0B0444444D0D0D0FFFFFF9393934747
+        473131312B2B2BCECECEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9F9F978
+        78780808080A0A0A6C6C6CF2F2F2FFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099B9B9BFFFFFF969696070707C0C0C0FFFFFF6F6F6F0000
+        00050505A0A0A0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEB
+        EBEB3838382A2A2AE7E7E7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF7070700000
+        002A2A2AE6E6E6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF828282151515D4D4D4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF7070700000
+        004E4E4EFAFAFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFB5B5B50F0F0FBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF7070700000
+        00505050FBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFB7B7B7101010BFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF7070700000
+        002F2F2FEAEAEAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF888888121212D0D0D0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF7070700000
+        00080808ADADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0
+        F0F0404040424242F4F4F4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6F6F6F0C0C
+        0C212121373737DDDDDDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCFCFC88
+        88880C0C0CA3A3A3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1C1C
+        1C9B9B9B1C1C1C404040C2C2C2FAFAFAFFFFFFFFFFFFFFFFFFE7E7E78080800A
+        0A0A5F5F5FF6F6F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1A1A
+        1AE1E1E1B8B8B82323231010105454548D8D8D9696967676762D2D2D08080800
+        0000969696FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1A1A
+        1AE1E1E1FFFFFF6666661212123737371C1C1C0606061515155B5B5B96969619
+        1919949494FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1A1A
+        1AE1E1E1FFFFFF6565653A3A3AEAEAEADADADA333333616161FFFFFFE1E1E11D
+        1D1D949494FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1A1A
+        1AE1E1E1FFFFFF6565653B3B3BF7F7F7F7F7F73B3B3B656565FFFFFFE1E1E11D
+        1D1D949494FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1A1A
+        1AE1E1E1FFFFFF6565653B3B3BF7F7F7F7F7F73B3B3B656565FFFFFFE1E1E11D
+        1D1D949494FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00909099C9C9CFFFFFF969696070707C0C0C0FFFFFF6E6E6E1A1A
+        1AE1E1E1FFFFFF6565653B3B3BF7F7F7F7F7F73B3B3B656565FFFFFFE1E1E11D
+        1D1D949494FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000959595
+        FFFFFFC0C0C00808089B9B9BFFFFFF969696070707C0C0C0FFFFFF6D6D6D1A1A
+        1AE1E1E1FFFFFF6565653B3B3BF7F7F7F7F7F73B3B3B656565FFFFFFE1E1E11D
+        1D1D949494FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF616161BEBEBE
+        FFFFFFD8D8D8676767C2C2C2FFFFFFBEBEBE666666D8D8D8FFFFFFA6A6A67373
+        73EDEDEDFFFFFFA1A1A1878787FAFAFAFAFAFA878787A1A1A1FFFFFFEDEDED75
+        7575BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      TabOrder = 6
+      OnClick = bt_etiquetaClick
     end
   end
   inherited cb_chave_pesquisa: TComboBox
@@ -25,6 +136,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       'FORNECEDOR')
   end
   inherited DBGrid1: TDBGrid
+    Width = 1132
     Columns = <
       item
         Expanded = False
@@ -76,6 +188,9 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
         FieldName = 'CADASTRO'
         Visible = True
       end>
+  end
+  inherited Panel2: TPanel
+    Width = 1132
   end
   inherited Q_pesq_padrao: TFDQuery
     Active = True
@@ -157,7 +272,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
   end
   inherited frxReport1: TfrxReport
     ReportOptions.CreateDate = 44914.724794120400000000
-    ReportOptions.LastChange = 44914.783439675930000000
+    ReportOptions.LastChange = 44941.591657731500000000
     Datasets = <
       item
         DataSet = frxDB_padrao
@@ -170,8 +285,9 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
-      PaperWidth = 210.000000000000000000
-      PaperHeight = 297.000000000000000000
+      Orientation = poLandscape
+      PaperWidth = 297.000000000000000000
+      PaperHeight = 210.000000000000000000
       PaperSize = 9
       LeftMargin = 20.000000000000000000
       RightMargin = 20.000000000000000000
@@ -188,12 +304,12 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
         Frame.Typ = []
         Height = 83.149660000000000000
         Top = 18.897650000000000000
-        Width = 642.520100000000000000
+        Width = 971.339210000000000000
         object Memo1: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
           Top = 41.574830000000000000
-          Width = 642.520100000000000000
+          Width = 971.339210000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -203,113 +319,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
           Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
-            'RELAT'#211'RIO DE PRODUTOS')
-          ParentFont = False
-        end
-      end
-      object PageHeader1: TfrxPageHeader
-        FillType = ftBrush
-        FillGap.Top = 0
-        FillGap.Left = 0
-        FillGap.Bottom = 0
-        FillGap.Right = 0
-        Frame.Typ = []
-        Height = 22.677180000000000000
-        Top = 124.724490000000000000
-        Width = 642.520100000000000000
-        object Memo2: TfrxMemoView
-          AllowVectorExport = True
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'C'#211'DIGO')
-          ParentFont = False
-        end
-        object Memo3: TfrxMemoView
-          AllowVectorExport = True
-          Left = 105.826840000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'DESCRI'#199#195'O')
-          ParentFont = False
-        end
-        object Memo4: TfrxMemoView
-          AllowVectorExport = True
-          Left = 196.535560000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'CUSTO')
-          ParentFont = False
-        end
-        object Memo5: TfrxMemoView
-          AllowVectorExport = True
-          Left = 294.803340000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'VENDA')
-          ParentFont = False
-        end
-        object Memo6: TfrxMemoView
-          AllowVectorExport = True
-          Left = 404.409710000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'ESTOQUE')
-          ParentFont = False
-        end
-        object Memo7: TfrxMemoView
-          AllowVectorExport = True
-          Left = 498.897960000000000000
-          Width = 94.488250000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = []
-          HAlign = haCenter
-          Memo.UTF8W = (
-            'DATA')
+            'ETIQUETAS DE PRODUTOS')
           ParentFont = False
         end
       end
@@ -374,37 +384,67 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
         FillGap.Bottom = 0
         FillGap.Right = 0
         Frame.Typ = []
-        Height = 18.897650000000000000
-        Top = 207.874150000000000000
-        Width = 642.520100000000000000
+        Height = 90.708720000000000000
+        Top = 162.519790000000000000
+        Width = 971.339210000000000000
+        Columns = 5
+        ColumnWidth = 188.976377952756000000
+        ColumnGap = 11.338582677165400000
         DataSet = frxDB_padrao
         DataSetName = 'frxDBDataset1'
         RowCount = 0
-        object frxDBDataset1PRODUTO_ID: TfrxMemoView
+        object frxDBDataset1VL_VENDA: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
+          Left = 41.574830000000000000
+          Top = 18.897650000000000000
           Width = 79.370130000000000000
           Height = 18.897650000000000000
-          DataField = 'PRODUTO_ID'
+          DataField = 'VL_VENDA'
           DataSet = frxDB_padrao
           DataSetName = 'frxDBDataset1'
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
+          Frame.Typ = []
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBDataset1."PRODUTO_ID"]')
+            '[frxDBDataset1."VL_VENDA"]')
           ParentFont = False
+        end
+        object BarCode1: TfrxBarCodeView
+          AllowVectorExport = True
+          Left = 26.456710000000000000
+          Top = 37.795300000000000000
+          Width = 105.000000000000000000
+          Height = 45.354360000000000000
+          BarType = bcCodeEAN13
+          DataField = 'PRODUTO_ID'
+          DataSet = frxDB_padrao
+          DataSetName = 'frxDBDataset1'
+          Frame.Typ = []
+          Rotation = 0
+          TestLine = False
+          Text = '12345678'
+          WideBarRatio = 2.000000000000000000
+          Zoom = 1.000000000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -12
+          Font.Name = 'Arial'
+          Font.Style = []
+          ColorBar = clBlack
         end
         object frxDBDataset1PRODUTO_DESCRICAO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 79.370130000000000000
-          Width = 132.283550000000000000
-          Height = 18.897650000000000000
+          Left = 3.779530000000000000
+          Width = 166.299320000000000000
+          Height = 90.708720000000000000
           DataField = 'PRODUTO_DESCRICAO'
           DataSet = frxDB_padrao
           DataSetName = 'frxDBDataset1'
@@ -419,87 +459,11 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
             '[frxDBDataset1."PRODUTO_DESCRICAO"]')
           ParentFont = False
         end
-        object frxDBDataset1VL_CUSTO: TfrxMemoView
-          IndexTag = 1
-          AllowVectorExport = True
-          Left = 211.653680000000000000
-          Width = 75.590600000000000000
-          Height = 18.897650000000000000
-          DataField = 'VL_CUSTO'
-          DataSet = frxDB_padrao
-          DataSetName = 'frxDBDataset1'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            '[frxDBDataset1."VL_CUSTO"]')
-          ParentFont = False
-        end
-        object frxDBDataset1VL_VENDA: TfrxMemoView
-          IndexTag = 1
-          AllowVectorExport = True
-          Left = 287.244280000000000000
-          Width = 109.606370000000000000
-          Height = 18.897650000000000000
-          DataField = 'VL_VENDA'
-          DataSet = frxDB_padrao
-          DataSetName = 'frxDBDataset1'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            '[frxDBDataset1."VL_VENDA"]')
-          ParentFont = False
-        end
-        object frxDBDataset1ESTOQUE: TfrxMemoView
-          IndexTag = 1
-          AllowVectorExport = True
-          Left = 396.850650000000000000
-          Width = 109.606370000000000000
-          Height = 18.897650000000000000
-          DataField = 'ESTOQUE'
-          DataSet = frxDB_padrao
-          DataSetName = 'frxDBDataset1'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            '[frxDBDataset1."ESTOQUE"]')
-          ParentFont = False
-        end
-        object frxDBDataset1CADASTRO: TfrxMemoView
-          IndexTag = 1
-          AllowVectorExport = True
-          Left = 506.457020000000000000
-          Width = 79.370130000000000000
-          Height = 18.897650000000000000
-          DataField = 'CADASTRO'
-          DataSet = frxDB_padrao
-          DataSetName = 'frxDBDataset1'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Arial'
-          Font.Style = []
-          Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
-          HAlign = haCenter
-          Memo.UTF8W = (
-            '[frxDBDataset1."CADASTRO"]')
-          ParentFont = False
-        end
       end
     end
+  end
+  object frxBarCodeObject1: TfrxBarCodeObject
+    Left = 968
+    Top = 336
   end
 end

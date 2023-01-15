@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
-  frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet;
+  frxClass, frxExportBaseDialog, frxExportPDF, frxDBSet, frxBarcode;
 
 type
   TFrm_pesq_produto = class(TFrm_pesquisa_padrao)
@@ -24,9 +24,12 @@ type
     Q_pesq_padraoNOME: TStringField;
     Q_pesq_padraoCADASTRO: TDateField;
     Q_pesq_padraoVL_CUSTO: TFMTBCDField;
+    bt_etiqueta: TBitBtn;
+    frxBarCodeObject1: TfrxBarCodeObject;
     procedure bt_PesquisaClick(Sender: TObject);
     procedure bt_transferirClick(Sender: TObject);
     procedure bt_ImprimirClick(Sender: TObject);
+    procedure bt_etiquetaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +42,29 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrm_pesq_produto.bt_etiquetaClick(Sender: TObject);
+
+var
+  caminho: string;
+begin
+   caminho := ExtractFilePath(Application.ExeName);
+
+  if Frm_pesq_produto.frxReport1.LoadFromFile(caminho + 'REL_ETIQUETA.fr3') then
+  begin
+
+    frxReport1.clear; // limpa relatorio
+    frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_ETIQUETA.fr3');
+    frxReport1.PrepareReport(true);
+    frxReport1.ShowPreparedReport;
+
+  end
+  else
+    Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
+
+
+end;
 
 procedure TFrm_pesq_produto.bt_ImprimirClick(Sender: TObject);
 
