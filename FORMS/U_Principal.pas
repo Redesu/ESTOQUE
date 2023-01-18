@@ -45,6 +45,8 @@ type
     Sobre: TMenuItem;
     Fechar1: TMenuItem;
     ListaFormadepgto1: TMenuItem;
+    ComprasFormasdepgto1: TMenuItem;
+    VendasFormasdepgto1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure bt_fecharClick(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
@@ -83,6 +85,8 @@ type
     procedure ListaVendasClick(Sender: TObject);
     procedure Fechar1Click(Sender: TObject);
     procedure ListaFormadepgto1Click(Sender: TObject);
+    procedure ComprasFormasdepgto1Click(Sender: TObject);
+    procedure VendasFormasdepgto1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -100,7 +104,7 @@ implementation
 uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_compra1, U_pesq_usuario, U_pesq_fornecedor, U_pesq_cliente, U_pesq_produto,
   U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda,
-  U_pesq_forma_pgto;
+  U_pesq_forma_pgto, U_pesq_compra_Forma_pgto, U_pesq_venda_Forma_pgto;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -289,6 +293,19 @@ begin
   Abre_Tela_Compra;
 end;
 
+procedure TFrm_Principal.ComprasFormasdepgto1Click(Sender: TObject);
+begin
+ Frm_pesq_compra_Forma_pgto:=TFrm_pesq_compra_Forma_pgto.Create(self);
+ Frm_pesq_compra_Forma_pgto.ShowModal;
+ try
+
+ finally
+ Frm_pesq_compra_Forma_pgto.Free;
+ Frm_pesq_compra_Forma_pgto:=nil;
+
+ end;
+end;
+
 procedure TFrm_Principal.Fechar1Click(Sender: TObject);
 begin
   bt_fechar.Click;
@@ -440,6 +457,19 @@ end;
 procedure TFrm_Principal.Vendas1Click(Sender: TObject);
 begin
   Abre_Tela_Venda;
+end;
+
+procedure TFrm_Principal.VendasFormasdepgto1Click(Sender: TObject);
+begin
+    Frm_pesq_Venda_Forma_Pgto:=TFrm_pesq_Venda_Forma_Pgto.Create(self);
+    Frm_pesq_Venda_Forma_Pgto.ShowModal;
+    try
+
+    finally
+    Frm_pesq_Venda_Forma_Pgto.Free;
+    Frm_pesq_Venda_Forma_Pgto:=nil;
+
+    end;
 end;
 
 procedure TFrm_Principal.menu_UsuariosClick(Sender: TObject);

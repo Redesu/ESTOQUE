@@ -1,0 +1,151 @@
+inherited Frm_pesq_Venda_Forma_Pgto: TFrm_pesq_Venda_Forma_Pgto
+  Caption = 'PESQUISA DE VENDAS AGRUPADAS POR FORMA DE PAGAMENTO'
+  ExplicitLeft = -36
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    inherited Label1: TLabel
+      Left = 617
+      Visible = False
+      ExplicitLeft = 617
+    end
+    inherited lb_nome: TLabel
+      Left = 313
+      Visible = False
+      ExplicitLeft = 313
+    end
+    inherited lb_inicio: TLabel
+      Left = 16
+      ExplicitLeft = 16
+    end
+    inherited lb_fim: TLabel
+      Left = 182
+      ExplicitLeft = 182
+    end
+    inherited ed_nome: TEdit
+      Left = 313
+      Visible = False
+      ExplicitLeft = 313
+    end
+    inherited mk_inicio: TMaskEdit
+      Left = 16
+      ExplicitLeft = 16
+    end
+    inherited mk_fim: TMaskEdit
+      Left = 182
+      ExplicitLeft = 182
+    end
+    inherited bt_Pesquisa: TBitBtn
+      Left = 304
+      OnClick = bt_PesquisaClick
+      ExplicitLeft = 304
+    end
+    inherited bt_transferir: TBitBtn
+      Visible = False
+    end
+    inherited bt_Imprimir: TBitBtn
+      Left = 500
+      ExplicitLeft = 500
+    end
+  end
+  inherited cb_chave_pesquisa: TComboBox
+    Left = 619
+    Top = 27
+    Visible = False
+    ExplicitLeft = 619
+    ExplicitTop = 27
+  end
+  inherited DBGrid1: TDBGrid
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'QTDE_VENDA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VALOR_VENDA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ID_FORMA_PGTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DESCRICAO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TOTAL'
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    object lb_valor_venda: TLabel
+      Left = 423
+      Top = 32
+      Width = 49
+      Height = 19
+      Caption = 'Total:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Visible = False
+    end
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
+  end
+  inherited Q_pesq_padrao: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT COUNT(A.VENDA_ID) AS QTDE_VENDA,A.VALOR'
+      'AS VALOR_VENDA, '
+      'A.ID_FORMA_PGTO, B.DESCRICAO'
+      'FROM VENDAS A'
+      'INNER JOIN FORMA_PGTO B ON B.ID_FORMA_PGTO = A.ID_FORMA_PGTO'
+      'GROUP BY A.ID_FORMA_PGTO, A.VALOR, B.DESCRICAO')
+    object Q_pesq_padraoQTDE_VENDA: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'QTDE_VENDA'
+      Origin = 'QTDE_VENDA'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object Q_pesq_padraoVALOR_VENDA: TFMTBCDField
+      FieldName = 'VALOR_VENDA'
+      Origin = 'VALOR'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object Q_pesq_padraoID_FORMA_PGTO: TIntegerField
+      FieldName = 'ID_FORMA_PGTO'
+      Origin = 'ID_FORMA_PGTO'
+    end
+    object Q_pesq_padraoDESCRICAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
+    object Q_pesq_padraoTOTAL: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'TOTAL'
+      Calculated = True
+    end
+  end
+  inherited frxReport1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+end

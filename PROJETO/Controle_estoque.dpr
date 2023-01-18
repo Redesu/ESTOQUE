@@ -25,7 +25,9 @@ uses
   U_venda in '..\FORMS\U_venda.pas' {Frm_venda},
   U_pesq_venda in '..\FORMS\U_pesq_venda.pas' {Frm_pesq_venda},
   U_pesq_forma_pgto in '..\FORMS\U_pesq_forma_pgto.pas' {Frm_pesq_forma_pgto},
-  U_recebimento_venda in '..\U_recebimento_venda.pas' {Frm_recebimento_venda};
+  U_recebimento_venda in '..\U_recebimento_venda.pas' {Frm_recebimento_venda},
+  U_pesq_compra_Forma_pgto in '..\FORMS\U_pesq_compra_Forma_pgto.pas' {Frm_pesq_compra_Forma_pgto},
+  U_pesq_venda_Forma_pgto in '..\FORMS\U_pesq_venda_Forma_pgto.pas' {Frm_pesq_Venda_Forma_Pgto};
 
 {$R *.res}
 

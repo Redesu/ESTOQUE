@@ -28,7 +28,6 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1026
     object Label1: TLabel
       Left = 8
       Top = 10
@@ -91,22 +90,22 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
     object mk_inicio: TMaskEdit
       Left = 448
       Top = 35
-      Width = 118
+      Width = 116
       Height = 21
-      EditMask = '!99/99/0000;0;_'
+      EditMask = '!99/99/0000;1;_'
       MaxLength = 10
       TabOrder = 1
-      Text = ''
+      Text = '  /  /    '
     end
     object mk_fim: TMaskEdit
       Left = 592
       Top = 35
-      Width = 118
+      Width = 116
       Height = 21
-      EditMask = '!99/99/0000;0;_'
+      EditMask = '!99/99/0000;1;_'
       MaxLength = 10
       TabOrder = 2
-      Text = ''
+      Text = '  /  /    '
     end
     object bt_Pesquisa: TBitBtn
       Left = 720
@@ -469,8 +468,6 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 3
-    ExplicitTop = 558
-    ExplicitWidth = 1026
     object lb_resultado: TLabel
       Left = 0
       Top = 32

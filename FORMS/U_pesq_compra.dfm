@@ -3,7 +3,6 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
-    ExplicitWidth = 1036
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
@@ -71,8 +70,6 @@ inherited Frm_pesq_compra: TFrm_pesq_compra
       end>
   end
   inherited Panel2: TPanel
-    ExplicitTop = 568
-    ExplicitWidth = 1036
     object lb_valor_compra: TLabel
       Left = 367
       Top = 32

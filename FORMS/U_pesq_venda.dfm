@@ -75,11 +75,11 @@ inherited Frm_pesq_venda: TFrm_pesq_venda
     ExplicitTop = 568
     ExplicitWidth = 1036
     object lb_valor_venda: TLabel
-      Left = 288
+      Left = 366
       Top = 32
-      Width = 43
+      Width = 49
       Height = 19
-      Caption = 'Total'
+      Caption = 'Total:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16

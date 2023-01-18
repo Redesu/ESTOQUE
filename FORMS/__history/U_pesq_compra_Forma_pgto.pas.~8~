@@ -1,0 +1,75 @@
+unit U_pesq_compra_Forma_pgto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Form_pesquisa_padrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
+  frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TFrm_pesq_compra_Forma_pgto = class(TFrm_pesquisa_padrao)
+    Q_pesq_padraoQTDE_COMPRA: TLargeintField;
+    Q_pesq_padraoVALOR_COMPRA: TStringField;
+    Q_pesq_padraoID_FORMA_PGTO: TIntegerField;
+    Q_pesq_padraoDESCRICAO: TStringField;
+    procedure FormShow(Sender: TObject);
+    procedure bt_PesquisaClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_pesq_compra_Forma_pgto: TFrm_pesq_compra_Forma_pgto;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_pesq_compra_Forma_pgto.bt_PesquisaClick(Sender: TObject);
+begin
+  Q_pesq_padrao.Close; // Fecha query
+  Q_pesq_padrao.sql.add(''); // limpa
+  Q_pesq_padrao.Params.clear; // limpa parametros
+  Q_pesq_padrao.sql.clear; // limpa sql
+
+  Q_pesq_padrao.sql.add(' SELECT COUNT(A.COMPRA_ID) AS QTDE_COMPRA, ' +
+    'SUM (A.VALOR) AS VALOR_COMPRA, ' + 'A.ID_FORMA_PGTO, ' +
+    'B.DESCRICAO FROM COMPRA A');
+  Q_pesq_padrao.sql.add
+    ('INNER JOIN FORMA_PGTO B ON B.ID_FORMA_PGTO = A.ID_FORMA_PGTO ');
+
+  Q_pesq_padrao.sql.add('WHERE A.CADASTRO BETWEEN :PINICIO AND :PFIM');
+  Q_pesq_padrao.paramByname('PINICIO').AsDate := strTodate(mk_inicio.Text);
+  Q_pesq_padrao.paramByname('PFIM').AsDate := strTodate(mk_fim.Text);
+
+  Q_pesq_padrao.sql.add('GROUP BY A.ID_FORMA_PGTO, B.DESCRICAO ');
+
+  Q_pesq_padrao.Open;
+
+
+    lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
+
+  if Q_pesq_padrao.IsEmpty then
+  begin
+    MessageDlg('Nenhum registro encontrado!', mtinformation, [mbok], 0);
+  end;
+
+end;
+
+procedure TFrm_pesq_compra_Forma_pgto.FormShow(Sender: TObject);
+begin
+  mk_inicio.SetFocus;
+
+end;
+
+end.
