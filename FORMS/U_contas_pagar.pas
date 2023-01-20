@@ -60,6 +60,7 @@ type
     procedure DBEdit8Exit(Sender: TObject);
     procedure bt_atualizarClick(Sender: TObject);
     procedure DBEdit10Exit(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -134,24 +135,24 @@ begin
 
   if Q_pagarDT_PAGAMENTO.AsDateTime > Q_pagarDT_VENCIMENTO.AsDateTime then
   begin
-
     Q_pagarATRASO.Value := DaysBetween(Q_pagarDT_PAGAMENTO.AsDateTime,
       Q_pagarDT_VENCIMENTO.AsDateTime);
     DBEdit10.SetFocus;
-
-    // Insere o valor total a pagar
-    Q_pagarATRASO.AsInteger := 0;
-    Q_pagarSTATUS.AsString := 'PAGO';
-    Q_pagarTOTAL_PAGAR.AsFloat := Q_pagarVALOR_PARCELA.AsFloat;
-
   end
   else
 
-    { Q_pagarJUROS.AsFloat := 0;
-      Q_pagarVL_JUROS.AsFloat := 0;
-      Q_pagarSTATUS.AsString := 'PAGO';
-      Q_pagarTOTAL_PAGAR.AsFloat := Q_pagarVALOR_PARCELA.AsFloat;
-    }
+    Q_pagarJUROS.AsFloat := 0;
+  Q_pagarVL_JUROS.AsFloat := 0;
+  Q_pagarSTATUS.AsString := 'PAGO';
+  Q_pagarTOTAL_PAGAR.AsFloat := Q_pagarVALOR_PARCELA.AsFloat;
+
+end;
+
+procedure TFrm_Contas_pagar.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  Q_pagar.Close;
 end;
 
 end.

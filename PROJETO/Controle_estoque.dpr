@@ -30,7 +30,9 @@ uses
   U_pesq_venda_Forma_pgto in '..\FORMS\U_pesq_venda_Forma_pgto.pas' {Frm_pesq_Venda_Forma_Pgto},
   U_pesq_geral_mes in '..\FORMS\U_pesq_geral_mes.pas' {Frm_pesq_geral_mes},
   U_contas_pagar in '..\FORMS\U_contas_pagar.pas' {Frm_Contas_pagar},
-  U_pesq_parcela_pagar in '..\FORMS\U_pesq_parcela_pagar.pas' {Frm_pesq_Parcela_pagar};
+  U_pesq_parcela_pagar in '..\FORMS\U_pesq_parcela_pagar.pas' {Frm_pesq_Parcela_pagar},
+  U_contas_Receber in '..\FORMS\U_contas_Receber.pas' {Frm_contas_Receber},
+  U_pesq_parcela_receber in '..\FORMS\U_pesq_parcela_receber.pas' {Frm_pesq_parcela_receber};
 
 {$R *.res}
 
@@ -39,6 +41,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrm_login, Frm_login);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFrm_pesq_Parcela_pagar, Frm_pesq_Parcela_pagar);
+  Application.CreateForm(TFrm_pesq_parcela_receber, Frm_pesq_parcela_receber);
   Application.Run;
 end.

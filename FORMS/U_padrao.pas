@@ -58,7 +58,7 @@ procedure TFrm_padrao.bt_atualizarClick(Sender: TObject);
 begin
 //atualiza o registro
 Trabalhobotoes;
-Q_padrao.Refresh;
+Q_padrao.Post;
 messagedlg('Registro atualizado com sucesso!',mtInformation,[mbOk],0);
 end;
 

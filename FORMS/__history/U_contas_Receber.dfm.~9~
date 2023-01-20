@@ -1,0 +1,583 @@
+inherited Frm_contas_Receber: TFrm_contas_Receber
+  Hint = 'Fecha o sistema'
+  Caption = 'FORMUL'#193'RIO PARA RECEBIMENTO DE CONTAS / PARCELAS'
+  ClientHeight = 372
+  ClientWidth = 804
+  ExplicitWidth = 810
+  ExplicitHeight = 401
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel [0]
+    Left = 24
+    Top = 96
+    Width = 56
+    Height = 13
+    Caption = 'VENDA_ID'
+    FocusControl = DBEdit1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel [1]
+    Left = 24
+    Top = 136
+    Width = 64
+    Height = 13
+    Caption = 'CLIENTE_ID'
+    FocusControl = DBEdit2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel [2]
+    Left = 164
+    Top = 136
+    Width = 31
+    Height = 13
+    Caption = 'NOME'
+    FocusControl = DBEdit3
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel [3]
+    Left = 538
+    Top = 133
+    Width = 20
+    Height = 13
+    Caption = 'CPF'
+    FocusControl = DBEdit4
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel [4]
+    Left = 24
+    Top = 192
+    Width = 82
+    Height = 13
+    Caption = 'SEQUENCIA_ID'
+    FocusControl = DBEdit5
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel [5]
+    Left = 164
+    Top = 192
+    Width = 94
+    Height = 13
+    Caption = 'VALOR_PARCELA'
+    FocusControl = DBEdit6
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label7: TLabel [6]
+    Left = 270
+    Top = 192
+    Width = 92
+    Height = 13
+    Caption = 'DT_VENCIMENTO'
+    FocusControl = DBEdit7
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label8: TLabel [7]
+    Left = 410
+    Top = 192
+    Width = 91
+    Height = 13
+    Caption = 'DT_PAGAMENTO'
+    FocusControl = DBEdit8
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label9: TLabel [8]
+    Left = 538
+    Top = 192
+    Width = 46
+    Height = 13
+    Caption = 'ATRASO'
+    FocusControl = DBEdit9
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label10: TLabel [9]
+    Left = 24
+    Top = 240
+    Width = 37
+    Height = 13
+    Caption = 'JUROS'
+    FocusControl = DBEdit10
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label11: TLabel [10]
+    Left = 164
+    Top = 240
+    Width = 57
+    Height = 13
+    Caption = 'VL_JUROS'
+    FocusControl = DBEdit11
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label12: TLabel [11]
+    Left = 270
+    Top = 240
+    Width = 82
+    Height = 13
+    Caption = 'TOTAL_PAGAR'
+    FocusControl = DBEdit12
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label13: TLabel [12]
+    Left = 538
+    Top = 240
+    Width = 44
+    Height = 13
+    Caption = 'STATUS'
+    FocusControl = DBEdit13
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  inherited Panel1: TPanel
+    Width = 804
+    inherited bt_novo: TBitBtn
+      Visible = False
+    end
+    inherited bt_deletar: TBitBtn
+      Visible = False
+    end
+    inherited bt_editar: TBitBtn
+      Left = 188
+      ExplicitLeft = 188
+    end
+    inherited bt_gravar: TBitBtn
+      Visible = False
+    end
+    inherited bt_cancelar: TBitBtn
+      Left = 296
+      ExplicitLeft = 296
+    end
+    inherited bt_atualizar: TBitBtn
+      Left = 394
+      ExplicitLeft = 394
+    end
+    inherited bt_pesquisar: TBitBtn
+      Left = 492
+      OnClick = bt_pesquisarClick
+      ExplicitLeft = 492
+    end
+    inherited bt_sair: TBitBtn
+      Left = 688
+      ExplicitLeft = 688
+    end
+    object bt_Imprimir: TBitBtn
+      Left = 590
+      Top = 15
+      Width = 92
+      Height = 45
+      Caption = '&Imprimir'
+      Glyph.Data = {
+        360C0000424D360C000000000000360000002800000020000000200000000100
+        180000000000000C0000EFB30000EFB300000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFCFCFCFDFDFDFDFDFDFDFDFDFDFD
+        FDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFCFCFCFD
+        FDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFD6D6D67474745B5B5B5858585858585858585858585858
+        5858585858585858585858585858585858585858585858585858585858585859
+        5959676767BEBEBEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF7373730000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000474747F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF6969690000002B2B2B6A6A6A6969696969696969696969
+        696969696969696969696969696969696969696969696969696969696B6B6B3E
+        3E3E000000323232EEEEEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF96
+        96960000002F2F2FECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFF3F3F3C5C5C5C0C0C0C0C0
+        C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0BFBFBFE5E5E5FFFFFF96
+        96960000002F2F2FECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFD1D1D11B1B1B0707070808
+        080808080808080808080808080808080808080808080707079A9A9AFFFFFF96
+        96960000002F2F2FECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFD1D1D11B1B1B0707070808
+        080808080808080808080808080808080808080808080707079A9A9AFFFFFF96
+        96960000002F2F2FECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFF4F4F4C9C9C9C4C4C4C4C4
+        C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4C4E7E7E7FFFFFF96
+        9696000000303030ECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFED2D2D2
+        9E9E9E9696969797973E3E3E000000696969FFFFFFECECECA2A2A29999999A9A
+        9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A999999D5D5D5FFFFFF96
+        96960000001C1C1C8B8B8B979797979797BFBFBFF9F9F9FFFFFFD7D7D72B2B2B
+        000000000000000000000000000000696969FFFFFFCFCFCF1313130000000000
+        00000000000000000000000000000000000000000000000000969696FFFFFF96
+        9696000000000000000000000000000000101010B3B3B3FFFFFFB7B7B70B0B0B
+        000000000000000000000000000000696969FFFFFFD5D5D52F2F2F1D1D1D1E1E
+        1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1E1D1D1DA3A3A3FFFFFF96
+        9696000000000000000000000000000000000000979797FFFFFFB7B7B70B0B0B
+        000000000000000000000000000000696969FFFFFFFAFAFAE6E6E6E4E4E4E4E4
+        E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4E4F4F4F4FFFFFF96
+        9696000000000000000000000000000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000003636368585858484848686868686868686
+        868686868686868686868686868686868686868686868686868585858686864E
+        4E4E000000000000000000000000000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        00000000004949497979791C1C1C000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000121212CBCBCBFFFFFF676767000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000050505808080BEBEBE3B3B3B000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000040404090909000000000000000000979797FFFFFFB7B7B70B0B0B
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000979797FFFFFFC6C6C6161616
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000020202A3A3A3FFFFFFF9F9F99F9F9F
+        6868686969696A6A6A2B2B2B0000002B2B2B6A6A6A6969696969696969696969
+        696969696969696969696969696969696969696969696969696969696B6B6B3E
+        3E3E000000131313616161696969686868888888EBEBEBFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF96
+        9696000000303030ECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF96
+        96960000002F2F2FECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF696969000000696969FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF96
+        96960000002F2F2FECECECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF6969690000002B2B2B6A6A6A6969696969696969696969
+        696969696969696969696969696969696969696969696969696969696B6B6B3E
+        3E3E000000313131EDEDEDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFF7474740000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000454545F6F6F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFD4D4D47070705B5B5B5858585858585858585858585858
+        5858585858585858585858585858585858585858585858585858585858585859
+        5959656565B9B9B9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFDFCFCFCFDFDFDFDFDFDFDFDFDFDFD
+        FDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFCFCFCFD
+        FDFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      TabOrder = 8
+    end
+  end
+  inherited Panel2: TPanel
+    Top = 319
+    Width = 804
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  object DBEdit1: TDBEdit [15]
+    Left = 24
+    Top = 112
+    Width = 134
+    Height = 21
+    DataField = 'VENDA_ID'
+    DataSource = ds_padrao
+    TabOrder = 2
+  end
+  object DBEdit2: TDBEdit [16]
+    Left = 24
+    Top = 152
+    Width = 134
+    Height = 21
+    DataField = 'CLIENTE_ID'
+    DataSource = ds_padrao
+    TabOrder = 3
+  end
+  object DBEdit3: TDBEdit [17]
+    Left = 164
+    Top = 155
+    Width = 357
+    Height = 21
+    DataField = 'NOME'
+    DataSource = ds_padrao
+    TabOrder = 4
+  end
+  object DBEdit4: TDBEdit [18]
+    Left = 538
+    Top = 152
+    Width = 150
+    Height = 21
+    DataField = 'CPF'
+    DataSource = ds_padrao
+    TabOrder = 5
+  end
+  object DBEdit5: TDBEdit [19]
+    Left = 24
+    Top = 208
+    Width = 134
+    Height = 21
+    DataField = 'SEQUENCIA_ID'
+    DataSource = ds_Receber
+    TabOrder = 6
+  end
+  object DBEdit6: TDBEdit [20]
+    Left = 164
+    Top = 208
+    Width = 100
+    Height = 21
+    DataField = 'VALOR_PARCELA'
+    DataSource = ds_Receber
+    TabOrder = 7
+  end
+  object DBEdit7: TDBEdit [21]
+    Left = 270
+    Top = 208
+    Width = 134
+    Height = 21
+    DataField = 'DT_VENCIMENTO'
+    DataSource = ds_Receber
+    TabOrder = 8
+  end
+  object DBEdit8: TDBEdit [22]
+    Left = 410
+    Top = 208
+    Width = 111
+    Height = 21
+    DataField = 'DT_PAGAMENTO'
+    DataSource = ds_Receber
+    TabOrder = 9
+  end
+  object DBEdit9: TDBEdit [23]
+    Left = 538
+    Top = 208
+    Width = 150
+    Height = 21
+    DataField = 'ATRASO'
+    DataSource = ds_Receber
+    TabOrder = 10
+  end
+  object DBEdit10: TDBEdit [24]
+    Left = 24
+    Top = 259
+    Width = 134
+    Height = 21
+    DataField = 'JUROS'
+    DataSource = ds_Receber
+    TabOrder = 11
+  end
+  object DBEdit11: TDBEdit [25]
+    Left = 164
+    Top = 256
+    Width = 100
+    Height = 21
+    DataField = 'VL_JUROS'
+    DataSource = ds_Receber
+    TabOrder = 12
+  end
+  object DBEdit12: TDBEdit [26]
+    Left = 270
+    Top = 256
+    Width = 251
+    Height = 21
+    DataField = 'TOTAL_PAGAR'
+    DataSource = ds_Receber
+    TabOrder = 13
+  end
+  object DBEdit13: TDBEdit [27]
+    Left = 538
+    Top = 256
+    Width = 150
+    Height = 21
+    DataField = 'STATUS'
+    DataSource = ds_Receber
+    TabOrder = 14
+  end
+  inherited Q_padrao: TFDQuery
+    SQL.Strings = (
+      'SELECT '
+      'A.VENDA_ID,'
+      'A.CLIENTE_ID,'
+      'B.NOME,'
+      'B.CPF'
+      'FROM VENDAS A'
+      'INNER JOIN CLIENTE B ON B.CLIENTE_ID = A.CLIENTE_ID'
+      'ORDER BY A.VENDA_ID')
+    object Q_padraoVENDA_ID: TIntegerField
+      FieldName = 'VENDA_ID'
+      Origin = 'VENDA_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_padraoCLIENTE_ID: TIntegerField
+      FieldName = 'CLIENTE_ID'
+      Origin = 'CLIENTE_ID'
+      Required = True
+    end
+    object Q_padraoNOME: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
+    object Q_padraoCPF: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 16
+    end
+  end
+  object Q_Receber: TFDQuery
+    IndexFieldNames = 'VENDA_ID'
+    MasterSource = ds_padrao
+    MasterFields = 'VENDA_ID'
+    DetailFields = 'VENDA_ID'
+    Connection = DM.conexao
+    SQL.Strings = (
+      'SELECT SEQUENCIA_ID,'
+      'VENDA_ID,'
+      'VALOR_PARCELA,'
+      'DT_VENCIMENTO,'
+      'DT_PAGAMENTO,'
+      'ATRASO,'
+      'JUROS,'
+      'VL_JUROS,'
+      'TOTAL_PAGAR,'
+      'STATUS FROM CONTAS_RECEBER'
+      'WHERE VENDA_ID=:VENDA_ID'
+      'ORDER BY VENDA_ID')
+    Left = 744
+    Top = 200
+    ParamData = <
+      item
+        Name = 'VENDA_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+    object Q_ReceberSEQUENCIA_ID: TIntegerField
+      FieldName = 'SEQUENCIA_ID'
+      Origin = 'SEQUENCIA_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_ReceberVENDA_ID: TIntegerField
+      FieldName = 'VENDA_ID'
+      Origin = 'VENDA_ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object Q_ReceberVALOR_PARCELA: TFMTBCDField
+      FieldName = 'VALOR_PARCELA'
+      Origin = 'VALOR_PARCELA'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object Q_ReceberDT_VENCIMENTO: TDateField
+      FieldName = 'DT_VENCIMENTO'
+      Origin = 'DT_VENCIMENTO'
+      Required = True
+    end
+    object Q_ReceberDT_PAGAMENTO: TDateField
+      FieldName = 'DT_PAGAMENTO'
+      Origin = 'DT_PAGAMENTO'
+    end
+    object Q_ReceberATRASO: TIntegerField
+      FieldName = 'ATRASO'
+      Origin = 'ATRASO'
+    end
+    object Q_ReceberJUROS: TFMTBCDField
+      FieldName = 'JUROS'
+      Origin = 'JUROS'
+      Precision = 18
+      Size = 2
+    end
+    object Q_ReceberVL_JUROS: TFMTBCDField
+      FieldName = 'VL_JUROS'
+      Origin = 'VL_JUROS'
+      Precision = 18
+      Size = 2
+    end
+    object Q_ReceberTOTAL_PAGAR: TFMTBCDField
+      FieldName = 'TOTAL_PAGAR'
+      Origin = 'TOTAL_PAGAR'
+      Precision = 18
+      Size = 2
+    end
+    object Q_ReceberSTATUS: TStringField
+      FieldName = 'STATUS'
+      Origin = 'STATUS'
+      Size = 30
+    end
+  end
+  object ds_Receber: TDataSource
+    DataSet = Q_Receber
+    Left = 744
+    Top = 256
+  end
+end

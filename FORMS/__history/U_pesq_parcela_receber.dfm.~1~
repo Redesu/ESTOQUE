@@ -1,0 +1,27 @@
+inherited Frm_pesquisa_padrao1: TFrm_pesquisa_padrao1
+  Caption = 'Frm_pesquisa_padrao1'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    inherited lb_inicio: TLabel
+      Visible = False
+    end
+    inherited lb_fim: TLabel
+      Visible = False
+    end
+    inherited mk_inicio: TMaskEdit
+      Visible = False
+    end
+    inherited mk_fim: TMaskEdit
+      Visible = False
+    end
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
+  end
+  inherited frxReport1: TfrxReport
+    Datasets = <>
+    Variables = <>
+    Style = <>
+  end
+end

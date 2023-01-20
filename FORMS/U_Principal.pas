@@ -20,7 +20,6 @@ type
     bt_compras: TSpeedButton;
     bt_vendas: TSpeedButton;
     bt_troca_usuario: TSpeedButton;
-    bt_fechar: TSpeedButton;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
     MainMenu1: TMainMenu;
@@ -49,10 +48,13 @@ type
     VendasFormasdepgto1: TMenuItem;
     RelatrioGeralporms1: TMenuItem;
     bt_contas_pagar: TSpeedButton;
-    SpeedButton2: TSpeedButton;
+    bt_Conta_receber: TSpeedButton;
     Contasapagar1: TMenuItem;
+    Listacontasareceber1: TMenuItem;
+    ListaContasapagar1: TMenuItem;
+    bt_fechar: TSpeedButton;
+    AReceber1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
-    procedure bt_fecharClick(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
     procedure Abre_Tela_usuario();
     procedure Abre_Tela_empresa();
@@ -63,6 +65,7 @@ type
     procedure Abre_Tela_Compra();
     procedure Abre_Tela_Venda();
     procedure Abre_tela_contas_pagar();
+    procedure Abre_Contas_Receber();
     procedure bt_empresaClick(Sender: TObject);
     procedure menu_EmpresaClick(Sender: TObject);
     procedure menu_UsuariosClick(Sender: TObject);
@@ -95,6 +98,10 @@ type
     procedure RelatrioGeralporms1Click(Sender: TObject);
     procedure bt_contas_pagarClick(Sender: TObject);
     procedure Contasapagar1Click(Sender: TObject);
+    procedure ListaContasapagar1Click(Sender: TObject);
+    procedure bt_fecharClick(Sender: TObject);
+    procedure bt_Conta_receberClick(Sender: TObject);
+    procedure AReceber1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -113,7 +120,7 @@ uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_compra1, U_pesq_usuario, U_pesq_fornecedor, U_pesq_cliente, U_pesq_produto,
   U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda,
   U_pesq_forma_pgto, U_pesq_compra_Forma_pgto, U_pesq_venda_Forma_pgto,
-  U_pesq_geral_mes, U_contas_pagar;
+  U_pesq_geral_mes, U_contas_pagar, U_pesq_parcela_pagar, U_contas_Receber;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -130,7 +137,6 @@ end;
 
 procedure TFrm_Principal.bt_fecharClick(Sender: TObject);
 begin
-
   if messagedlg('Deseja sair do sistema?', mtConfirmation, [mbOk, mbNo], 0) = mrOk
   then
   begin
@@ -177,12 +183,30 @@ begin
   Abre_tela_contas_pagar;
 end;
 
+procedure TFrm_Principal.bt_Conta_receberClick(Sender: TObject);
+begin
+   Abre_Contas_Receber;
+end;
+
 procedure TFrm_Principal.bt_troca_usuarioClick(Sender: TObject);
 begin
   Frm_Principal.Hide;
   Frm_login.ed_usuario.Clear;
   Frm_login.ed_senha.Clear;
   Frm_login.Show;
+end;
+
+procedure TFrm_Principal.Abre_Contas_Receber;
+begin
+    Frm_contas_Receber:=TFrm_contas_Receber.Create(self);
+    Frm_contas_Receber.ShowModal;
+    try
+
+    finally
+    Frm_contas_Receber.Free;
+    Frm_contas_Receber:=nil;
+
+    end;
 end;
 
 procedure TFrm_Principal.Abre_Tela_Cliente;
@@ -210,8 +234,6 @@ begin
 
   end;
 end;
-
-
 
 procedure TFrm_Principal.Abre_tela_contas_pagar;
 begin
@@ -306,6 +328,11 @@ begin
   end;
 end;
 
+procedure TFrm_Principal.AReceber1Click(Sender: TObject);
+begin
+Abre_Contas_Receber;
+end;
+
 procedure TFrm_Principal.bt_UsuarioClick(Sender: TObject);
 begin
   Abre_Tela_usuario;
@@ -336,7 +363,7 @@ end;
 
 procedure TFrm_Principal.Contasapagar1Click(Sender: TObject);
 begin
-    Abre_tela_contas_pagar;
+  Abre_tela_contas_pagar;
 end;
 
 procedure TFrm_Principal.Fechar1Click(Sender: TObject);
@@ -385,6 +412,20 @@ begin
     Frm_pesq_compra := nil;
 
   end;
+end;
+
+procedure TFrm_Principal.ListaContasapagar1Click(Sender: TObject);
+begin
+  Frm_pesq_parcela_pagar := TFrm_pesq_parcela_pagar.Create(self);
+  Frm_pesq_parcela_pagar.ShowModal;
+  try
+
+  finally
+    Frm_pesq_parcela_pagar.Free;
+    Frm_pesq_parcela_pagar := nil;
+
+  end;
+
 end;
 
 procedure TFrm_Principal.ListaFormadepgto1Click(Sender: TObject);

@@ -219,6 +219,14 @@
             <Form>Frm_pesq_Parcela_pagar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\U_contas_Receber.pas">
+            <Form>Frm_contas_Receber</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_pesq_parcela_receber.pas">
+            <Form>Frm_pesq_parcela_receber</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

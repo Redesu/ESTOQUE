@@ -107,7 +107,7 @@ begin
 
     2:
       begin
-        Q_pesq_padrao.sql.add('WHERE C.CNPJ =:PCNPJ');
+        Q_pesq_padrao.sql.add('WHERE B.CNPJ =:PCNPJ');
         Q_pesq_padrao.ParamByName('PCNPJ').AsString := ed_nome.Text;
         Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
       end;
@@ -133,7 +133,7 @@ begin
   inherited;
   if Q_pesq_padrao.RecordCount > 0 then
   begin
-    codico := Q_pesq_padraoSEQUENCIA_ID.AsInteger;
+    codico := Q_pesq_padraoCOMPRA_ID.AsInteger;
     Data := Q_pesq_padraoDT_VENCIMENTO.AsDateTime;
     sequencia := Q_pesq_padraoSEQUENCIA_ID.AsInteger;
 
