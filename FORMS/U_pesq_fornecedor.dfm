@@ -3,7 +3,6 @@ inherited Frm_pesq_fornecedor: TFrm_pesq_fornecedor
   PixelsPerInch = 96
   TextHeight = 13
   inherited Panel1: TPanel
-    ExplicitWidth = 1036
     inherited bt_Pesquisa: TBitBtn
       OnClick = bt_PesquisaClick
     end
@@ -81,10 +80,6 @@ inherited Frm_pesq_fornecedor: TFrm_pesq_fornecedor
         FieldName = 'CADASTRO'
         Visible = True
       end>
-  end
-  inherited Panel2: TPanel
-    ExplicitTop = 568
-    ExplicitWidth = 1036
   end
   inherited DBNavigator1: TDBNavigator
     Hints.Strings = ()

@@ -207,6 +207,18 @@
             <Form>Frm_pesq_Venda_Forma_Pgto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\U_pesq_geral_mes.pas">
+            <Form>Frm_pesq_geral_mes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_contas_pagar.pas">
+            <Form>Frm_Contas_pagar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_pesq_parcela_pagar.pas">
+            <Form>Frm_pesq_Parcela_pagar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
