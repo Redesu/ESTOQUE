@@ -41,6 +41,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFrm_login, Frm_login);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TFrm_pesq_parcela_receber, Frm_pesq_parcela_receber);
   Application.Run;
 end.

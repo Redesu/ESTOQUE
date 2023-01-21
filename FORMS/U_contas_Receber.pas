@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask, DateUtils;
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Mask, DateUtils, frxClass, frxDBSet,
+  frxExportBaseDialog, frxExportPDF;
 
 type
   TFrm_contas_Receber = class(TFrm_padrao)
@@ -56,12 +57,34 @@ type
     DBEdit12: TDBEdit;
     DBEdit13: TDBEdit;
     bt_Imprimir: TBitBtn;
+    Recibo: TfrxReport;
+    frx_padrao: TfrxDBDataset;
+    frx_receber: TfrxDBDataset;
+    frx_empresa: TfrxDBDataset;
+    Q_empresa: TFDQuery;
+    ds_empresa: TDataSource;
+    Q_empresaEMPRESA_ID: TIntegerField;
+    Q_empresaRAZAO_SOCIAL: TStringField;
+    Q_empresaN_FANTASIA: TStringField;
+    Q_empresaENDERECO: TStringField;
+    Q_empresaNUMERO: TIntegerField;
+    Q_empresaBAIRRO: TStringField;
+    Q_empresaCIDADE: TStringField;
+    Q_empresaUF: TStringField;
+    Q_empresaCEP: TStringField;
+    Q_empresaTELEFONE: TStringField;
+    Q_empresaCNPJ: TStringField;
+    Q_empresaEMAIL: TStringField;
+    Q_empresaCADASTRO: TDateField;
+    Q_empresaLOGO: TBlobField;
+    frxPDFExport1: TfrxPDFExport;
     procedure bt_pesquisarClick(Sender: TObject);
     procedure bt_editarClick(Sender: TObject);
     procedure bt_cancelarClick(Sender: TObject);
     procedure bt_atualizarClick(Sender: TObject);
     procedure DBEdit8Exit(Sender: TObject);
     procedure DBEdit10Exit(Sender: TObject);
+    procedure bt_ImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,6 +120,26 @@ begin
   Q_Receber.Edit;
   DBEdit8.SetFocus;
   inherited;
+
+end;
+
+procedure TFrm_contas_Receber.bt_ImprimirClick(Sender: TObject);
+var
+  caminho: string;
+
+begin
+  if Frm_contas_receber.Recibo.LoadFromFile(caminho + 'REL_RECIBO_PAGAMENTO.fr3') then
+  begin
+
+    Recibo.clear; // limpa relatorio
+    Recibo.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_RECIBO_PAGAMENTO.fr3');
+    Recibo.PrepareReport(true);
+    Recibo.ShowPreparedReport;
+
+  end
+  else
+    Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
 
 end;
 
