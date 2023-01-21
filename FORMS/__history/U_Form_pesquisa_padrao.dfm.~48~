@@ -1,9 +1,10 @@
 object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = 'Formul'#225'rio de pesquisa padrao'
-  ClientHeight = 631
-  ClientWidth = 1026
+  ClientHeight = 641
+  ClientWidth = 1036
   Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,20 +13,16 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
-  Position = poDesigned
-  WindowState = wsMaximized
+  Position = poScreenCenter
   OnClose = FormClose
   OnKeyPress = FormKeyPress
   OnShow = FormShow
-  DesignSize = (
-    1026
-    631)
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1026
+    Width = 1036
     Height = 73
     Align = alTop
     Color = clSkyBlue
@@ -93,22 +90,22 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
     object mk_inicio: TMaskEdit
       Left = 448
       Top = 35
-      Width = 118
+      Width = 116
       Height = 21
-      EditMask = '!99/99/0000;0;_'
+      EditMask = '!99/99/0000;1;_'
       MaxLength = 10
       TabOrder = 1
-      Text = ''
+      Text = '  /  /    '
     end
     object mk_fim: TMaskEdit
       Left = 592
       Top = 35
-      Width = 118
+      Width = 116
       Height = 21
-      EditMask = '!99/99/0000;0;_'
+      EditMask = '!99/99/0000;1;_'
       MaxLength = 10
       TabOrder = 2
-      Text = ''
+      Text = '  /  /    '
     end
     object bt_Pesquisa: TBitBtn
       Left = 720
@@ -450,8 +447,8 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   object DBGrid1: TDBGrid
     Left = 0
     Top = 73
-    Width = 1026
-    Height = 485
+    Width = 1036
+    Height = 495
     Align = alClient
     DataSource = ds_pesq_padrao
     TabOrder = 2
@@ -464,8 +461,8 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
   end
   object Panel2: TPanel
     Left = 0
-    Top = 558
-    Width = 1026
+    Top = 568
+    Width = 1036
     Height = 73
     Align = alBottom
     Color = clSkyBlue
@@ -473,7 +470,7 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
     TabOrder = 3
     object lb_resultado: TLabel
       Left = 0
-      Top = 48
+      Top = 32
       Width = 251
       Height = 19
       Caption = 'Total de registros localizados: '
@@ -483,16 +480,16 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
+      Visible = False
     end
   end
   object DBNavigator1: TDBNavigator
-    Left = 746
-    Top = 598
+    Left = 738
+    Top = 584
     Width = 280
     Height = 39
     DataSource = ds_pesq_padrao
     VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
-    Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 4
   end
   object Q_pesq_padrao: TFDQuery

@@ -33,6 +33,7 @@ type
     procedure bt_atualizarClick(Sender: TObject);
     procedure Trabalhobotoes();
     procedure bt_sairClick(Sender: TObject);
+    procedure bt_novoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,7 +58,7 @@ procedure TFrm_padrao.bt_atualizarClick(Sender: TObject);
 begin
 //atualiza o registro
 Trabalhobotoes;
-Q_padrao.Refresh;
+Q_padrao.Post;
 messagedlg('Registro atualizado com sucesso!',mtInformation,[mbOk],0);
 end;
 
@@ -100,10 +101,23 @@ end;
 
 procedure TFrm_padrao.bt_gravarClick(Sender: TObject);
 begin
+try
 //salva o registro
 Trabalhobotoes;
 Q_padrao.Post;
 messagedlg('Registro salvo Com sucesso!',mtInformation, [mbOk],0);
+except
+ShowMessage('Preencha ou verifique todos os campos!');
+
+end;
+end;
+
+procedure TFrm_padrao.bt_novoClick(Sender: TObject);
+begin
+
+Q_padrao.open;
+Trabalhobotoes;
+Q_padrao.Append;
 end;
 
 procedure TFrm_padrao.FormKeyPress(Sender: TObject; var Key: Char);

@@ -85,6 +85,7 @@ object Frm_pesquisa_padrao: TFrm_pesquisa_padrao
       Top = 35
       Width = 217
       Height = 21
+      CharCase = ecUpperCase
       TabOrder = 0
     end
     object mk_inicio: TMaskEdit

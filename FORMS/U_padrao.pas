@@ -57,9 +57,14 @@ end;
 procedure TFrm_padrao.bt_atualizarClick(Sender: TObject);
 begin
 //atualiza o registro
+try
 Trabalhobotoes;
 Q_padrao.Post;
 messagedlg('Registro atualizado com sucesso!',mtInformation,[mbOk],0);
+except
+ShowMessage('Preencha ou verifique todos os campos!');
+
+end;
 end;
 
 procedure TFrm_padrao.bt_cancelarClick(Sender: TObject);
@@ -101,10 +106,15 @@ end;
 
 procedure TFrm_padrao.bt_gravarClick(Sender: TObject);
 begin
+try
 //salva o registro
 Trabalhobotoes;
 Q_padrao.Post;
 messagedlg('Registro salvo Com sucesso!',mtInformation, [mbOk],0);
+except
+ShowMessage('Preencha ou verifique todos os campos!');
+
+end;
 end;
 
 procedure TFrm_padrao.bt_novoClick(Sender: TObject);

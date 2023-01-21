@@ -58,7 +58,7 @@ procedure TFrm_padrao.bt_atualizarClick(Sender: TObject);
 begin
 //atualiza o registro
 Trabalhobotoes;
-Q_padrao.Refresh;
+Q_padrao.Post;
 messagedlg('Registro atualizado com sucesso!',mtInformation,[mbOk],0);
 end;
 
@@ -109,8 +109,10 @@ end;
 
 procedure TFrm_padrao.bt_novoClick(Sender: TObject);
 begin
-     DB_cadastro.Text:=DateTostr(now);
-     DB_nome.SetFocus;
+
+Q_padrao.open;
+Trabalhobotoes;
+Q_padrao.Append;
 end;
 
 procedure TFrm_padrao.FormKeyPress(Sender: TObject; var Key: Char);
