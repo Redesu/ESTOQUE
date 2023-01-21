@@ -32,6 +32,7 @@ inherited Frm_pesq_Parcela_pagar: TFrm_pesq_Parcela_pagar
       'CNPJ')
   end
   inherited DBGrid1: TDBGrid
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     Columns = <
       item
         Expanded = False

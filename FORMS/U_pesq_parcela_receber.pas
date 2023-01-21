@@ -31,12 +31,15 @@ type
     procedure bt_PesquisaClick(Sender: TObject);
     procedure bt_transferirClick(Sender: TObject);
     procedure cb_chave_pesquisaChange(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure bt_ImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     Data: Tdate;
-    sequencia: integer;
+    sequencia: Integer;
   end;
 
 var
@@ -45,6 +48,32 @@ var
 implementation
 
 {$R *.dfm}
+
+uses U_DM;
+
+procedure TFrm_pesq_parcela_receber.bt_ImprimirClick(Sender: TObject);
+var
+  caminho: string;
+begin
+  caminho := ExtractFilePath(Application.ExeName);
+
+  if Frm_pesq_Parcela_receber.frxReport1.LoadFromFile
+    (caminho + 'REL_LISTA_RECEBER.fr3') then
+  begin
+
+    frxReport1.clear; // limpa relatorio
+    frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_LISTA_RECEBER.fr3');
+    frxReport1.Variables['nome'] := QuotedStr(dm.usuario);
+    frxReport1.PrepareReport(true);
+    frxReport1.ShowPreparedReport;
+    Frm_pesq_Parcela_receber.Close;
+
+  end
+  else
+    Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
+
+end;
 
 procedure TFrm_pesq_parcela_receber.bt_PesquisaClick(Sender: TObject);
 begin
@@ -83,6 +112,12 @@ begin
         Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
       end;
 
+      3:
+      begin
+        Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
+        Q_pesq_padrao.SQL.Add('ORDER BY VENDA_ID');
+      end;
+
   end;
 
   Q_pesq_padrao.open;
@@ -116,15 +151,14 @@ end;
 procedure TFrm_pesq_parcela_receber.cb_chave_pesquisaChange(Sender: TObject);
 begin
   case cb_chave_pesquisa.ItemIndex of
-      0:
+    0:
       begin
         mk_inicio.Visible := false;
         mk_fim.Visible := false;
         ed_nome.Visible := true;
         lb_nome.Caption := 'Digite o código do cliente';
-        lb_fim.Visible:=false
+        lb_fim.Visible := false
       end;
-
 
     1:
       begin
@@ -132,7 +166,7 @@ begin
         mk_fim.Visible := false;
         ed_nome.Visible := true;
         lb_nome.Caption := 'Digite o nome';
-        lb_fim.Visible:=false
+        lb_fim.Visible := false
       end;
 
     2:
@@ -141,8 +175,8 @@ begin
         mk_fim.Visible := false;
         ed_nome.Visible := true;
         lb_nome.Caption := 'Digite o CPF';
-        lb_inicio.Visible:=false;
-        lb_fim.Visible:=false
+        lb_inicio.Visible := false;
+        lb_fim.Visible := false
       end;
   end;
 
@@ -153,6 +187,46 @@ begin
   inherited;
   ed_nome.clear;
   ed_nome.SetFocus;
+end;
+
+procedure TFrm_pesq_parcela_receber.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+
+  // Se tiver sido recebido
+
+  if (Q_pesq_padraoDT_PAGAMENTO.Value <> 0) and
+    (Q_pesq_padraoSTATUS.AsString = 'RECEBIDO') then
+  begin
+
+    DBGrid1.Canvas.Brush.Color := clGreen;
+    DBGrid1.Canvas.Font.Color := clWhite;
+
+  end
+  else
+    // se estiver ha vencer
+
+    if (Q_pesq_padraoDT_VENCIMENTO.AsDateTime > date) and
+      (Q_pesq_padraoSTATUS.AsString = 'EM ABERTO') then
+    begin
+
+      DBGrid1.Canvas.Brush.Color := clYellow;
+      DBGrid1.Canvas.Font.Color := clBlue;
+
+    end
+    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime<=date) and
+      (Q_pesq_padraoDT_PAGAMENTO.IsNull) then
+    begin
+
+      DBGrid1.Canvas.Brush.Color := clred;
+      DBGrid1.Canvas.Font.Color := clWhite;
+
+    end;
+
+
+
+    dbgrid1.DefaultDrawColumnCell(rect, datacol, column, state);
+
 end;
 
 end.

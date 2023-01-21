@@ -32,6 +32,8 @@ type
     procedure bt_transferirClick(Sender: TObject);
     procedure bt_ImprimirClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -167,6 +169,46 @@ begin
         ed_nome.SetFocus;
       end;
   end;
+
+end;
+
+procedure TFrm_pesq_Parcela_pagar.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+
+   // Se tiver sido recebido
+
+  if (Q_pesq_padraoDT_PAGAMENTO.Value <> 0) and
+    (Q_pesq_padraoSTATUS.AsString = 'PAGO') then
+  begin
+
+    DBGrid1.Canvas.Brush.Color := clGreen;
+    DBGrid1.Canvas.Font.Color := clWhite;
+
+  end
+  else
+    // se estiver ha vencer
+
+    if (Q_pesq_padraoDT_VENCIMENTO.AsDateTime > date) and
+      (Q_pesq_padraoSTATUS.AsString = 'EM ABERTO') then
+    begin
+
+      DBGrid1.Canvas.Brush.Color := clYellow;
+      DBGrid1.Canvas.Font.Color := clBlue;
+
+    end
+    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime<=date) and
+      (Q_pesq_padraoDT_PAGAMENTO.IsNull) then
+    begin
+
+      DBGrid1.Canvas.Brush.Color := clred;
+      DBGrid1.Canvas.Font.Color := clWhite;
+
+    end;
+
+
+
+    dbgrid1.DefaultDrawColumnCell(rect, datacol, column, state);
 
 end;
 

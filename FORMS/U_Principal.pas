@@ -102,6 +102,7 @@ type
     procedure bt_fecharClick(Sender: TObject);
     procedure bt_Conta_receberClick(Sender: TObject);
     procedure AReceber1Click(Sender: TObject);
+    procedure Listacontasareceber1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -120,7 +121,8 @@ uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_compra1, U_pesq_usuario, U_pesq_fornecedor, U_pesq_cliente, U_pesq_produto,
   U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda,
   U_pesq_forma_pgto, U_pesq_compra_Forma_pgto, U_pesq_venda_Forma_pgto,
-  U_pesq_geral_mes, U_contas_pagar, U_pesq_parcela_pagar, U_contas_Receber;
+  U_pesq_geral_mes, U_contas_pagar, U_pesq_parcela_pagar, U_contas_Receber,
+  U_pesq_parcela_receber;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -426,6 +428,19 @@ begin
 
   end;
 
+end;
+
+procedure TFrm_Principal.Listacontasareceber1Click(Sender: TObject);
+begin
+   Frm_pesq_parcela_receber:=TFrm_pesq_parcela_receber.Create(self);
+   Frm_pesq_parcela_receber.ShowModal;
+   try
+
+   finally
+   Frm_pesq_parcela_receber.Free;
+   Frm_pesq_parcela_receber:=nil;
+
+   end;
 end;
 
 procedure TFrm_Principal.ListaFormadepgto1Click(Sender: TObject);

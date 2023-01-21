@@ -1,0 +1,222 @@
+unit U_pesq_parcela_pagar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Form_pesquisa_padrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, frxClass, frxExportBaseDialog, frxExportPDF,
+  frxDBSet, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TFrm_pesq_Parcela_pagar = class(TFrm_pesquisa_padrao)
+    Q_pesq_padraoCOMPRA_ID: TIntegerField;
+    Q_pesq_padraoFORNECEDOR_ID: TIntegerField;
+    Q_pesq_padraoNOME: TStringField;
+    Q_pesq_padraoCNPJ: TStringField;
+    Q_pesq_padraoSEQUENCIA_ID: TIntegerField;
+    Q_pesq_padraoVALOR_PARCELA: TFMTBCDField;
+    Q_pesq_padraoDT_VENCIMENTO: TDateField;
+    Q_pesq_padraoDT_PAGAMENTO: TDateField;
+    Q_pesq_padraoATRASO: TIntegerField;
+    Q_pesq_padraoJUROS: TFMTBCDField;
+    Q_pesq_padraoVL_JUROS: TFMTBCDField;
+    Q_pesq_padraoTOTAL_PAGAR: TFMTBCDField;
+    Q_pesq_padraoSTATUS: TStringField;
+    procedure cb_chave_pesquisaChange(Sender: TObject);
+    procedure bt_PesquisaClick(Sender: TObject);
+    procedure bt_transferirClick(Sender: TObject);
+    procedure bt_ImprimirClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGrid1DrawDataCell(Sender: TObject; const Rect: TRect;
+      Field: TField; State: TGridDrawState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Data: Tdate;
+    sequencia: integer;
+  end;
+
+var
+  Frm_pesq_Parcela_pagar: TFrm_pesq_Parcela_pagar;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+procedure TFrm_pesq_Parcela_pagar.bt_ImprimirClick(Sender: TObject);
+var
+  caminho: string;
+begin
+  caminho := ExtractFilePath(Application.ExeName);
+
+  if Frm_pesq_Parcela_pagar.frxReport1.LoadFromFile
+    (caminho + 'REL_LISTA_PAGAR.fr3') then
+  begin
+
+    frxReport1.clear; // limpa relatorio
+    frxReport1.LoadFromFile(ExtractFilePath(Application.ExeName) +
+      'REL_LISTA_PAGAR.fr3');
+    frxReport1.Variables['nome'] := QuotedStr(dm.usuario);
+    frxReport1.PrepareReport(true);
+    frxReport1.ShowPreparedReport;
+    Frm_pesq_Parcela_pagar.Close;
+
+  end
+  else
+    Messagedlg('Relatorio não encontrado', mtError, [mbOk], 0);
+end;
+
+procedure TFrm_pesq_Parcela_pagar.bt_PesquisaClick(Sender: TObject);
+begin
+  inherited;
+  Q_pesq_padrao.Close;
+  Q_pesq_padrao.sql.add(''); // limpa
+  Q_pesq_padrao.Params.clear; // limpa parametros
+  Q_pesq_padrao.sql.clear; // limpa sql
+
+  Q_pesq_padrao.sql.add('SELECT A.COMPRA_ID, ' + 'A.FORNECEDOR_ID, ' +
+    'B.NOME, ' + 'B.CNPJ, ' + 'C.SEQUENCIA_ID, ' + 'C.VALOR_PARCELA, ' +
+    'C.DT_VENCIMENTO, ' + 'C.DT_PAGAMENTO, ' + 'C.ATRASO, ' + 'C.JUROS, ' +
+    'C.VL_JUROS, ' + 'C.TOTAL_PAGAR, ' + 'C.STATUS FROM COMPRA A');
+  Q_pesq_padrao.sql.add
+    ('INNER JOIN FORNECEDOR B ON B.FORNECEDOR_ID = A.FORNECEDOR_ID');
+  Q_pesq_padrao.sql.add
+    ('INNER JOIN CONTAS_PAGAR C ON C.COMPRA_ID = A.COMPRA_ID');
+
+  case cb_chave_pesquisa.ItemIndex of
+
+    0:
+      begin
+        Q_pesq_padrao.sql.add('WHERE A.FORNECEDOR_ID =:PFORNECEDOR_ID');
+        Q_pesq_padrao.ParamByName('PFORNECEDOR_ID').AsString := ed_nome.Text;
+        Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
+      end;
+
+    1:
+      begin
+        Q_pesq_padrao.sql.add('WHERE B.NOME LIKE :PNOME');
+        Q_pesq_padrao.ParamByName('PNOME').AsString := '%' + ed_nome.Text + '%';
+        Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
+      end;
+
+    2:
+      begin
+        Q_pesq_padrao.sql.add('WHERE B.CNPJ =:PCNPJ');
+        Q_pesq_padrao.ParamByName('PCNPJ').AsString := ed_nome.Text;
+        Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
+      end;
+
+  end;
+
+  Q_pesq_padrao.open;
+  lb_resultado.Visible := true;
+  lb_resultado.Caption := 'Total de registros localizados: ' +
+    IntToStr(Q_pesq_padrao.RecordCount);
+
+  if Q_pesq_padrao.IsEmpty then
+  begin
+    Messagedlg('Registro não encontrado!', Mtinformation, [mbOk], 0);
+  end
+  else
+    abort;
+
+end;
+
+procedure TFrm_pesq_Parcela_pagar.bt_transferirClick(Sender: TObject);
+begin
+  inherited;
+  if Q_pesq_padrao.RecordCount > 0 then
+  begin
+    codico := Q_pesq_padraoCOMPRA_ID.AsInteger;
+    Data := Q_pesq_padraoDT_VENCIMENTO.AsDateTime;
+    sequencia := Q_pesq_padraoSEQUENCIA_ID.AsInteger;
+
+  end
+  else
+    abort;
+end;
+
+procedure TFrm_pesq_Parcela_pagar.cb_chave_pesquisaChange(Sender: TObject);
+begin
+  inherited;
+
+  case cb_chave_pesquisa.ItemIndex of
+
+    0:
+      begin
+        lb_nome.Caption := 'NOME DO FORNECEDOR';
+        ed_nome.SetFocus;
+      end;
+
+    1:
+      begin
+        lb_nome.Caption := 'CÓDIGO DO FORNECEDOR';
+        ed_nome.SetFocus;
+
+      end;
+
+    2:
+      begin
+        lb_nome.Caption := 'DIGITE O CNPJ';
+        ed_nome.SetFocus;
+      end;
+  end;
+
+end;
+
+procedure TFrm_pesq_Parcela_pagar.DBGrid1DrawDataCell(Sender: TObject;
+  const Rect: TRect; Field: TField; State: TGridDrawState);
+begin
+   // Se tiver sido recebido
+
+  if (Q_pesq_padraoDT_PAGAMENTO.Value <> 0) and
+    (Q_pesq_padraoSTATUS.AsString = 'RECEBIDO') then
+  begin
+
+    DBGrid1.Canvas.Brush.Color := clGreen;
+    DBGrid1.Canvas.Font.Color := clWhite;
+
+  end
+  else
+    // se estiver ha vencer
+
+    if (Q_pesq_padraoDT_VENCIMENTO.AsDateTime > date) and
+      (Q_pesq_padraoSTATUS.AsString = 'EM ABERTO') then
+    begin
+
+      DBGrid1.Canvas.Brush.Color := clYellow;
+      DBGrid1.Canvas.Font.Color := clBlue;
+
+    end
+    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime<=date) and
+      (Q_pesq_padraoDT_PAGAMENTO.IsNull) then
+    begin
+
+      DBGrid1.Canvas.Brush.Color := clred;
+      DBGrid1.Canvas.Font.Color := clWhite;
+
+    end;
+
+
+
+    dbgrid1.DefaultDrawColumnCell(rect, datacol, column, state);
+
+
+end;
+
+procedure TFrm_pesq_Parcela_pagar.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+  Q_pesq_padrao.Close;
+end;
+
+end.

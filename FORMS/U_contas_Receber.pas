@@ -133,7 +133,7 @@ begin
     // insere o valor total a pagar
     Q_ReceberTOTAL_PAGAR.AsFloat := Q_ReceberJUROS.AsFloat +
       Q_ReceberVALOR_PARCELA.AsFloat;
-    Q_ReceberSTATUS.AsString := 'PAGO';
+    Q_ReceberSTATUS.AsString := 'RECEBIDO';
   end;
 
 end;
@@ -151,7 +151,7 @@ begin
 
     Q_ReceberJUROS.AsFloat := 0;
   Q_ReceberVL_JUROS.AsFloat := 0;
-  Q_ReceberSTATUS.AsString := 'PAGO';
+  Q_ReceberSTATUS.AsString := 'RECEBIDO';
   Q_ReceberTOTAL_PAGAR.AsFloat := Q_ReceberVALOR_PARCELA.AsFloat;
 
 end;
