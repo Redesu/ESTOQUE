@@ -97,6 +97,13 @@ end;
 procedure TFrm_empresa.bt_novoClick(Sender: TObject);
 begin
   inherited;
+  if Q_padrao.RecordCount > 0 then
+  begin
+    MessageDlg('Já possui um cadastro nesta tabela!', mtError,[mbok],0);
+    Q_padrao.Cancel;
+    Trabalhobotoes;
+  end
+  else
   DB_cadastro.Text:=datetostr(now);
   DB_razao_social.SetFocus;
 

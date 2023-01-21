@@ -196,6 +196,37 @@ inherited Frm_empresa: TFrm_empresa
   end
   inherited Panel1: TPanel
     TabOrder = 14
+    inherited bt_novo: TBitBtn
+      Left = 61
+      ExplicitLeft = 61
+    end
+    inherited bt_deletar: TBitBtn
+      Left = 159
+      ExplicitLeft = 159
+    end
+    inherited bt_editar: TBitBtn
+      Left = 257
+      ExplicitLeft = 257
+    end
+    inherited bt_gravar: TBitBtn
+      Left = 355
+      ExplicitLeft = 355
+    end
+    inherited bt_cancelar: TBitBtn
+      Left = 453
+      ExplicitLeft = 453
+    end
+    inherited bt_atualizar: TBitBtn
+      Left = 551
+      ExplicitLeft = 551
+    end
+    inherited bt_pesquisar: TBitBtn
+      Visible = False
+    end
+    inherited bt_sair: TBitBtn
+      Left = 649
+      ExplicitLeft = 649
+    end
   end
   inherited Panel2: TPanel
     Top = 444
