@@ -36,7 +36,9 @@ uses
   U_padrao_backup_Restore in '..\FORMS\U_padrao_backup_Restore.pas' {Frm_padrao_backup_restore},
   U_backup in '..\FORMS\U_backup.pas' {Frm_backup},
   U_recebimento_venda in '..\FORMS\U_recebimento_venda.pas' {Frm_recebimento_venda},
-  U_restore in '..\FORMS\U_restore.pas' {Frm_restore};
+  U_restore in '..\FORMS\U_restore.pas' {Frm_restore},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 

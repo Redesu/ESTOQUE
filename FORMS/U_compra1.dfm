@@ -34,7 +34,7 @@ inherited Frm_compra1: TFrm_compra1
     ExplicitHeight = 120
     object Label1: TLabel
       Left = 8
-      Top = -2
+      Top = 0
       Width = 68
       Height = 13
       Caption = 'COMPRA_ID'

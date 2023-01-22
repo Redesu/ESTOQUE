@@ -12042,6 +12042,7 @@ object Frm_Principal: TFrm_Principal
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = 'Movimenta Pre'#231'os'
+        ShortCut = 16460
         OnClick = MovimentaPreos1Click
       end
     end
@@ -12564,7 +12565,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
         Caption = 'Lista Usu'#225'rios'
-        ShortCut = 16460
+        ShortCut = 16461
         OnClick = ListaUsuriosClick
       end
       object ListaFornecedores: TMenuItem
@@ -13084,7 +13085,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
         Caption = 'Lista Fornecedores'
-        ShortCut = 16461
+        ShortCut = 16462
         OnClick = ListaFornecedoresClick
       end
       object ListaClientes: TMenuItem
@@ -13604,7 +13605,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
         Caption = 'Lista Clientes'
-        ShortCut = 16462
+        ShortCut = 16463
         OnClick = ListaClientesClick
       end
       object ListaProdutos: TMenuItem
@@ -14124,7 +14125,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000000000000000000000000015000000B900000081}
         Caption = 'Lista Produtos'
-        ShortCut = 16463
+        ShortCut = 16464
         OnClick = ListaProdutosClick
       end
       object ListaFormadepgto1: TMenuItem
@@ -14644,7 +14645,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
         Caption = 'Lista Forma de pgto'
-        ShortCut = 16464
+        ShortCut = 16465
         OnClick = ListaFormadepgto1Click
       end
       object ListaCompras: TMenuItem
@@ -15164,7 +15165,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
         Caption = 'Lista Compras'
-        ShortCut = 16465
+        ShortCut = 16466
         OnClick = ListaComprasClick
       end
       object ListaVendas: TMenuItem
@@ -15684,7 +15685,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000}
         Caption = 'Lista Vendas'
-        ShortCut = 16466
+        ShortCut = 16467
         OnClick = ListaVendasClick
       end
       object ListaContasapagar1: TMenuItem
@@ -16076,7 +16077,7 @@ object Frm_Principal: TFrm_Principal
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = 'Lista Contas a pagar'
-        ShortCut = 16467
+        ShortCut = 16468
         OnClick = ListaContasapagar1Click
       end
       object Listacontasareceber1: TMenuItem
@@ -16468,7 +16469,7 @@ object Frm_Principal: TFrm_Principal
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = 'Lista contas a receber'
-        ShortCut = 16468
+        ShortCut = 16469
         OnClick = Listacontasareceber1Click
       end
       object ComprasFormasdepgto1: TMenuItem
@@ -16572,7 +16573,7 @@ object Frm_Principal: TFrm_Principal
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = 'Compras / Formas de pgto'
-        ShortCut = 16466
+        ShortCut = 16470
         OnClick = ComprasFormasdepgto1Click
       end
       object VendasFormasdepgto1: TMenuItem
@@ -16676,7 +16677,7 @@ object Frm_Principal: TFrm_Principal
           0000000000000000000000000000000000000000000000000000000000000000
           00000000000000000000003A3A3AFAFAFAFFFFFFFFFFFFFFFFFF}
         Caption = 'Vendas / Formas de pgto'
-        ShortCut = 16469
+        ShortCut = 16471
         OnClick = VendasFormasdepgto1Click
       end
       object RelatrioGeralporms1: TMenuItem
@@ -16780,7 +16781,7 @@ object Frm_Principal: TFrm_Principal
           82908F8C8F8E8B8F8E8B8F8E8B8F8E8B8F8E8B8F8E8B8F8E8B8F8E8B8F8E8B8F
           8E8B8F8E8B8F8E8B8F8E8B8F8E8B8D8C8991908DECEBE8FFFFFF}
         Caption = 'Relat'#243'rio Geral por m'#234's'
-        ShortCut = 16470
+        ShortCut = 16472
         OnClick = RelatrioGeralporms1Click
       end
     end
@@ -16887,6 +16888,7 @@ object Frm_Principal: TFrm_Principal
           676262626767676F6F6F808080999999B9B9B9E3E3E3FFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = '&Backup'
+        ShortCut = 16473
         OnClick = Backup2Click
       end
       object Restore1: TMenuItem
@@ -16990,6 +16992,7 @@ object Frm_Principal: TFrm_Principal
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = '&Restore'
+        ShortCut = 16474
         OnClick = Restore1Click
       end
     end
@@ -17096,7 +17099,7 @@ object Frm_Principal: TFrm_Principal
           8E5D5D5D4D4D4D2F2F2F2F2F2F4D4D4D5C5C5C8E8E8ECBCBCBF6F6F6FFFFFFFF
           FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         Caption = '&Informa'#231#245'es'
-        ShortCut = 16471
+        ShortCut = 49217
         OnClick = SobreClick
       end
     end

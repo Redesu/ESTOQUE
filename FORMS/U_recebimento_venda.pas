@@ -49,10 +49,12 @@ var
   diferenca, soma: Real;
 
 begin
+
   // Insere o contas a receber
   Frm_venda.Q_padrao.Refresh;
   Frm_venda.Q_conta_receber.Open;
   parcela := 1;
+
   // a vista ou cartao de debito
   if (Frm_venda.Q_padraoID_FORMA_PGTO.Value = 1) or
     (Frm_venda.Q_padraoID_FORMA_PGTO.Value = 3) then
@@ -64,20 +66,26 @@ begin
       // Abre para inserção
       Frm_venda.Q_conta_receber.Insert;
       Frm_venda.Q_conta_receberSEQUENCIA_ID.AsInteger := 1;
+
       // Recebe a divisão total por Cond_pgto
       Frm_venda.Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat :=
         Frm_venda.Q_padraoVALOR.AsFloat;
+
       // Insere data de vencimento e Pgto
-      Frm_venda.Q_conta_receber.FieldByName('DT_VENCIMENTO').Value := Date;
+      Frm_venda.Q_conta_receberDT_VENCIMENTO.AsDateTime :=
+        incMonth(Frm_venda.Q_padraoCADASTRO.AsDateTime, parcela);
       Frm_venda.Q_conta_receber.FieldByName('DT_PAGAMENTO').Value := Date;
+
       // Zera juros e atraso
       Frm_venda.Q_conta_receber.FieldByName('ATRASO').AsFloat := 0;
       Frm_venda.Q_conta_receber.FieldByName('JUROS').AsFloat := 0;
       Frm_venda.Q_conta_receber.FieldByName('VL_JUROS').AsFloat := 0;
+
       // Total a pagar recebe o valor da parcela
       Frm_venda.Q_conta_receber.FieldByName('TOTAL_PAGAR').AsFloat :=
         Frm_venda.Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat;
       Frm_venda.Q_conta_receber.FieldByName('STATUS').AsString := 'RECEBIDO';
+
       // Grava na tabela
       Frm_venda.Q_conta_receber.Post;
       Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
@@ -93,26 +101,33 @@ begin
     Frm_venda.Q_conta_receber.First;
     while parcela <= Frm_venda.Q_padraoPARCELA.AsInteger do
     begin
+
       // Abre para inserção
       Frm_venda.Q_conta_receber.Insert;
       Frm_venda.Q_conta_receberSEQUENCIA_ID.AsInteger := parcela;
+
       // Recebe a divisão total por Cond_pgto
       Frm_venda.Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat :=
         Frm_venda.Q_padraoVALOR.AsFloat / Frm_venda.Q_padraoPARCELA.Value;
+
       // Insere data de vencimento
-      Frm_venda.Q_conta_receber.FieldByName('DT_VENCIMENTO').Value :=
-        Date + (parcela * 30);
+      Frm_venda.Q_conta_receberDT_VENCIMENTO.AsDateTime :=
+        incMonth(Frm_venda.Q_padraoCADASTRO.AsDateTime, parcela);
       Frm_venda.Q_conta_receber.FieldByName('DT_PAGAMENTO').Value := Date + 1;
+
       // Zera juros e atraso
       Frm_venda.Q_conta_receber.FieldByName('ATRASO').AsFloat := 0;
       Frm_venda.Q_conta_receber.FieldByName('JUROS').AsFloat := 0;
       Frm_venda.Q_conta_receber.FieldByName('VL_JUROS').AsFloat := 0;
+
       // Total a pagar recebe o valor da parcela
       Frm_venda.Q_conta_receber.FieldByName('TOTAL_PAGAR').AsFloat :=
         Frm_venda.Q_conta_receber.FieldByName('VALOR_PARCELA').AsFloat;
       Frm_venda.Q_conta_receber.FieldByName('STATUS').AsString := 'RECEBIDO';
+
       // Grava na tabela
       Frm_venda.Q_conta_receber.Post;
+
       // Auto incrementa a parcela
       inc(parcela);
       Frm_venda.Q_conta_receber.Next;
@@ -136,8 +151,6 @@ begin
       Frm_venda.Q_padraoVALOR.AsFloat / Frm_venda.Q_padraoPARCELA.Value;
     // Insere data de vencimento
 
-    // Frm_venda.Q_conta_receber.FieldByName('DT_VENCIMENTO').Value :=
-    // Date + (parcela * 30);
     Frm_venda.Q_conta_receberDT_VENCIMENTO.AsDateTime :=
       incMonth(Frm_venda.Q_padraoCADASTRO.AsDateTime, parcela);
 

@@ -13,9 +13,6 @@ inherited Frm_restore: TFrm_restore
     ExplicitWidth = 189
   end
   inherited Panel1: TPanel
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitHeight = 500
     inherited bt_backup: TBitBtn
       OnClick = bt_backupClick
     end

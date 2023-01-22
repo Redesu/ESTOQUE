@@ -10,7 +10,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Mask, frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF, Vcl.ComCtrls;
+  Vcl.Mask, frxClass, frxDBSet, frxExportBaseDialog, frxExportPDF, Vcl.ComCtrls,
+  dateUtils;
 
 type
   TFrm_compra1 = class(TFrm_padrao_movimento)
@@ -357,7 +358,7 @@ begin
   // Insere o contas a pagar
   Q_conta_pagar.Open;
   parcela := 1;
-
+  // a vista ou cartao de debito
   if (Q_padraoID_FORMA_PGTO.Value = 1) or (Q_padraoID_FORMA_PGTO.Value = 3) then
   begin
 
@@ -367,20 +368,26 @@ begin
       // Abre para inserção
       Q_conta_pagar.Insert;
       Q_conta_pagarSEQUENCIA_ID.AsInteger := 1;
+
       // Recebe a divisão total por Cond_pgto
       Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat :=
         Q_padraoVALOR.AsFloat;
+
       // Insere data de vencimento e Pgto
-      Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date;
+      Q_conta_pagarDT_VENCIMENTO.AsDateTime :=
+        incMonth(Q_padraoCADASTRO.AsDateTime, parcela);
       Q_conta_pagar.FieldByName('DT_PAGAMENTO').Value := Date;
+
       // Zera juros e atraso
       Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
       Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
       Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
+
       // Total a pagar recebe o valor da parcela
       Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
         Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
       Q_conta_pagar.FieldByName('STATUS').AsString := 'PAGO';
+
       // Grava na tabela
       Q_conta_pagar.Post;
       abort;
@@ -392,24 +399,32 @@ begin
     Q_conta_pagar.First;
   while parcela <= Q_padraoCOND_PGTO.AsInteger do
   begin
+
     // Abre para inserção
     Q_conta_pagar.Insert;
     Q_conta_pagarSEQUENCIA_ID.AsInteger := parcela;
+
     // Recebe a divisão total por Cond_pgto
     Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat := Q_padraoVALOR.AsFloat
       / Q_padraoCOND_PGTO.Value;
+
     // Insere data de vencimento
-    Q_conta_pagar.FieldByName('DT_VENCIMENTO').Value := Date + (parcela * 30);
+    Q_conta_pagarDT_VENCIMENTO.AsDateTime :=
+      incMonth(Q_padraoCADASTRO.AsDateTime, parcela);
+
     // Zera juros e atraso
     Q_conta_pagar.FieldByName('ATRASO').AsFloat := 0;
     Q_conta_pagar.FieldByName('JUROS').AsFloat := 0;
     Q_conta_pagar.FieldByName('VL_JUROS').AsFloat := 0;
+
     // Total a pagar recebe o valor da parcela
     Q_conta_pagar.FieldByName('TOTAL_PAGAR').AsFloat :=
       Q_conta_pagar.FieldByName('VALOR_PARCELA').AsFloat;
     Q_conta_pagar.FieldByName('STATUS').AsString := 'EM ABERTO';
+
     // Grava na tabela
     Q_conta_pagar.Post;
+
     // Auto incrementa a parcela
     inc(parcela);
     Q_conta_pagar.Next;
