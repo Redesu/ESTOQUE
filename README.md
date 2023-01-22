@@ -28,12 +28,14 @@ Clone the repository
     git clone https://github.com/Redesu/ESTOQUE
 
 
-Open the project
+Open the compiled version
 
-    ./PROJETO/Controle_estoque.dproj
+    ./EXE/Controle_estoque.exe
 
+If you can't open the file, could mean you don't have `FBCLIENT.DLL` inside your `system32` windows folder.
+Reinstall Firebird if that's the case.
 
-
+ 
 ## Deployment
 
 Compiling should leave a Controle_estoque.exe inside
@@ -45,7 +47,7 @@ Compiling should leave a Controle_estoque.exe inside
 
 - [X] Add switch user.
 - [X] Add login system.
-- [ ] Add search for Compras and Vendas
+- [X] Add search for Compras and Vendas
 
 
 ## Contributing
