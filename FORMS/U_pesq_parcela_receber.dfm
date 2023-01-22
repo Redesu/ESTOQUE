@@ -230,7 +230,7 @@ inherited Frm_pesq_parcela_receber: TFrm_pesq_parcela_receber
     end
   end
   inherited frxReport1: TfrxReport
-    ReportOptions.LastChange = 44946.929009490740000000
+    ReportOptions.LastChange = 44948.717461516200000000
     Datasets = <
       item
         DataSet = frxDB_padrao
@@ -652,59 +652,67 @@ inherited Frm_pesq_parcela_receber: TFrm_pesq_parcela_receber
           ParentFont = False
         end
       end
-      object Date1: TfrxMemoView
-        IndexTag = 1
-        AllowVectorExport = True
-        Left = 487.559370000000000000
-        Top = 1028.032160000000000000
-        Width = 79.370130000000000000
-        Height = 18.897650000000000000
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Style = []
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
         Frame.Typ = []
-        HAlign = haCenter
-        Memo.UTF8W = (
-          '[Date]')
-        ParentFont = False
-      end
-      object Time1: TfrxMemoView
-        IndexTag = 1
-        AllowVectorExport = True
-        Left = 570.709030000000000000
-        Top = 1028.032160000000000000
-        Width = 79.370130000000000000
-        Height = 18.897650000000000000
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Style = []
-        Frame.Typ = []
-        HAlign = haCenter
-        Memo.UTF8W = (
-          '[Time]')
-        ParentFont = False
-      end
-      object Page: TfrxMemoView
-        IndexTag = 1
-        AllowVectorExport = True
-        Left = 653.858690000000000000
-        Top = 1028.032160000000000000
-        Width = 79.370130000000000000
-        Height = 18.897650000000000000
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Style = []
-        Frame.Typ = []
-        HAlign = haCenter
-        Memo.UTF8W = (
-          '[Page]')
-        ParentFont = False
+        Height = 22.677180000000000000
+        Top = 366.614410000000000000
+        Width = 718.110700000000000000
+        object Date1: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 472.441250000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[Date]')
+          ParentFont = False
+        end
+        object Time1: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 555.590910000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[Time]')
+          ParentFont = False
+        end
+        object Page: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 638.740570000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          HAlign = haCenter
+          Memo.UTF8W = (
+            '[Page]')
+          ParentFont = False
+        end
       end
     end
   end

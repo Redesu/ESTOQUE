@@ -299,12 +299,12 @@ end;
 procedure TFrm_pesq_geral_mes.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-   Q_compra.Close;
-   Q_venda.Close;
-   Q_conta_pagar.Close;
-   Q_conta_receber.Close;
-   Q_conta_pagar_a_pagar.Close;
-   Q_conta_a_receber.close;
+  Q_compra.Close;
+  Q_venda.Close;
+  Q_conta_pagar.Close;
+  Q_conta_receber.Close;
+  Q_conta_pagar_a_pagar.Close;
+  Q_conta_a_receber.Close;
 end;
 
 procedure TFrm_pesq_geral_mes.FormKeyPress(Sender: TObject; var Key: Char);
@@ -318,7 +318,7 @@ end;
 
 procedure TFrm_pesq_geral_mes.RG_opcaoClick(Sender: TObject);
 begin
-mk_inicio.SetFocus;
+  mk_inicio.SetFocus;
 end;
 
 end.

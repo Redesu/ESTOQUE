@@ -3,7 +3,8 @@ unit U_produto;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_padrao, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
@@ -64,33 +65,33 @@ procedure TFrm_produto.bt_novoClick(Sender: TObject);
 begin
   inherited;
 
-  DB_cadastro.Text:=DateTostr(now);
-  DB_id_produto.SetFocus;
+  DB_cadastro.Text := DateTostr(now);
+  db_id_produto.SetFocus;
 end;
 
 procedure TFrm_produto.bt_pesquisarClick(Sender: TObject);
 begin
- Frm_pesq_produto:=TFrm_pesq_produto.Create(self);
- Frm_pesq_produto.ShowModal;
- try
+  Frm_pesq_produto := TFrm_pesq_produto.Create(self);
+  Frm_pesq_produto.ShowModal;
+  try
     if Frm_pesq_produto.codico > 0 then
-     begin
-       Q_padrao.open;
-       Q_padrao.Locate('PRODUTO_ID', Frm_pesq_produto.codico, []);
-     end;
- finally
+    begin
+      Q_padrao.open;
+      Q_padrao.Locate('PRODUTO_ID', Frm_pesq_produto.codico, []);
+    end;
+  finally
 
- Frm_pesq_produto.Free;
- Frm_pesq_produto:=nil;
+    Frm_pesq_produto.Free;
+    Frm_pesq_produto := nil;
 
- end;
+  end;
 
 end;
 
 procedure TFrm_produto.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-   Q_padrao.close;
+  Q_padrao.close;
 end;
 
 end.

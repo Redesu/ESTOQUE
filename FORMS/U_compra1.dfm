@@ -585,6 +585,7 @@ inherited Frm_compra1: TFrm_compra1
       DataField = 'TOTAL_ITEM'
       DataSource = ds_padrao_item
       TabOrder = 4
+      OnExit = db_total_itemExit
     end
   end
   inherited PageControl1: TPageControl
@@ -783,7 +784,6 @@ inherited Frm_compra1: TFrm_compra1
     end
   end
   inherited Q_padrao_item: TFDQuery
-    Active = True
     IndexFieldNames = 'COMPRA_ID'
     AggregatesActive = True
     MasterFields = 'COMPRA_ID'

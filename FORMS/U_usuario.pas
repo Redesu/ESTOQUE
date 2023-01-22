@@ -3,7 +3,8 @@ unit U_usuario;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_padrao, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
@@ -47,28 +48,27 @@ uses U_pesq_usuario;
 procedure TFrm_usuarios.bt_novoClick(Sender: TObject);
 begin
   inherited;
-       DB_cadastro.Text:=DateTostr(now);
-     DB_nome.SetFocus;
+  DB_cadastro.Text := DateTostr(now);
+  DB_nome.SetFocus;
 end;
 
 procedure TFrm_usuarios.bt_pesquisarClick(Sender: TObject);
 begin
 
-
-Frm_pesq_usuario:=TFrm_pesq_usuario.Create(self);
-Frm_pesq_usuario.showmodal;
-try
+  Frm_pesq_usuario := TFrm_pesq_usuario.Create(self);
+  Frm_pesq_usuario.showmodal;
+  try
     if Frm_pesq_usuario.codico > 0 then
-     begin
-       Q_padrao.open;
-       Q_padrao.Locate('USER_ID', Frm_pesq_usuario.codico, []);
-     end;
-finally
+    begin
+      Q_padrao.open;
+      Q_padrao.Locate('USER_ID', Frm_pesq_usuario.codico, []);
+    end;
+  finally
 
-Frm_pesq_usuario.free;
-Frm_pesq_usuario:=nil;
+    Frm_pesq_usuario.free;
+    Frm_pesq_usuario := nil;
 
-end;
+  end;
 
 end;
 

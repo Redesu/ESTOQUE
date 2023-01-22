@@ -11,12 +11,10 @@ type
   TFrm_login = class(TForm)
     ed_usuario: TEdit;
     ed_senha: TEdit;
-    cb_tipo: TComboBox;
     bt_ok: TBitBtn;
     bt_cancelar: TBitBtn;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
     Image1: TImage;
     Bevel1: TBevel;
     bt_troca_senha: TBitBtn;
@@ -57,17 +55,16 @@ begin
   dm.Q_login.Params.Clear;
   dm.Q_login.SQL.add('SELECT * FROM USUARIO');
   dm.Q_login.SQL.add
-    ('WHERE NAME =:PNAME AND PASSWORD =:PPASS AND TYPE =:PTYPE');
+    ('WHERE NAME =:PNAME AND PASSWORD =:PPASS');
   dm.Q_login.ParamByName('PNAME').asString := ed_usuario.Text;
-  dm.Q_login.ParamByName('PPASS').asString := ed_senha.Text;
-  dm.Q_login.ParamByName('PTYPE').asString := cb_tipo.Text;
+  dm.Q_login.ParamByName('PPASS').asString := ed_senha.Text;;
   dm.Q_login.Open;
 
   // Se Q_login não retornar nada
   if dm.Q_login.RecordCount > 0 then
   begin
     dm.usuario := ed_usuario.Text;
-    dm.tipo_usuario := cb_tipo.Text;
+    dm.tipo_usuario := dm.Q_loginTYPE.AsString;
     Frm_Principal := TFrm_Principal.Create(self);
     Frm_Principal.Show;
 

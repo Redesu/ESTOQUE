@@ -111,8 +111,7 @@ begin
       end;
   end;
 
-
-   // abre a query
+  // abre a query
   Q_pesq_padrao.open;
   lb_resultado.Visible := true;
   lb_resultado.Caption := 'Total de registros localizados: ' +

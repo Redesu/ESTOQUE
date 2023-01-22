@@ -128,7 +128,8 @@ var
   caminho: string;
 
 begin
-  if Frm_contas_receber.Recibo.LoadFromFile(caminho + 'REL_RECIBO_PAGAMENTO.fr3') then
+  if Frm_contas_Receber.Recibo.LoadFromFile(caminho + 'REL_RECIBO_PAGAMENTO.fr3')
+  then
   begin
 
     Recibo.clear; // limpa relatorio

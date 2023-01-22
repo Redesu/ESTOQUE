@@ -1,7 +1,6 @@
 inherited Frm_pesq_produto: TFrm_pesq_produto
   Caption = 'PESQUISA PRODUTO'
   ClientWidth = 1142
-  ExplicitLeft = -1
   ExplicitWidth = 1148
   DesignSize = (
     1142
@@ -195,7 +194,6 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
   end
   inherited Panel2: TPanel
     Width = 1142
-    ExplicitTop = 568
     ExplicitWidth = 1142
   end
   inherited DBNavigator1: TDBNavigator
@@ -203,7 +201,6 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
     Hints.Strings = ()
   end
   inherited Q_pesq_padrao: TFDQuery
-    Active = True
     SQL.Strings = (
       'SELECT A.PRODUTO_ID,'
       'A.PRODUTO_DESCRICAO,'
@@ -284,7 +281,7 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
   end
   inherited frxReport1: TfrxReport
     ReportOptions.CreateDate = 44914.724794120400000000
-    ReportOptions.LastChange = 44941.591657731500000000
+    ReportOptions.LastChange = 44948.718377233800000000
     Datasets = <
       item
         DataSet = frxDB_padrao
@@ -470,6 +467,47 @@ inherited Frm_pesq_produto: TFrm_pesq_produto
           Memo.UTF8W = (
             '[frxDBDataset1."PRODUTO_DESCRICAO"]')
           ParentFont = False
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 313.700990000000000000
+        Width = 971.339210000000000000
+        object Date1: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 668.976810000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Date]')
+        end
+        object Time1: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 839.055660000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Page]')
+        end
+        object Time2: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 755.906000000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Time]')
         end
       end
     end

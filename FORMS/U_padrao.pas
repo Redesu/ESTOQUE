@@ -3,7 +3,8 @@ unit U_padrao;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons,
   Vcl.ExtCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
@@ -51,98 +52,100 @@ uses U_DM;
 
 procedure TFrm_padrao.bt_sairClick(Sender: TObject);
 begin
-close;
+  close;
 end;
 
 procedure TFrm_padrao.bt_atualizarClick(Sender: TObject);
 begin
-//atualiza o registro
-try
-Trabalhobotoes;
-Q_padrao.Post;
-messagedlg('Registro atualizado com sucesso!',mtInformation,[mbOk],0);
-except
-ShowMessage('Preencha ou verifique todos os campos!');
+  // atualiza o registro
+  try
+    Trabalhobotoes;
+    Q_padrao.Post;
+    messagedlg('Registro atualizado com sucesso!', mtInformation, [mbOk], 0);
+  except
+    ShowMessage('Preencha ou verifique todos os campos!');
 
-end;
+  end;
 end;
 
 procedure TFrm_padrao.bt_cancelarClick(Sender: TObject);
 begin
 
-//cancela a açao
-Trabalhobotoes;
-Q_padrao.cancel;
-Messagedlg('Ação cancelada pelo usuário!',mtinformation,[mbOk],0);
+  // cancela a açao
+  Trabalhobotoes;
+  Q_padrao.cancel;
+  messagedlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
 end;
 
 procedure TFrm_padrao.bt_deletarClick(Sender: TObject);
 begin
-//deleta um registro
-Trabalhobotoes;
-if messagedlg('Deseja deletar esse registro?',mtConfirmation,[mbOk, mbNo],0)=mrOk then
-begin
-  Q_padrao.Delete;
-  messagedlg('Registro deletado com sucesso!',mtInformation,[mbOk],0);
+  // deleta um registro
   Trabalhobotoes;
-end
-     else
-     Trabalhobotoes;
-abort;
+  if messagedlg('Deseja deletar esse registro?', mtConfirmation, [mbOk, mbNo],
+    0) = mrOk then
+  begin
+    Q_padrao.Delete;
+    messagedlg('Registro deletado com sucesso!', mtInformation, [mbOk], 0);
+    Trabalhobotoes;
+  end
+  else
+    Trabalhobotoes;
+  abort;
 end;
 
 procedure TFrm_padrao.bt_editarClick(Sender: TObject);
 begin
-//abre para ediçao
-Trabalhobotoes;
-if messagedlg('Deseja editar esse registro?',mtConfirmation,[mbOk, mbNo],0)=mrOk then
-begin
-  Q_padrao.edit;
-end
-     else
-     Trabalhobotoes;
-abort;
+  // abre para ediçao
+  Trabalhobotoes;
+  if messagedlg('Deseja editar esse registro?', mtConfirmation, [mbOk, mbNo], 0)
+    = mrOk then
+  begin
+    Q_padrao.edit;
+  end
+  else
+    Trabalhobotoes;
+  abort;
 end;
 
 procedure TFrm_padrao.bt_gravarClick(Sender: TObject);
 begin
-try
-//salva o registro
-Trabalhobotoes;
-Q_padrao.Post;
-messagedlg('Registro salvo Com sucesso!',mtInformation, [mbOk],0);
-except
-ShowMessage('Preencha ou verifique todos os campos!');
+  try
+    // salva o registro
+    Trabalhobotoes;
+    Q_padrao.Post;
+    messagedlg('Registro salvo Com sucesso!', mtInformation, [mbOk], 0);
+  except
+    ShowMessage('Preencha ou verifique todos os campos!');
 
-end;
+  end;
 end;
 
 procedure TFrm_padrao.bt_novoClick(Sender: TObject);
 begin
 
-Q_padrao.open;
-Trabalhobotoes;
-Q_padrao.Append;
+  Q_padrao.open;
+  Trabalhobotoes;
+  Q_padrao.Append;
 end;
 
 procedure TFrm_padrao.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-        //makes the enter key fuctions like tab
-        if key=#13 then
-        begin
-          Key:=#0;
-          Perform(wm_nextDlgCtl,0,0);
-        end;
+  // makes the enter key fuctions like tab
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(wm_nextDlgCtl, 0, 0);
+  end;
 end;
 
 procedure TFrm_padrao.Trabalhobotoes;
 begin
-//habilita e desabilida os botoes
-bt_novo.Enabled:=not bt_novo.Enabled;
-bt_deletar.Enabled:=not bt_deletar.Enabled;
-bt_editar.Enabled:=not bt_editar.Enabled;
-bt_gravar.Enabled:=not bt_gravar.Enabled;
-bt_atualizar.Enabled:=not bt_atualizar.Enabled;
+  // habilita e desabilida os botoes
+  bt_novo.Enabled := not bt_novo.Enabled;
+  bt_deletar.Enabled := not bt_deletar.Enabled;
+  bt_editar.Enabled := not bt_editar.Enabled;
+  bt_gravar.Enabled := not bt_gravar.Enabled;
+  bt_atualizar.Enabled := not bt_atualizar.Enabled;
 end;
 
 end.

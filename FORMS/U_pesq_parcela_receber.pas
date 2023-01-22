@@ -57,7 +57,7 @@ var
 begin
   caminho := ExtractFilePath(Application.ExeName);
 
-  if Frm_pesq_Parcela_receber.frxReport1.LoadFromFile
+  if Frm_pesq_parcela_receber.frxReport1.LoadFromFile
     (caminho + 'REL_LISTA_RECEBER.fr3') then
   begin
 
@@ -67,7 +67,7 @@ begin
     frxReport1.Variables['nome'] := QuotedStr(dm.usuario);
     frxReport1.PrepareReport(true);
     frxReport1.ShowPreparedReport;
-    Frm_pesq_Parcela_receber.Close;
+    Frm_pesq_parcela_receber.Close;
 
   end
   else
@@ -112,10 +112,10 @@ begin
         Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
       end;
 
-      3:
+    3:
       begin
         Q_pesq_padrao.sql.add('AND C.STATUS = ''EM ABERTO''');
-        Q_pesq_padrao.SQL.Add('ORDER BY VENDA_ID');
+        Q_pesq_padrao.sql.add('ORDER BY VENDA_ID');
       end;
 
   end;
@@ -214,7 +214,7 @@ begin
       DBGrid1.Canvas.Font.Color := clBlue;
 
     end
-    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime<=date) and
+    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime <= date) and
       (Q_pesq_padraoDT_PAGAMENTO.IsNull) then
     begin
 
@@ -223,9 +223,7 @@ begin
 
     end;
 
-
-
-    dbgrid1.DefaultDrawColumnCell(rect, datacol, column, state);
+  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
 end;
 

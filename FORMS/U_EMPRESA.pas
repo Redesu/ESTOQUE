@@ -3,7 +3,8 @@ unit U_EMPRESA;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_padrao, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
@@ -75,22 +76,22 @@ implementation
 
 procedure TFrm_empresa.bt_clearClick(Sender: TObject);
 begin
-  //Limpa a imagem
+  // Limpa a imagem
   Q_padrao.Edit;
-  Q_padraoLOGO.AsVariant:=null;
+  Q_padraoLOGO.AsVariant := null;
   Q_padrao.Refresh;
-  Messagedlg('Imagem deletada com sucesso!', mtInformation,[mbOk],0);
+  Messagedlg('Imagem deletada com sucesso!', mtInformation, [mbOk], 0);
 
 end;
 
 procedure TFrm_empresa.bt_fotoClick(Sender: TObject);
 begin
-  //insere foto
+  // insere foto
   Q_padrao.Edit;
-  opendialog1.Execute; // executa o opendialog
-  dbimage1.Picture.LoadFromFile(opendialog1.filename);           //recebe a imagem
-  Q_padrao.Refresh();                //atualiza a imagem
-  Messagedlg('Imagem atualizada com sucesso!', mtInformation,[mbOk],0);
+  OpenDialog1.Execute; // executa o opendialog
+  DBImage1.Picture.LoadFromFile(OpenDialog1.filename); // recebe a imagem
+  Q_padrao.Refresh(); // atualiza a imagem
+  Messagedlg('Imagem atualizada com sucesso!', mtInformation, [mbOk], 0);
 
 end;
 
@@ -99,12 +100,12 @@ begin
   inherited;
   if Q_padrao.RecordCount > 0 then
   begin
-    MessageDlg('Já possui um cadastro nesta tabela!', mtError,[mbok],0);
+    Messagedlg('Já possui um cadastro nesta tabela!', mtError, [mbOk], 0);
     Q_padrao.Cancel;
     Trabalhobotoes;
   end
   else
-  DB_cadastro.Text:=datetostr(now);
+    DB_cadastro.Text := datetostr(now);
   DB_razao_social.SetFocus;
 
 end;

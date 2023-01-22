@@ -39,7 +39,7 @@ type
   public
     { Public declarations }
     Data: Tdate;
-    sequencia: integer;
+    sequencia: Integer;
   end;
 
 var
@@ -176,7 +176,7 @@ procedure TFrm_pesq_Parcela_pagar.DBGrid1DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
 
-   // Se tiver sido recebido
+  // Se tiver sido recebido
 
   if (Q_pesq_padraoDT_PAGAMENTO.Value <> 0) and
     (Q_pesq_padraoSTATUS.AsString = 'PAGO') then
@@ -197,7 +197,7 @@ begin
       DBGrid1.Canvas.Font.Color := clBlue;
 
     end
-    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime<=date) and
+    else if (Q_pesq_padraoDT_PAGAMENTO.AsDateTime <= date) and
       (Q_pesq_padraoDT_PAGAMENTO.IsNull) then
     begin
 
@@ -206,9 +206,7 @@ begin
 
     end;
 
-
-
-    dbgrid1.DefaultDrawColumnCell(rect, datacol, column, state);
+  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
 end;
 

@@ -96,7 +96,6 @@ object Frm_recebimento_venda: TFrm_recebimento_venda
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 7
-    ExplicitTop = 386
   end
   object RG_forma_pgto: TRadioGroup
     Left = 8

@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons, Vcl.ComCtrls,
-  Vcl.Menus;
+  Vcl.Menus, Vcl.StdCtrls;
 
 type
   TFrm_Principal = class(TForm)
@@ -189,7 +189,7 @@ end;
 
 procedure TFrm_Principal.bt_Conta_receberClick(Sender: TObject);
 begin
-   Abre_Contas_Receber;
+  Abre_Contas_Receber;
 end;
 
 procedure TFrm_Principal.bt_troca_usuarioClick(Sender: TObject);
@@ -202,15 +202,15 @@ end;
 
 procedure TFrm_Principal.Abre_Contas_Receber;
 begin
-    Frm_contas_Receber:=TFrm_contas_Receber.Create(self);
-    Frm_contas_Receber.ShowModal;
-    try
+  Frm_contas_Receber := TFrm_contas_Receber.Create(self);
+  Frm_contas_Receber.ShowModal;
+  try
 
-    finally
+  finally
     Frm_contas_Receber.Free;
-    Frm_contas_Receber:=nil;
+    Frm_contas_Receber := nil;
 
-    end;
+  end;
 end;
 
 procedure TFrm_Principal.Abre_Tela_Cliente;
@@ -334,7 +334,7 @@ end;
 
 procedure TFrm_Principal.AReceber1Click(Sender: TObject);
 begin
-Abre_Contas_Receber;
+  Abre_Contas_Receber;
 end;
 
 procedure TFrm_Principal.bt_UsuarioClick(Sender: TObject);
@@ -434,15 +434,15 @@ end;
 
 procedure TFrm_Principal.Listacontasareceber1Click(Sender: TObject);
 begin
-   Frm_pesq_parcela_receber:=TFrm_pesq_parcela_receber.Create(self);
-   Frm_pesq_parcela_receber.ShowModal;
-   try
+  Frm_pesq_parcela_receber := TFrm_pesq_parcela_receber.Create(self);
+  Frm_pesq_parcela_receber.ShowModal;
+  try
 
-   finally
-   Frm_pesq_parcela_receber.Free;
-   Frm_pesq_parcela_receber:=nil;
+  finally
+    Frm_pesq_parcela_receber.Free;
+    Frm_pesq_parcela_receber := nil;
 
-   end;
+  end;
 end;
 
 procedure TFrm_Principal.ListaFormadepgto1Click(Sender: TObject);
@@ -570,14 +570,14 @@ end;
 
 procedure TFrm_Principal.MovimentaPreos1Click(Sender: TObject);
 begin
-   Frm_movimenta_precos:=TFrm_movimenta_precos.Create(self);
-   Frm_movimenta_precos.ShowModal;
-   try
+  Frm_movimenta_precos := TFrm_movimenta_precos.Create(self);
+  Frm_movimenta_precos.ShowModal;
+  try
 
-   finally
+  finally
     Frm_movimenta_precos.Free;
-    Frm_movimenta_precos:=nil;
-   end;
+    Frm_movimenta_precos := nil;
+  end;
 end;
 
 procedure TFrm_Principal.RelatrioGeralporms1Click(Sender: TObject);

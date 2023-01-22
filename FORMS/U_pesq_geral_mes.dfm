@@ -27,9 +27,6 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 88
-    ExplicitTop = 32
-    ExplicitWidth = 922
     object lb_inicio: TLabel
       Left = 288
       Top = 42
@@ -826,7 +823,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44944.611270868050000000
-    ReportOptions.LastChange = 44945.662924664350000000
+    ReportOptions.LastChange = 44948.716533784730000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -882,14 +879,14 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
       Width = 1000.000000000000000000
     end
     object Page1: TfrxReportPage
-      PaperWidth = 215.900000000000000000
-      PaperHeight = 279.400000000000000000
-      PaperSize = 1
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
       LeftMargin = 10.000000000000000000
       RightMargin = 10.000000000000000000
       TopMargin = 10.000000000000000000
       BottomMargin = 10.000000000000000000
-      Frame.Typ = []
+      Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
       MirrorMode = []
       object ReportTitle1: TfrxReportTitle
         FillType = ftBrush
@@ -900,12 +897,12 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
         Frame.Typ = []
         Height = 113.385900000000000000
         Top = 18.897650000000000000
-        Width = 740.409927000000000000
+        Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
           Top = 15.118120000000000000
-          Width = 740.409927000000000000
+          Width = 718.110700000000000000
           Height = 64.252010000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -983,12 +980,12 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
         Frame.Typ = []
         Height = 79.370130000000000000
         Top = 154.960730000000000000
-        Width = 740.409927000000000000
+        Width = 718.110700000000000000
         object Memo4: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
           Top = 3.779530000000000000
-          Width = 740.409927000000000000
+          Width = 718.110700000000000000
           Height = 22.677180000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1039,7 +1036,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
           AllowVectorExport = True
           Left = 158.740260000000000000
           Top = 56.692950000000000000
-          Width = 581.669667000000000000
+          Width = 559.370440000000000000
           Height = 18.897650000000000000
           DisplayFormat.DecimalSeparator = ','
           DisplayFormat.FormatStr = '%2.2m'
@@ -1064,7 +1061,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
         Frame.Typ = []
         Height = 18.897650000000000000
         Top = 294.803340000000000000
-        Width = 740.409927000000000000
+        Width = 718.110700000000000000
         DataSet = frxconta_pagar_a_pagar
         DataSetName = 'frxconta_pagar_a_pagar'
         RowCount = 0
@@ -1112,7 +1109,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
           Align = baWidth
           AllowVectorExport = True
           Left = 158.740260000000000000
-          Width = 581.669667000000000000
+          Width = 559.370440000000000000
           Height = 18.897650000000000000
           DataField = 'VALOR_A_PAGAR'
           DataSet = frxconta_pagar_a_pagar
@@ -1137,7 +1134,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
         Frame.Typ = []
         Height = 22.677180000000000000
         Top = 423.307360000000000000
-        Width = 740.409927000000000000
+        Width = 718.110700000000000000
         DataSet = frxconta_a_receber
         DataSetName = 'frxconta_a_receber'
         RowCount = 0
@@ -1185,7 +1182,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
           Align = baWidth
           AllowVectorExport = True
           Left = 158.740260000000000000
-          Width = 581.669667000000000000
+          Width = 559.370440000000000000
           Height = 18.897650000000000000
           DataField = 'VALOR_A_RECEBER'
           DataSet = frxconta_a_receber
@@ -1210,7 +1207,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
         Frame.Typ = []
         Height = 45.354360000000000000
         Top = 506.457020000000000000
-        Width = 740.409927000000000000
+        Width = 718.110700000000000000
         object usuario: TfrxMemoView
           IndexTag = 1
           Align = baWidth
@@ -1272,7 +1269,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
           AllowVectorExport = True
           Left = 253.228510000000000000
           Top = 11.338590000000000000
-          Width = 487.181417000000000000
+          Width = 464.882190000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1295,12 +1292,12 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
         Frame.Typ = []
         Height = 64.252010000000000000
         Top = 336.378170000000000000
-        Width = 740.409927000000000000
+        Width = 718.110700000000000000
         object Memo5: TfrxMemoView
           Align = baWidth
           AllowVectorExport = True
           Top = 3.779530000000000000
-          Width = 740.409927000000000000
+          Width = 718.110700000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1351,7 +1348,7 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
           AllowVectorExport = True
           Left = 158.740260000000000000
           Top = 41.574830000000000000
-          Width = 581.669667000000000000
+          Width = 559.370440000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -1362,6 +1359,47 @@ object Frm_pesq_geral_mes: TFrm_pesq_geral_mes
           Memo.UTF8W = (
             'VALOR')
           ParentFont = False
+        end
+      end
+      object PageFooter1: TfrxPageFooter
+        FillType = ftBrush
+        FillGap.Top = 0
+        FillGap.Left = 0
+        FillGap.Bottom = 0
+        FillGap.Right = 0
+        Frame.Typ = []
+        Height = 22.677180000000000000
+        Top = 574.488560000000000000
+        Width = 718.110700000000000000
+        object Date1: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 468.661720000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Date]')
+        end
+        object Time1: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 551.811380000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Time]')
+        end
+        object Page: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 634.961040000000000000
+          Width = 79.370130000000000000
+          Height = 18.897650000000000000
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[Page]')
         end
       end
     end

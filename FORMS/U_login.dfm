@@ -3,7 +3,7 @@ object Frm_login: TFrm_login
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Entre com usu'#225'rio e senha'
-  ClientHeight = 232
+  ClientHeight = 203
   ClientWidth = 448
   Color = clInactiveBorder
   Font.Charset = DEFAULT_CHARSET
@@ -45,22 +45,9 @@ object Frm_login: TFrm_login
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Label3: TLabel
-    Left = 48
-    Top = 129
-    Width = 26
-    Height = 16
-    Caption = 'Tipo'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object Image1: TImage
     Left = 325
-    Top = 43
+    Top = 27
     Width = 105
     Height = 105
     Picture.Data = {
@@ -6215,7 +6202,7 @@ object Frm_login: TFrm_login
   end
   object Bevel1: TBevel
     Left = 8
-    Top = 167
+    Top = 138
     Width = 432
     Height = 66
   end
@@ -6236,20 +6223,9 @@ object Frm_login: TFrm_login
     PasswordChar = #9679
     TabOrder = 1
   end
-  object cb_tipo: TComboBox
-    Left = 128
-    Top = 128
-    Width = 178
-    Height = 21
-    CharCase = ecUpperCase
-    TabOrder = 2
-    Items.Strings = (
-      'ADMINISTRADOR'
-      'APOIO')
-  end
   object bt_ok: TBitBtn
     Left = 80
-    Top = 175
+    Top = 151
     Width = 90
     Height = 45
     Caption = '&Ok'
@@ -6352,12 +6328,12 @@ object Frm_login: TFrm_login
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 3
+    TabOrder = 2
     OnClick = bt_okClick
   end
   object bt_cancelar: TBitBtn
     Left = 312
-    Top = 175
+    Top = 151
     Width = 90
     Height = 45
     Caption = '&Cancelar'
@@ -6460,12 +6436,12 @@ object Frm_login: TFrm_login
       1F1F1FADADADFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFC2C2C22929290707077D7D7DFBFBFBFFFFFF}
-    TabOrder = 4
+    TabOrder = 3
     OnClick = bt_cancelarClick
   end
   object bt_troca_senha: TBitBtn
     Left = 195
-    Top = 175
+    Top = 151
     Width = 90
     Height = 45
     Caption = '&Trocar'
@@ -6568,7 +6544,7 @@ object Frm_login: TFrm_login
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0D0
       D06A6A6A2828280707070707072828286A6A6AD0D0D0FFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-    TabOrder = 5
+    TabOrder = 4
     OnClick = bt_troca_senhaClick
   end
 end

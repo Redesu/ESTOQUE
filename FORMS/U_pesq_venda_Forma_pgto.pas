@@ -43,7 +43,7 @@ var
   caminho: string;
 
 begin
-  if Frm_pesq_venda_Forma_pgto.frxReport1.LoadFromFile
+  if Frm_pesq_Venda_Forma_Pgto.frxReport1.LoadFromFile
     (caminho + 'REL_VENDA_FORMA_PGTO.fr3') then
   begin
 
@@ -79,8 +79,8 @@ begin
     ('INNER JOIN FORMA_PGTO B ON B.ID_FORMA_PGTO = A.ID_FORMA_PGTO ');
 
   Q_pesq_padrao.sql.add('WHERE A.CADASTRO BETWEEN :PINICIO AND :PFIM');
-  Q_pesq_padrao.paramByname('PINICIO').AsDate := strTodate(mk_inicio.Text);
-  Q_pesq_padrao.paramByname('PFIM').AsDate := strTodate(mk_fim.Text);
+  Q_pesq_padrao.paramByname('PINICIO').AsDate := strTodate(mk_inicio.text);
+  Q_pesq_padrao.paramByname('PFIM').AsDate := strTodate(mk_fim.text);
 
   Q_pesq_padrao.sql.add('GROUP BY A.ID_FORMA_PGTO, B.DESCRICAO ');
 

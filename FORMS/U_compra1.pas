@@ -122,6 +122,7 @@ type
     procedure bt_check_fornecedorClick(Sender: TObject);
     procedure bt_busca_forma_pgtoClick(Sender: TObject);
     procedure bt_gravarClick(Sender: TObject);
+    procedure db_total_itemExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -461,11 +462,16 @@ end;
 
 procedure TFrm_compra1.db_descontoExit(Sender: TObject);
 begin
-  Q_padrao_itemTOTAL_ITEM.AsFloat :=
-    (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
-    (Q_padrao_itemDESCONTO.AsFloat);
-  Q_padrao_item.Refresh;
 
+  if Q_padrao_item.State in [dsedit, dsinsert] then
+  begin
+    Q_padrao_itemTOTAL_ITEM.AsFloat :=
+      (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
+      (Q_padrao_itemDESCONTO.AsFloat);
+    Q_padrao_item.Refresh;
+  end
+  else
+    abort;
 end;
 
 procedure TFrm_compra1.DB_id_forma_pgtoExit(Sender: TObject);
@@ -532,12 +538,22 @@ end;
 procedure TFrm_compra1.db_qtdeExit(Sender: TObject);
 begin
   inherited;
+  if Q_padrao_item.State in [dsedit, dsinsert] then
+  begin
 
-  Q_padrao_itemTOTAL_ITEM.AsFloat :=
-    (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
-    (Q_padrao_itemDESCONTO.AsFloat);
-  Q_padrao_item.Refresh;
+    Q_padrao_itemTOTAL_ITEM.AsFloat :=
+      (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
+      (Q_padrao_itemDESCONTO.AsFloat);
+    Q_padrao_item.Refresh;
+  end
+  else
+    abort;
+end;
 
+procedure TFrm_compra1.db_total_itemExit(Sender: TObject);
+begin
+  inherited;
+  bt_item.SetFocus;
 end;
 
 procedure TFrm_compra1.FormClose(Sender: TObject; var Action: TCloseAction);

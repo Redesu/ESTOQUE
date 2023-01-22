@@ -134,10 +134,10 @@ begin
 
   Q_pesq_padrao.open;
 
-  //Soma as vendas
-  Soma_venda;
+  // Soma as vendas
+  Soma_Venda;
 
-  //Soma o numero de registros
+  // Soma o numero de registros
   lb_resultado.Visible := true;
   lb_resultado.Caption := 'Total de registros localizados: ' +
     IntToStr(Q_pesq_padrao.RecordCount);
@@ -272,7 +272,6 @@ procedure TFrm_pesq_venda.Soma_Venda;
 var
   soma: Currency;
 
-
 begin
 
   soma := 0;
@@ -290,6 +289,5 @@ begin
     FormatFloat('R$ ##,##0.00', (soma));
 
 end;
-
 
 end.

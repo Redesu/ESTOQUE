@@ -3,7 +3,8 @@ unit U_Forma_pgto;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_padrao, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
@@ -41,24 +42,24 @@ uses U_pesq_forma_pgto;
 procedure TFrm_Forma_pgto.bt_novoClick(Sender: TObject);
 begin
   inherited;
-   DB_cadastro.Text:=datetostr(now);
-   DB_descricao.SetFocus;
+  DB_cadastro.Text := datetostr(now);
+  DB_descricao.SetFocus;
 end;
 
 procedure TFrm_Forma_pgto.bt_pesquisarClick(Sender: TObject);
 begin
- Frm_pesq_forma_pgto:=TFrm_pesq_forma_pgto.Create(self);
- Frm_pesq_forma_pgto.ShowModal;
- try
-        if Frm_pesq_forma_pgto.codico > 0 then
+  Frm_pesq_forma_pgto := TFrm_pesq_forma_pgto.Create(self);
+  Frm_pesq_forma_pgto.ShowModal;
+  try
+    if Frm_pesq_forma_pgto.codico > 0 then
     begin
       Q_padrao.Open;
       Q_padrao.Locate('ID_FORMA_PGTO', Frm_pesq_forma_pgto.codico, []);
     end;
- finally
- Frm_pesq_forma_pgto.Free;
- Frm_pesq_forma_pgto:=nil;
- end;
+  finally
+    Frm_pesq_forma_pgto.Free;
+    Frm_pesq_forma_pgto := nil;
+  end;
 
 end;
 

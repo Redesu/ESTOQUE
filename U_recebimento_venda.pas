@@ -102,8 +102,7 @@ begin
       // Insere data de vencimento
       Frm_venda.Q_conta_receber.FieldByName('DT_VENCIMENTO').Value :=
         Date + (parcela * 30);
-      Frm_venda.Q_conta_receber.FieldByName('DT_PAGAMENTO').Value :=
-        Date + 1;
+      Frm_venda.Q_conta_receber.FieldByName('DT_PAGAMENTO').Value := Date + 1;
       // Zera juros e atraso
       Frm_venda.Q_conta_receber.FieldByName('ATRASO').AsFloat := 0;
       Frm_venda.Q_conta_receber.FieldByName('JUROS').AsFloat := 0;
@@ -119,7 +118,7 @@ begin
       Frm_venda.Q_conta_receber.Next;
 
     end;
-    Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok],0);
+    Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
     Frm_venda.bt_imprimir.Click;
     Frm_recebimento_venda.Close;
     abort;
@@ -170,9 +169,9 @@ begin
   end;
 
   Messagedlg('Parcelas geradas com sucesso!', mtinformation, [mbok], 0);
-   Frm_venda.bt_imprimir.Click;
-   Frm_recebimento_venda.Close;
-   abort;
+  Frm_venda.bt_imprimir.Click;
+  Frm_recebimento_venda.Close;
+  abort;
 end;
 
 procedure TFrm_recebimento_venda.db_valor_pagoExit(Sender: TObject);
@@ -185,14 +184,13 @@ end;
 
 procedure TFrm_recebimento_venda.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  //Faz a função do tab
+  // Faz a função do tab
 
-     if KEY=#13 then
-     begin
-       KEY:=#0;
-       Perform(wm_nextDlgCtl,0,0);
-     end;
-
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(wm_nextDlgCtl, 0, 0);
+  end;
 
 end;
 

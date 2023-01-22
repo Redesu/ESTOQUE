@@ -76,7 +76,6 @@ begin
   lb_resultado.Caption := 'Total de registros localizados: ' +
     IntToStr(Q_pesq_padrao.RecordCount);
 
-
   // Se nada for encontrado, mostra o codico abaixo
   if Q_pesq_padrao.IsEmpty then
   begin

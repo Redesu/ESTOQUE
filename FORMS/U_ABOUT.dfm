@@ -106,8 +106,8 @@ object Frm_AboutBox: TFrm_AboutBox
     object Comments: TLabel
       Left = 8
       Top = 99
-      Width = 448
-      Height = 546
+      Width = 445
+      Height = 52
       Caption = 
         'Comments: Lorem ipsum dolor sit amet, consectetur adipiscing eli' +
         't. Vivamus vulputate felis nec metus ornare volutpat. Donec at r' +

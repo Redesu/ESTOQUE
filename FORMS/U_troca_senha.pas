@@ -3,7 +3,8 @@ unit U_troca_senha;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
@@ -41,56 +42,50 @@ uses U_DM, U_login;
 
 procedure TFrm_troca_senha.bt_cancelarClick(Sender: TObject);
 begin
-Close; // fecha a tela
+  Close; // fecha a tela
 end;
 
 procedure TFrm_troca_senha.bt_troca_senhaClick(Sender: TObject);
 begin
 
-    if ed_usuario.Text='' then
-    begin
-      Messagedlg('O campo nome está vazio!', mtInformation, [mbok],0);
-      ed_usuario.SetFocus;
-      abort;
-    end
-    else
-    if ed_senha.Text='' then
-    begin
-      Messagedlg('O campo senha está vazio!', mtInformation, [mbok],0);
-      ed_senha.SetFocus;
-      abort;
-    end
-    else
-    if ed_nova_senha.Text='' then
-    begin
-      Messagedlg('O campo nova senha está vazio!', mtInformation, [mbok],0);
-      ed_nova_senha.SetFocus;
-      abort;
-    end
-    else
-    if ed_confirmar_senha.Text='' then
-    begin
-      Messagedlg('O campo confirmar senha está vazio!', mtInformation, [mbok],0);
-      ed_confirmar_senha.SetFocus;
-      abort;
-    end
-    else
-    if ed_confirmar_senha.Text <> ed_nova_senha.Text then
-    begin
-      Messagedlg('As senhas não coincidem!', mtInformation, [mbok],0);
-      ed_confirmar_senha.SetFocus;
-      abort;
-    end
-    else
+  if ed_usuario.Text = '' then
+  begin
+    Messagedlg('O campo nome está vazio!', mtInformation, [mbok], 0);
+    ed_usuario.SetFocus;
+    abort;
+  end
+  else if ed_senha.Text = '' then
+  begin
+    Messagedlg('O campo senha está vazio!', mtInformation, [mbok], 0);
+    ed_senha.SetFocus;
+    abort;
+  end
+  else if ed_nova_senha.Text = '' then
+  begin
+    Messagedlg('O campo nova senha está vazio!', mtInformation, [mbok], 0);
+    ed_nova_senha.SetFocus;
+    abort;
+  end
+  else if ed_confirmar_senha.Text = '' then
+  begin
+    Messagedlg('O campo confirmar senha está vazio!', mtInformation, [mbok], 0);
+    ed_confirmar_senha.SetFocus;
+    abort;
+  end
+  else if ed_confirmar_senha.Text <> ed_nova_senha.Text then
+  begin
+    Messagedlg('As senhas não coincidem!', mtInformation, [mbok], 0);
+    ed_confirmar_senha.SetFocus;
+    abort;
+  end
+  else
 
-
-  dm.Q_login.Close;
+    dm.Q_login.Close;
   dm.Q_login.SQL.add('');
   dm.Q_login.SQL.Clear;
   dm.Q_login.Params.Clear;
   dm.Q_login.SQL.add('SELECT * FROM USUARIO');
-  dm.Q_login.SQL.add
-    ('WHERE NAME =:PNAME AND PASSWORD =:PPASS');
+  dm.Q_login.SQL.add('WHERE NAME =:PNAME AND PASSWORD =:PPASS');
   dm.Q_login.ParamByName('PNAME').asString := ed_usuario.Text;
   dm.Q_login.ParamByName('PPASS').asString := ed_senha.Text;
   dm.Q_login.Open;
@@ -99,16 +94,16 @@ begin
   if dm.Q_login.RecordCount > 0 then
   begin
 
-      dm.Q_login.Edit;
-      dm.Q_login.FieldByName('PASSWORD').AsString:=ed_confirmar_senha.Text;
-      dm.Q_login.Refresh;
-      Messagedlg('Senha atualizada com sucesso!', mtinformation, [mbok],0);
-      Frm_troca_senha.Close;
-      Frm_login.ed_usuario.SetFocus;
+    dm.Q_login.Edit;
+    dm.Q_login.FieldByName('PASSWORD').asString := ed_confirmar_senha.Text;
+    dm.Q_login.Refresh;
+    Messagedlg('Senha atualizada com sucesso!', mtInformation, [mbok], 0);
+    Frm_troca_senha.Close;
+    Frm_login.ed_usuario.SetFocus;
 
   end
   else
-    MessageDlg('Usuário ou senha incorretos!', mtinformation, [mbok], 0);
+    Messagedlg('Usuário ou senha incorretos!', mtInformation, [mbok], 0);
   ed_usuario.SetFocus;
 end;
 
@@ -123,7 +118,7 @@ end;
 
 procedure TFrm_troca_senha.FormShow(Sender: TObject);
 begin
-ed_usuario.SetFocus;
+  ed_usuario.SetFocus;
 end;
 
 end.

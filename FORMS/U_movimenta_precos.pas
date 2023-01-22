@@ -110,7 +110,7 @@ end;
 
 procedure TFrm_movimenta_precos.bt_acaoExit(Sender: TObject);
 begin
-Q_produto.Close;
+  Q_produto.Close;
 end;
 
 procedure TFrm_movimenta_precos.FormKeyPress(Sender: TObject; var Key: Char);
