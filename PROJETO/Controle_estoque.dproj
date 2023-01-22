@@ -228,6 +228,10 @@
             <Form>Frm_pesq_parcela_receber</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\FORMS\U_movimenta_precos.pas">
+            <Form>Frm_movimenta_precos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -1,0 +1,127 @@
+unit U_movimenta_precos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TFrm_movimenta_precos = class(TForm)
+    rg_altera: TRadioGroup;
+    ed_produto: TEdit;
+    ed_porcentagem: TEdit;
+    lb_produto: TLabel;
+    Label2: TLabel;
+    bt_acao: TBitBtn;
+    Q_produto: TFDQuery;
+    ds_produto: TDataSource;
+    DBGrid1: TDBGrid;
+    Q_produtoPRODUTO_ID: TIntegerField;
+    Q_produtoPRODUTO_DESCRICAO: TStringField;
+    Q_produtoVL_CUSTO: TFMTBCDField;
+    Q_produtoVL_VENDA: TFMTBCDField;
+    Sp_aumenta: TFDStoredProc;
+    Sp_aumenta_todos: TFDStoredProc;
+    Sp_diminuir_todos: TFDStoredProc;
+    Sp_diminuir: TFDStoredProc;
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
+    procedure bt_acaoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_movimenta_precos: TFrm_movimenta_precos;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+procedure TFrm_movimenta_precos.bt_acaoClick(Sender: TObject);
+begin
+
+  case rg_altera.ItemIndex of
+    0: // Aumenta o valor de 1 Produto
+      begin
+        lb_produto.Visible := True;
+        ed_produto.Visible := True;
+        Sp_aumenta.Close;
+        Sp_aumenta.Prepare;
+        Sp_aumenta.ParamByName('P_PRODUTO_ID').AsInteger :=
+          StrToInt(ed_produto.Text);
+        Sp_aumenta.ParamByName('P_PORCENTAGEM').AsSingle :=
+          StrToFloat(ed_porcentagem.Text);
+        Sp_aumenta.ExecProc;
+
+      end;
+
+    1: // Aumenta o valor de todos os produtos
+      begin
+        lb_produto.Visible := false;
+        ed_produto.Visible := false;
+        Sp_aumenta_todos.Close;
+        Sp_aumenta_todos.Prepare;
+        Sp_aumenta_todos.ParamByName('P_PORCENTAGEM').AsSingle :=
+          StrToFloat(ed_porcentagem.Text);
+        Sp_aumenta_todos.ExecProc;
+
+      end;
+
+    2:    // Diminui o valor de um produto
+      begin
+        lb_produto.Visible := True;
+        ed_produto.Visible := True;
+        Sp_diminuir.Close;
+        Sp_diminuir.Prepare;
+        Sp_diminuir.ParamByName('P_PRODUTO_ID').AsInteger :=
+          StrToInt(ed_produto.Text);
+        Sp_diminuir.ParamByName('P_PORCENTAGEM').AsSingle :=
+          StrToFloat(ed_porcentagem.Text);
+        Sp_diminuir.ExecProc;
+
+      end;
+
+    3: // Diminui o valor de todos os produtos
+      begin
+        lb_produto.Visible := false;
+        ed_produto.Visible := false;
+        Sp_diminuir_todos.Close;
+        Sp_diminuir_todos.Prepare;
+        Sp_diminuir_todos.ParamByName('P_PORCENTAGEM').AsSingle :=
+          StrToFloat(ed_porcentagem.Text);
+        Sp_diminuir_todos.ExecProc;
+
+      end;
+
+  end;
+  Q_produto.Close;
+  Q_produto.Open;
+  MessageDlg('Alteração feita com sucesso!', mtInformation, [mbOk], 0);
+end;
+
+procedure TFrm_movimenta_precos.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    Perform(wm_nextDlgCtl, 0, 0);
+  end;
+end;
+
+procedure TFrm_movimenta_precos.FormShow(Sender: TObject);
+begin
+  Q_produto.Open;
+end;
+
+end.

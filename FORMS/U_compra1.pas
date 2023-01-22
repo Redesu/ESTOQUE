@@ -474,49 +474,53 @@ begin
 
   // Se for a vista ou cartão de credito
 
-    if (DB_id_forma_pgto.Text = Inttostr(1)) or
+  if (DB_id_forma_pgto.Text = Inttostr(1)) or
     (DB_id_forma_pgto.Text = Inttostr(3)) then
-    begin
+  begin
     DB_cond_pgto.Text := Inttostr(1);
-    end
-    else
+  end
+  else
     DB_cond_pgto.SetFocus;
 
 end;
 
 procedure TFrm_compra1.db_produto_idExit(Sender: TObject);
 begin
-
-  if Q_padrao_itemSEQUENCIA_ID.AsInteger = 0 then
+  if Q_padrao_item.State in [dsedit, dsinsert] then
   begin
-    Q_padrao_itemSEQUENCIA_ID.AsInteger :=
-      Q_padrao_itemSEQUENCIA_ID.AsInteger + 1;
-  end;
 
-  if Q_padrao_itemPRODUTO_ID.AsInteger > 0 then
-    if Q_produto.Locate('PRODUTO_ID', Q_padrao_item.FieldByName('PRODUTO_ID')
-      .AsInteger, []) then
-
+    if Q_padrao_itemSEQUENCIA_ID.AsInteger = 0 then
     begin
-      Q_padrao_itemQTDE.AsFloat := 1;
-      Q_padrao_itemDESCONTO.AsFloat := 0;
-      // pagar o valor do produto
-      Q_padrao_itemVL_CUSTO.AsFloat :=
-        Q_produto.FieldByName('VL_CUSTO').AsFloat;
+      Q_padrao_itemSEQUENCIA_ID.AsInteger :=
+        Q_padrao_itemSEQUENCIA_ID.AsInteger + 1;
+    end;
 
-      // soma os itens
-      Q_padrao_itemTOTAL_ITEM.AsFloat :=
-        (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
-        (Q_padrao_itemDESCONTO.AsFloat);
-      Q_padrao_item.Post;
-      bt_item.SetFocus;
+    if Q_padrao_itemPRODUTO_ID.AsInteger > 0 then
+      if Q_produto.Locate('PRODUTO_ID', Q_padrao_item.FieldByName('PRODUTO_ID')
+        .AsInteger, []) then
 
-    end
-    else
-      Messagedlg('Produto não encontrado!', mtError, [mbok], 0);
-  Q_padrao_item.Cancel;
-  bt_item.SetFocus;
+      begin
+        Q_padrao_itemQTDE.AsFloat := 1;
+        Q_padrao_itemDESCONTO.AsFloat := 0;
+        // pagar o valor do produto
+        Q_padrao_itemVL_CUSTO.AsFloat :=
+          Q_produto.FieldByName('VL_CUSTO').AsFloat;
 
+        // soma os itens
+        Q_padrao_itemTOTAL_ITEM.AsFloat :=
+          (Q_padrao_itemQTDE.AsFloat * Q_padrao_itemVL_CUSTO.AsFloat) -
+          (Q_padrao_itemDESCONTO.AsFloat);
+        Q_padrao_item.Post;
+        bt_item.SetFocus;
+
+      end
+      else
+        Messagedlg('Produto não encontrado!', mtError, [mbok], 0);
+    Q_padrao_item.Cancel;
+    bt_item.SetFocus;
+  end
+  else
+    abort;
 end;
 
 procedure TFrm_compra1.db_qtdeClick(Sender: TObject);

@@ -54,6 +54,7 @@ type
     ListaContasapagar1: TMenuItem;
     bt_fechar: TSpeedButton;
     AReceber1: TMenuItem;
+    MovimentaPreos1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
     procedure Abre_Tela_usuario();
@@ -103,6 +104,7 @@ type
     procedure bt_Conta_receberClick(Sender: TObject);
     procedure AReceber1Click(Sender: TObject);
     procedure Listacontasareceber1Click(Sender: TObject);
+    procedure MovimentaPreos1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -122,7 +124,7 @@ uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda,
   U_pesq_forma_pgto, U_pesq_compra_Forma_pgto, U_pesq_venda_Forma_pgto,
   U_pesq_geral_mes, U_contas_pagar, U_pesq_parcela_pagar, U_contas_Receber,
-  U_pesq_parcela_receber;
+  U_pesq_parcela_receber, U_movimenta_precos;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -564,6 +566,18 @@ end;
 procedure TFrm_Principal.menu_UsuariosClick(Sender: TObject);
 begin
   Abre_Tela_usuario;
+end;
+
+procedure TFrm_Principal.MovimentaPreos1Click(Sender: TObject);
+begin
+   Frm_movimenta_precos:=TFrm_movimenta_precos.Create(self);
+   Frm_movimenta_precos.ShowModal;
+   try
+
+   finally
+    Frm_movimenta_precos.Free;
+    Frm_movimenta_precos:=nil;
+   end;
 end;
 
 procedure TFrm_Principal.RelatrioGeralporms1Click(Sender: TObject);
