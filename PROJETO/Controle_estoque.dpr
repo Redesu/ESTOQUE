@@ -25,7 +25,6 @@ uses
   U_venda in '..\FORMS\U_venda.pas' {Frm_venda},
   U_pesq_venda in '..\FORMS\U_pesq_venda.pas' {Frm_pesq_venda},
   U_pesq_forma_pgto in '..\FORMS\U_pesq_forma_pgto.pas' {Frm_pesq_forma_pgto},
-  U_recebimento_venda in '..\U_recebimento_venda.pas' {Frm_recebimento_venda},
   U_pesq_compra_Forma_pgto in '..\FORMS\U_pesq_compra_Forma_pgto.pas' {Frm_pesq_compra_Forma_pgto},
   U_pesq_venda_Forma_pgto in '..\FORMS\U_pesq_venda_Forma_pgto.pas' {Frm_pesq_Venda_Forma_Pgto},
   U_pesq_geral_mes in '..\FORMS\U_pesq_geral_mes.pas' {Frm_pesq_geral_mes},
@@ -33,7 +32,11 @@ uses
   U_pesq_parcela_pagar in '..\FORMS\U_pesq_parcela_pagar.pas' {Frm_pesq_Parcela_pagar},
   U_contas_Receber in '..\FORMS\U_contas_Receber.pas' {Frm_contas_Receber},
   U_pesq_parcela_receber in '..\FORMS\U_pesq_parcela_receber.pas' {Frm_pesq_parcela_receber},
-  U_movimenta_precos in '..\FORMS\U_movimenta_precos.pas' {Frm_movimenta_precos};
+  U_movimenta_precos in '..\FORMS\U_movimenta_precos.pas' {Frm_movimenta_precos},
+  U_padrao_backup_Restore in '..\FORMS\U_padrao_backup_Restore.pas' {Frm_padrao_backup_restore},
+  U_backup in '..\FORMS\U_backup.pas' {Frm_backup},
+  U_recebimento_venda in '..\FORMS\U_recebimento_venda.pas' {Frm_recebimento_venda},
+  U_restore in '..\FORMS\U_restore.pas' {Frm_restore};
 
 {$R *.res}
 

@@ -55,6 +55,9 @@ type
     bt_fechar: TSpeedButton;
     AReceber1: TMenuItem;
     MovimentaPreos1: TMenuItem;
+    Backup1: TMenuItem;
+    Backup2: TMenuItem;
+    Restore1: TMenuItem;
     procedure Timer1Timer(Sender: TObject);
     procedure bt_UsuarioClick(Sender: TObject);
     procedure Abre_Tela_usuario();
@@ -105,6 +108,8 @@ type
     procedure AReceber1Click(Sender: TObject);
     procedure Listacontasareceber1Click(Sender: TObject);
     procedure MovimentaPreos1Click(Sender: TObject);
+    procedure Backup2Click(Sender: TObject);
+    procedure Restore1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -124,7 +129,7 @@ uses U_usuario, U_EMPRESA, U_cliente, U_fornecedor, U_produto, U_Forma_pgto,
   U_pesq_compra, U_ABOUT, U_DM, U_login, U_venda, U_pesq_venda,
   U_pesq_forma_pgto, U_pesq_compra_Forma_pgto, U_pesq_venda_Forma_pgto,
   U_pesq_geral_mes, U_contas_pagar, U_pesq_parcela_pagar, U_contas_Receber,
-  U_pesq_parcela_receber, U_movimenta_precos;
+  U_pesq_parcela_receber, U_movimenta_precos, U_backup, U_restore;
 
 procedure TFrm_Principal.SobreClick(Sender: TObject);
 begin
@@ -335,6 +340,18 @@ end;
 procedure TFrm_Principal.AReceber1Click(Sender: TObject);
 begin
   Abre_Contas_Receber;
+end;
+
+procedure TFrm_Principal.Backup2Click(Sender: TObject);
+begin
+      Frm_backup:=TFrm_backup.Create(self);
+      Frm_backup.ShowModal;
+      try
+
+      finally
+       Frm_backup.Free;
+       Frm_backup:=nil;
+      end;
 end;
 
 procedure TFrm_Principal.bt_UsuarioClick(Sender: TObject);
@@ -591,6 +608,20 @@ begin
     Frm_pesq_geral_mes := nil;
 
   end;
+end;
+
+procedure TFrm_Principal.Restore1Click(Sender: TObject);
+begin
+
+    Frm_restore:=TFrm_restore.Create(self);
+    Frm_restore.ShowModal;
+    try
+
+    finally
+     Frm_restore.Free;
+     Frm_restore:=nil;
+    end;
+
 end;
 
 end.

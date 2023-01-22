@@ -1,0 +1,35 @@
+inherited Frm_backup: TFrm_backup
+  Caption = 'FORMUL'#193'RIO DE BACKUP DO BANCO DE DADOS'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Label1: TLabel
+    Width = 221
+    Caption = 'LOCAL DE ORIGEM DO BANCO DE DADOS:'
+    ExplicitWidth = 221
+  end
+  inherited Label2: TLabel
+    Width = 172
+    Caption = 'LOCAL DE DESTINO DO BACKUP:'
+    ExplicitWidth = 172
+  end
+  inherited Panel1: TPanel
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    ExplicitHeight = 500
+    inherited bt_backup: TBitBtn
+      Top = 92
+      OnClick = bt_backupClick
+      ExplicitTop = 92
+    end
+  end
+  inherited OpenDialog1: TOpenDialog
+    Left = 664
+    Top = 256
+  end
+  inherited backup: TFDIBBackup
+    DriverLink = DM.FDPhysFBDriverLink1
+  end
+  inherited restore: TFDIBRestore
+    DriverLink = DM.FDPhysFBDriverLink1
+  end
+end

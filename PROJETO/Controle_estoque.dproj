@@ -196,10 +196,6 @@
             <Form>Frm_pesq_forma_pgto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\U_recebimento_venda.pas">
-            <Form>Frm_recebimento_venda</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\FORMS\U_pesq_compra_Forma_pgto.pas">
             <Form>Frm_pesq_compra_Forma_pgto</Form>
             <FormType>dfm</FormType>
@@ -230,6 +226,22 @@
         </DCCReference>
         <DCCReference Include="..\FORMS\U_movimenta_precos.pas">
             <Form>Frm_movimenta_precos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_padrao_backup_Restore.pas">
+            <Form>Frm_padrao_backup_restore</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_backup.pas">
+            <Form>Frm_backup</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_recebimento_venda.pas">
+            <Form>Frm_recebimento_venda</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\FORMS\U_restore.pas">
+            <Form>Frm_restore</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
